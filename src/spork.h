@@ -36,6 +36,14 @@ using namespace boost;
 #define SPORK_5_RECONSIDER_BLOCKS 10005
 #define SPORK_6_MN_WINNER_MINIMUM_AGE 10006
 #define SPORK_7_NEW_PROTOCOL_ENFORCEMENT 10007
+#define SPORK_8_MIN_STAKE_INPUT 10008
+#define SPORK_9_BLOCK_REWARD 10009
+#define SPORK_10_TIER_1 10010
+#define SPORK_11_TIER_2 10011
+#define SPORK_12_TIER_3 10012
+#define SPORK_13_TIER_4 10013
+#define SPORK_14_TIER_5 10014
+#define SPORK_15_SKIP_MN_SYNC 10015
 
 #define SPORK_1_SWIFTTX_DEFAULT 978307200                         //2001-1-1
 #define SPORK_2_SWIFTTX_BLOCK_FILTERING_DEFAULT 1424217600        //2015-2-18
@@ -43,9 +51,17 @@ using namespace boost;
 #define SPORK_4_MASTERNODE_PAYMENT_ENFORCEMENT_DEFAULT 4529244393 //OFF at start to prevent nodes autoban
 #define SPORK_5_RECONSIDER_BLOCKS_DEFAULT 0
 #define SPORK_6_MN_WINNER_MINIMUM_AGE_DEFAULT 8000               // Age in seconds. This should be > MASTERNODE_REMOVAL_SECONDS to avoid
-#define SPORK_7_NEW_PROTOCOL_ENFORCEMENT_DEFAULT 1565031600      // 5th August 2019 9:00 pm
-                                                                 // misconfigured new nodes in the list.
-                                                                 // Set this to zero to emulate classic behaviour
+#define SPORK_7_NEW_PROTOCOL_ENFORCEMENT_DEFAULT 1565031600      
+
+#define SPORK_8_MIN_STAKE_INPUT_DEFAULT 5
+#define SPORK_9_BLOCK_REWARD_DEFAULT 50
+#define SPORK_10_TIER_1_DEFAULT 1000
+#define SPORK_11_TIER_2_DEFAULT 5000
+#define SPORK_12_TIER_3_DEFAULT 10000
+#define SPORK_13_TIER_4_DEFAULT 15000
+#define SPORK_14_TIER_5_DEFAULT 20000
+#define SPORK_15_SKIP_MN_SYNC_DEFAULT 20000
+
 class CSporkMessage;
 class CSporkManager;
 

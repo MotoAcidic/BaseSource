@@ -89,6 +89,15 @@ bool IsSporkActive(int nSporkID)
         if (nSporkID == SPORK_6_MN_WINNER_MINIMUM_AGE) r = SPORK_6_MN_WINNER_MINIMUM_AGE_DEFAULT;
         if (nSporkID == SPORK_7_NEW_PROTOCOL_ENFORCEMENT) r = SPORK_7_NEW_PROTOCOL_ENFORCEMENT_DEFAULT;
 
+        if (nSporkID == SPORK_8_MIN_STAKE_INPUT) r = SPORK_8_MIN_STAKE_INPUT_DEFAULT;
+        if (nSporkID == SPORK_9_BLOCK_REWARD) r = SPORK_9_BLOCK_REWARD_DEFAULT;
+        if (nSporkID == SPORK_10_TIER_1) r = SPORK_10_TIER_1_DEFAULT;
+        if (nSporkID == SPORK_11_TIER_2) r = SPORK_11_TIER_2_DEFAULT;
+        if (nSporkID == SPORK_12_TIER_3) r = SPORK_12_TIER_3_DEFAULT;
+        if (nSporkID == SPORK_13_TIER_4) r = SPORK_13_TIER_4_DEFAULT;
+        if (nSporkID == SPORK_14_TIER_5) r = SPORK_14_TIER_5_DEFAULT;
+        if (nSporkID == SPORK_15_SKIP_MN_SYNC) r = SPORK_15_SKIP_MN_SYNC_DEFAULT;
+
         if (r == -1) LogPrintf("GetSpork::Unknown Spork %d\n", nSporkID);
     }
     if (r == -1) r = 4070908800; //return 2099-1-1 by default
@@ -111,6 +120,15 @@ int64_t GetSporkValue(int nSporkID)
         if (nSporkID == SPORK_5_RECONSIDER_BLOCKS) r = SPORK_5_RECONSIDER_BLOCKS_DEFAULT;
         if (nSporkID == SPORK_6_MN_WINNER_MINIMUM_AGE) r = SPORK_6_MN_WINNER_MINIMUM_AGE_DEFAULT;
         if (nSporkID == SPORK_7_NEW_PROTOCOL_ENFORCEMENT) r = SPORK_7_NEW_PROTOCOL_ENFORCEMENT_DEFAULT;
+
+        if (nSporkID == SPORK_8_MIN_STAKE_INPUT) r = SPORK_8_MIN_STAKE_INPUT_DEFAULT;
+        if (nSporkID == SPORK_9_BLOCK_REWARD) r = SPORK_9_BLOCK_REWARD_DEFAULT;
+        if (nSporkID == SPORK_10_TIER_1) r = SPORK_10_TIER_1_DEFAULT;
+        if (nSporkID == SPORK_11_TIER_2) r = SPORK_11_TIER_2_DEFAULT;
+        if (nSporkID == SPORK_12_TIER_3) r = SPORK_12_TIER_3DEFAULT;
+        if (nSporkID == SPORK_13_TIER_4) r = SPORK_13_TIER_4_DEFAULT;
+        if (nSporkID == SPORK_14_TIER_5) r = SPORK_14_TIER_5_DEFAULT;
+        if (nSporkID == SPORK_15_SKIP_MN_SYNC) r = SPORK_15_SKIP_MN_SYNC_DEFAULT;
 
 
         if (r == -1) LogPrintf("GetSpork::Unknown Spork %d\n", nSporkID);
@@ -250,6 +268,15 @@ int CSporkManager::GetSporkIDByName(std::string strName)
     if (strName == "SPORK_6_MN_WINNER_MINIMUM_AGE") return SPORK_6_MN_WINNER_MINIMUM_AGE;
     if (strName == "SPORK_7_NEW_PROTOCOL_ENFORCEMENT") return SPORK_7_NEW_PROTOCOL_ENFORCEMENT;
 
+    if (strName == "SPORK_8_MIN_STAKE_INPUT") return SPORK_8_MIN_STAKE_INPUT;
+    if (strName == "SPORK_9_BLOCK_REWARD") return SPORK_9_BLOCK_REWARD;
+    if (strName == "SPORK_10_TIER_1") return SPORK_10_TIER_1;
+    if (strName == "SPORK_11_TIER_2") return SPORK_11_TIER_2;
+    if (strName == "SPORK_12_TIER_3") return SPORK_12_TIER_3;
+    if (strName == "SPORK_13_TIER_4") return SPORK_13_TIER_4;
+    if (strName == "SPORK_14_TIER_5") return SPORK_14_TIER_5;
+    if (strName == "SPORK_15_SKIP_MN_SYNC") return SPORK_15_SKIP_MN_SYNC;
+
     return -1;
 }
 
@@ -262,6 +289,15 @@ std::string CSporkManager::GetSporkNameByID(int id)
     if (id == SPORK_5_RECONSIDER_BLOCKS) return "SPORK_5_RECONSIDER_BLOCKS";
     if (id == SPORK_6_MN_WINNER_MINIMUM_AGE) return "SPORK_6_MN_WINNER_MINIMUM_AGE";
     if (id == SPORK_7_NEW_PROTOCOL_ENFORCEMENT) return "SPORK_7_NEW_PROTOCOL_ENFORCEMENT";
+
+    if (id == SPORK_8_MIN_STAKE_INPUT) return "SPORK_8_MIN_STAKE_INPUT";
+    if (id == SPORK_9_BLOCK_REWARD) return "SPORK_9_BLOCK_REWARD";
+    if (id == SPORK_10_TIER_1) return "SPORK_10_TIER_1";
+    if (id == SPORK_11_TIER_2) return "SPORK_11_TIER_2";
+    if (id == SPORK_12_TIER_3) return "SPORK_12_TIER_3";
+    if (id == SPORK_13_TIER_4) return "SPORK_13_TIER_4";
+    if (id == SPORK_14_TIER_5) return "SPORK_14_TIER_5";
+    if (id == SPORK_15_SKIP_MN_SYNC) return "SPORK_15_SKIP_MN_SYNC";
 
     return "Unknown";
 }
