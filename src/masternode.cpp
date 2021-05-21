@@ -8,6 +8,7 @@
 #include "addrman.h"
 #include "masternodeman.h"
 #include "obfuscation.h"
+#include "spork.h"
 #include "sync.h"
 #include "util.h"
 
@@ -305,10 +306,17 @@ bool CMasternode::IsValidNetAddr()
 
 unsigned CMasternode::Level(CAmount vin_val)
 {
-    switch(vin_val) {
-        case 1000  * COIN: return 1;
-        case 3000  * COIN: return 2;
-        case 5000 * COIN: return 3;
+    switch (vin_val) {
+    case 1:
+        return GetSporkValue(SPORK_10_TIER_1_COLLATERAL) * COIN;
+    case 2:
+        return GetSporkValue(SPORK_11_TIER_2_COLLATERAL) * COIN;
+    case 3:
+        return GetSporkValue(SPORK_12_TIER_3_COLLATERAL) * COIN;
+    case 4:
+        return GetSporkValue(SPORK_13_TIER_4_COLLATERAL) * COIN;
+    case 5:
+        return GetSporkValue(SPORK_14_TIER_5_COLLATERAL) * COIN;
     }
 
     return 0;

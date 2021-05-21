@@ -48,8 +48,6 @@ public:
         MAX_BASE58_TYPES
     };
 
-    using SubsidySwitchPoints = std::map<int64_t, CAmount>;
-
     const uint256& HashGenesisBlock() const { return hashGenesisBlock; }
     const MessageStartChars& MessageStart() const { return pchMessageStart; }
     const std::vector<unsigned char>& AlertKey() const { return vAlertPubKey; }
@@ -62,7 +60,6 @@ public:
     int GetDefaultPort() const { return nDefaultPort; }
     const uint256& ProofOfWorkLimit() const { return bnProofOfWorkLimit; }
     const uint256& StartWork() const { return bnStartWork; }
-    CAmount SubsidyValue(SubsidySwitchPoints::key_type level) const;
     /** Used to check majorities for block version upgrade */
     int EnforceBlockUpgradeMajority() const { return nEnforceBlockUpgradeMajority; }
     int RejectBlockOutdatedMajority() const { return nRejectBlockOutdatedMajority; }
@@ -112,11 +109,6 @@ public:
     int LAST_POW_BLOCK() const { return nLastPOWBlock; }
     int StartMNPaymentsBlock() const {return nStartMasternodePaymentsBlock; }
 
-    const SubsidySwitchPoints& GetSubsidySwitchPoints(uint32_t nTime) const
-    {
-       return subsidySwitchPoints;
-    }
-
 protected:
     CChainParams() {}
 
@@ -132,7 +124,6 @@ protected:
     uint256 bnProofOfWorkLimit;
     uint256 bnStartWork;
     int nMaxReorganizationDepth;
-    SubsidySwitchPoints subsidySwitchPoints;
     int nEnforceBlockUpgradeMajority;
     int nRejectBlockOutdatedMajority;
     int nToCheckBlockUpgradeMajority;

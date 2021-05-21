@@ -1624,46 +1624,20 @@ double ConvertBitsToDouble(unsigned int nBits)
 
 CAmount GetBlockValue(int nHeight)
 {
-    if (nHeight == 1) {
-        return 5300000 * COIN;
-    } else if (nHeight <= Params().ANTI_INSTAMINE_TIME()) {
-        return 1 * COIN;
-        // POS Cutover phase / 1 day
-    } else if (nHeight <= (Params().LAST_POW_BLOCK()+1440) && nHeight > Params().LAST_POW_BLOCK()) {
-        return 1 * COIN;
-        // POS first Year
-    } else if (nHeight <= 1302600 && nHeight > Params().LAST_POW_BLOCK()) {
-        return 5 * COIN;
-      // POS Year 2
-    } else if (nHeight <= 1828200 && nHeight >= 1302601) {
-        return 4 * COIN;
-      // POS Year 3
-    } else if (nHeight <= 2353800 && nHeight >= 1828201) {
-        return 3 * COIN;
-      // POS Year 4
-    } else if (nHeight <= 2879400 && nHeight >= 2353801) {
-        return 3 * COIN;
-      // POS Year 5
-    } else if (nHeight <= 3405000 && nHeight >= 2879401) {
-        return 2 * COIN;
-      // POS Year 6
-    } else if (nHeight <= 3930600 && nHeight >= 3405001) {
-        return 2 * COIN;
-      // POS after Year 6
-    } else if (nHeight >= 3930601) {
-        return 1 * COIN;
-    }
+    return GetSporkValue(SPORK_9_BLOCK_REWARD) * COIN;
 
     int64_t netHashRate = chainActive.GetNetworkHashPS(24, nHeight);
 
-    return Params().SubsidyValue(netHashRate);
 }
 
+/*
 CAmount GetSeeSaw(const CAmount& blockValue, int nHeight, bool bDrift)
 {
     int nMasternodeCountLevel1;
     int nMasternodeCountLevel2;
     int nMasternodeCountLevel3;
+    int nMasternodeCountLevel4;
+    int nMasternodeCountLevel5;
     static int lastHeight=0;
 
     if ((nHeight <= Params().LAST_POW_BLOCK()) && (nHeight != lastHeight)) {
@@ -1675,18 +1649,25 @@ CAmount GetSeeSaw(const CAmount& blockValue, int nHeight, bool bDrift)
         nMasternodeCountLevel1 = mnodeman.stable_size(1);
         nMasternodeCountLevel2 = mnodeman.stable_size(2);
         nMasternodeCountLevel3 = mnodeman.stable_size(3);
+        nMasternodeCountLevel4 = mnodeman.stable_size(4);
+        nMasternodeCountLevel5 = mnodeman.stable_size(5);
     } else {
         nMasternodeCountLevel1 = mnodeman.size(1);
         nMasternodeCountLevel2 = mnodeman.size(2);
         nMasternodeCountLevel3 = mnodeman.size(3);
+        nMasternodeCountLevel4 = mnodeman.size(4);
+        nMasternodeCountLevel5 = mnodeman.size(5);
     }
+
 
     int64_t nMoneySupply = chainActive.Tip()->nMoneySupply;
     int64_t mNodeCoins;
 
-    mNodeCoins = nMasternodeCountLevel1 * 1000 * COIN;
-    mNodeCoins += nMasternodeCountLevel2 * 3000 * COIN;
-    mNodeCoins += nMasternodeCountLevel3 * 5000 * COIN;
+    mNodeCoins = nMasternodeCountLevel1 * GetSporkValue(SPORK_10_TIER_1) * COIN;
+    mNodeCoins += nMasternodeCountLevel2 * GetSporkValue(SPORK_11_TIER_2) * COIN;
+    mNodeCoins += nMasternodeCountLevel3 * GetSporkValue(SPORK_12_TIER_3) * COIN;
+    mNodeCoins += nMasternodeCountLevel4 * GetSporkValue(SPORK_13_TIER_4) * COIN;
+    mNodeCoins += nMasternodeCountLevel5 * GetSporkValue(SPORK_14_TIER_5) * COIN;
 
     if (bDrift) {
         int64_t mRawLocked = mNodeCoins;
@@ -1713,7 +1694,7 @@ CAmount GetSeeSaw(const CAmount& blockValue, int nHeight, bool bDrift)
     ** drift would need to account for the possibility of a legit staker not seeing
     ** the masternode.  By giving the staker very little for no masternodes, both issues
     ** are solved.
-    */
+    
     int64_t SeeSawTableIndex = 0;
     if (mNodeCoins != 0) { 
         /*
@@ -1722,13 +1703,13 @@ CAmount GetSeeSaw(const CAmount& blockValue, int nHeight, bool bDrift)
         ** 77 elements; ranging from 0 to 76.
         ** 0/anysupply/.013 = 0.  maxsupply/maxsupply/.013 = 76
         ** Credits: CaveSpectre 2019
-        */
+        
         SeeSawTableIndex = floor((double)mNodeCoins/nMoneySupply/.013);
     }
     /*
     ** fix up the position to get 96% to 20% masternode stake.
     ** 100 - 0 - 4 = 96; 100 - 76 - 4 = 20
-    */
+    
     ret = blockValue * ((double)(100-SeeSawTableIndex-4) / 100);
     if (fDebug && (nHeight != lastHeight)) {
         LogPrintf("GetSeeSaw(): Calculated Masternode to receive %s%s of the %s Block Reward\n", 
@@ -1740,6 +1721,7 @@ CAmount GetSeeSaw(const CAmount& blockValue, int nHeight, bool bDrift)
     lastHeight = nHeight; // save the height so we don't keep issuing the same messages
     return ret;
 }
+*/
 
 int64_t GetMasternodePayment(int nHeight, unsigned mnlevel, int64_t blockValue, bool bDrift)
 {
@@ -1748,24 +1730,19 @@ int64_t GetMasternodePayment(int nHeight, unsigned mnlevel, int64_t blockValue, 
     if (nHeight <= Params().StartMNPaymentsBlock())
         return 0;
 
-    if (nHeight > Params().LAST_POW_BLOCK()) {
-        // PoS Phase
-        mnPayment = GetSeeSaw(blockValue, nHeight, bDrift);
-    } else {
-        // PoW Phase
-        mnPayment = blockValue / 100 * 27; // 27% to masternodes = 3% level1 + 9% Level 2 + 15% Level3
-    }
-
-    int64_t mnShare = mnPayment / 9;
     switch(mnlevel)
     {
 	     // divy out shares
         case 1:
-            return mnShare * 1;
+            return mnPayment * GetSporkValue(SPORK_15_TIER_1_BLOCK_PERCENT) * COIN;
         case 2:
-            return mnShare * 3;
+            return mnPayment * GetSporkValue(SPORK_16_TIER_2_BLOCK_PERCENT) * COIN;
         case 3:
-            return mnShare * 5;
+            return mnPayment * GetSporkValue(SPORK_17_TIER_3_BLOCK_PERCENT) * COIN;
+        case 4:
+            return mnPayment * GetSporkValue(SPORK_18_TIER_4_BLOCK_PERCENT) * COIN;
+        case 5:
+            return mnPayment * GetSporkValue(SPORK_19_TIER_5_BLOCK_PERCENT) * COIN
     }
 
     return 0;

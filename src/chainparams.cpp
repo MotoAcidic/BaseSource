@@ -86,18 +86,6 @@ static const Checkpoints::CCheckpointData dataRegtest = {
     0,
     100};
 
-CAmount CChainParams::SubsidyValue(SubsidySwitchPoints::key_type level) const
-{
-    const auto& points = subsidySwitchPoints;
-
-    SubsidySwitchPoints::const_iterator point = points.upper_bound(level);
-
-    if(point != subsidySwitchPoints.begin())
-        point = std::prev(point);
-
-    return point->second;
-}
-
 void MineGenesis(CBlock genesis)
 {
     printf("Searching for genesis block...\n");
@@ -152,25 +140,6 @@ public:
         nDefaultPort = 41110;
         bnProofOfWorkLimit = ~uint256(0) >> 20;
         bnStartWork = ~uint256(0) >> 24;
-
-        subsidySwitchPoints = {
-            {0         ,   4 * COIN},
-            {20   * 1e9,   5 * COIN},
-            {30   * 1e9,   7 * COIN},
-            {50   * 1e9,  10 * COIN},
-            {80   * 1e9,  14 * COIN},
-            {130  * 1e9,  19 * COIN},
-            {210  * 1e9,  25 * COIN},
-            {340  * 1e9,  32 * COIN},
-            {550  * 1e9,  40 * COIN},
-            {890  * 1e9,  49 * COIN},
-            {1440 * 1e9,  59 * COIN},
-            {2330 * 1e9,  70 * COIN},
-            {3770 * 1e9,  82 * COIN},
-            {6100 * 1e9,  95 * COIN},
-            {9870 * 1e9, 109 * COIN},
-        };
-        assert(subsidySwitchPoints.size());
 
         nMaxReorganizationDepth = 100;
         nEnforceBlockUpgradeMajority = 750;
@@ -268,25 +237,6 @@ public:
         bnProofOfWorkLimit = ~uint256(0) >> 1;
         bnStartWork = bnProofOfWorkLimit;
 
-        subsidySwitchPoints = {
-           {0        ,   4 * COIN},
-           {2   * 1e7,   5 * COIN},
-           {3   * 1e7,   7 * COIN},
-           {5   * 1e7,   9 * COIN},
-           {8   * 1e7,  11 * COIN},
-           {13  * 1e7,  15 * COIN},
-           {21  * 1e7,  20 * COIN},
-           {34  * 1e7,  27 * COIN},
-           {55  * 1e7,  39 * COIN},
-           {89  * 1e7,  57 * COIN},
-           {144 * 1e7,  85 * COIN},
-           {233 * 1e7, 131 * COIN},
-           {377 * 1e7, 204 * COIN},
-           {610 * 1e7, 321 * COIN},
-           {987 * 1e7, 511 * COIN},
-        };
-        assert(subsidySwitchPoints.size());
-
         vAlertPubKey = ParseHex("0470278d0645942e9816abfb0596ddb92c9e15f4efcb59d05f46579398de5f0cbc73c5dad1bf3078d26b7eff021c5628140933a8cfc430ab7c00276304d7353d9e");
         nDefaultPort = 51112;
         nEnforceBlockUpgradeMajority = 51;
@@ -368,25 +318,6 @@ public:
 
         bnStartWork = ~uint256(0) >> 20;
 
-        subsidySwitchPoints = {
-           {0        ,   4 * COIN},
-           {2   * 1e7,   5 * COIN},
-           {3   * 1e7,   7 * COIN},
-           {5   * 1e7,   9 * COIN},
-           {8   * 1e7,  11 * COIN},
-           {13  * 1e7,  15 * COIN},
-           {21  * 1e7,  20 * COIN},
-           {34  * 1e7,  27 * COIN},
-           {55  * 1e7,  39 * COIN},
-           {89  * 1e7,  57 * COIN},
-           {144 * 1e7,  85 * COIN},
-           {233 * 1e7, 131 * COIN},
-           {377 * 1e7, 204 * COIN},
-           {610 * 1e7, 321 * COIN},
-           {987 * 1e7, 511 * COIN},
-        };
-        assert(subsidySwitchPoints.size());
-
         nEnforceBlockUpgradeMajority = 750;
         nRejectBlockOutdatedMajority = 950;
         nToCheckBlockUpgradeMajority = 1000;
@@ -439,25 +370,6 @@ public:
         fMiningRequiresPeers = false;
         fDefaultConsistencyChecks = true;
         fMineBlocksOnDemand = true;
-
-        subsidySwitchPoints = {
-            {0         ,   1 * COIN},
-            {2   * 1e5,   2 * COIN},
-            {3   * 1e5,   3 * COIN},
-            {5   * 1e5,   5 * COIN},
-            {8   * 1e5,   8 * COIN},
-            {13  * 1e5,  13 * COIN},
-            {21  * 1e5,  21 * COIN},
-            {34  * 1e5,  34 * COIN},
-            {55  * 1e5,  55 * COIN},
-            {89  * 1e5,  89 * COIN},
-            {144 * 1e5, 144 * COIN},
-            {233 * 1e5, 233 * COIN},
-            {377 * 1e5, 377 * COIN},
-            {610 * 1e5, 610 * COIN},
-            {987 * 1e5, 987 * COIN},
-        };
-        assert(subsidySwitchPoints.size());
 
     }
 
