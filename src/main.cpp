@@ -1742,7 +1742,7 @@ int64_t GetMasternodePayment(int nHeight, unsigned mnlevel, int64_t blockValue, 
         case 4:
             return mnPayment * GetSporkValue(SPORK_18_TIER_4_BLOCK_PERCENT) * COIN;
         case 5:
-            return mnPayment * GetSporkValue(SPORK_19_TIER_5_BLOCK_PERCENT) * COIN
+            return mnPayment * GetSporkValue(SPORK_19_TIER_5_BLOCK_PERCENT) * COIN;
     }
 
     return 0;
