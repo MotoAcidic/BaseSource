@@ -11,6 +11,7 @@
 #include "random.h"
 #include "util.h"
 #include "utilstrencodings.h"
+#include "spork.h"
 
 #include <mutex>
 #include <assert.h>
@@ -153,6 +154,7 @@ public:
         nMaxMoneyOut = 45000000 * COIN;
 
         nStartMasternodePaymentsBlock = 1001;
+        nMinStakeInput = GetSporkValue(SPORK_8_MIN_STAKE_INPUT) * COIN;
 
         /** Height or Time Based Activations **/
         nLastPOWBlock = 105;

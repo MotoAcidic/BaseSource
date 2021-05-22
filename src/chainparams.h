@@ -102,12 +102,12 @@ public:
     std::string ObfuscationPoolDummyAddress() const { return strObfuscationPoolDummyAddress; }
     int64_t StartMasternodePayments() const { return nStartMasternodePayments; }
     CBaseChainParams::Network NetworkID() const { return networkID; }
-
     /** Height or Time Based Activations **/
     //todo: ModifierUpgradeBlock affect POS
     int ModifierUpgradeBlock() const { return nModifierUpdateBlock; }
     int LAST_POW_BLOCK() const { return nLastPOWBlock; }
     int StartMNPaymentsBlock() const {return nStartMasternodePaymentsBlock; }
+    CAmount MinStakeInput() { return nMinStakeInput; }
 
 protected:
     CChainParams() {}
@@ -154,6 +154,7 @@ protected:
     std::string strSporkKey;
     std::string strObfuscationPoolDummyAddress;
     int64_t nStartMasternodePayments;
+    CAmount nMinStakeInput;
 };
 
 /**

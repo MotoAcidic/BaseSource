@@ -1605,6 +1605,12 @@ bool CWallet::SelectStakeCoins(std::set<std::pair<const CWalletTx*, unsigned int
         if (nAmountSelected + out.tx->vout[out.i].nValue > nTargetAmount)
             continue;
 
+        //check for minimal stake input
+        if (IsSporkActive(SPORK_21_ACTIVATE_MIN_STAKE)) {
+            if (out.tx->vout[out.i].nValue < Params().MinStakeInput())
+                continue;
+        }
+
 	 int64_t nTxTime = out.tx->GetTxTime();
 
         //check for min age
