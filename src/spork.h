@@ -77,7 +77,7 @@ using namespace boost;
 #define SPORK_19_TIER_5_BLOCK_PERCENT_DEFAULT 40
 
 #define SPORK_20_SKIP_MN_SYNC_DEFAULT 20000
-#define SPORK_21_ACTIVATE_MIN_STAKE 20000
+#define SPORK_21_ACTIVATE_MIN_STAKE_DEFAULT 20000
 
 class CSporkMessage;
 class CSporkManager;
