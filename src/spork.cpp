@@ -142,7 +142,7 @@ int64_t GetSporkValue(int nSporkID)
         if (nSporkID == SPORK_18_TIER_4_BLOCK_PERCENT) r = SPORK_18_TIER_4_BLOCK_PERCENT_DEFAULT;
         if (nSporkID == SPORK_19_TIER_5_BLOCK_PERCENT) r = SPORK_19_TIER_5_BLOCK_PERCENT_DEFAULT;
 
-        if (nSporkID == SPORK_15_SKIP_MN_SYNC) r = SPORK_15_SKIP_MN_SYNC_DEFAULT;
+        if (nSporkID == SPORK_20_SKIP_MN_SYNC) r = SPORK_20_SKIP_MN_SYNC_DEFAULT;
 
 
         if (r == -1) LogPrintf("GetSpork::Unknown Spork %d\n", nSporkID);
@@ -293,8 +293,8 @@ int CSporkManager::GetSporkIDByName(std::string strName)
     if (strName == "SPORK_15_TIER_1_BLOCK_PERCENT") return SPORK_15_TIER_1_BLOCK_PERCENT;
     if (strName == "SPORK_16_TIER_2_BLOCK_PERCENT") return SPORK_16_TIER_2_BLOCK_PERCENT;
     if (strName == "SPORK_17_TIER_3_BLOCK_PERCENT") return SPORK_17_TIER_3_BLOCK_PERCENT;
-    if (strName == "SPORK_18_TIER_4_BLOCK_PERCENTL") return SPORK_18_TIER_4_BLOCK_PERCENT;
-    if (strName == "SPORK_19_TIER_5__BLOCK_PERCENT") return SPORK_19_TIER_5_BLOCK_PERCENT;
+    if (strName == "SPORK_18_TIER_4_BLOCK_PERCENT") return SPORK_18_TIER_4_BLOCK_PERCENT;
+    if (strName == "SPORK_19_TIER_5_BLOCK_PERCENT") return SPORK_19_TIER_5_BLOCK_PERCENT;
 
     if (strName == "SPORK_20_SKIP_MN_SYNC") return SPORK_20_SKIP_MN_SYNC;
 
@@ -313,12 +313,19 @@ std::string CSporkManager::GetSporkNameByID(int id)
 
     if (id == SPORK_8_MIN_STAKE_INPUT) return "SPORK_8_MIN_STAKE_INPUT";
     if (id == SPORK_9_BLOCK_REWARD) return "SPORK_9_BLOCK_REWARD";
-    if (id == SPORK_10_TIER_1) return "SPORK_10_TIER_1";
-    if (id == SPORK_11_TIER_2) return "SPORK_11_TIER_2";
-    if (id == SPORK_12_TIER_3) return "SPORK_12_TIER_3";
-    if (id == SPORK_13_TIER_4) return "SPORK_13_TIER_4";
-    if (id == SPORK_14_TIER_5) return "SPORK_14_TIER_5";
-    if (id == SPORK_15_SKIP_MN_SYNC) return "SPORK_15_SKIP_MN_SYNC";
+
+    if (id == SPORK_10_TIER_1_COLLATERAL) return "SPORK_10_TIER_1_COLLATERAL";
+    if (id == SPORK_11_TIER_2_COLLATERAL) return "SPORK_11_TIER_2_COLLATERAL";
+    if (id == SPORK_12_TIER_3_COLLATERAL) return "SPORK_12_TIER_3_COLLATERAL";
+    if (id == SPORK_13_TIER_4_COLLATERAL) return "SPORK_13_TIER_4_COLLATERAL";
+    if (id == SPORK_14_TIER_5_COLLATERAL) return "SPORK_14_TIER_5_COLLATERAL";
+    if (id == SPORK_15_TIER_1_BLOCK_PERCENT) return "SPORK_15_TIER_1_BLOCK_PERCENT";
+    if (id == SPORK_16_TIER_2_BLOCK_PERCENT) return "SPORK_16_TIER_2_BLOCK_PERCENT";
+    if (id == SPORK_17_TIER_3_BLOCK_PERCENT) return "SPORK_17_TIER_3_BLOCK_PERCENT";
+    if (id == SPORK_18_TIER_4_BLOCK_PERCENT) return "SPORK_18_TIER_4_BLOCK_PERCENT";
+    if (id == SPORK_19_TIER_5_BLOCK_PERCENT) return "SPORK_19_TIER_5_BLOCK_PERCENT";
+
+    if (id == SPORK_20_SKIP_MN_SYNC) return "SPORK_20_SKIP_MN_SYNC";
 
     return "Unknown";
 }

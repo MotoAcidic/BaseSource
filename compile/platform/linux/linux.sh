@@ -23,7 +23,6 @@ echo VPS Server prerequisites installed.
 # Compile the Coin #
 ####################
 cd ../../../
-cd depends
 ./autogen.sh
 ./configure --disable-gui-tests --disable-shared --disable-tests --disable-bench --with-unsupported-ssl --with-libressl --with-gui=qt5
 make

@@ -1625,9 +1625,6 @@ double ConvertBitsToDouble(unsigned int nBits)
 CAmount GetBlockValue(int nHeight)
 {
     return GetSporkValue(SPORK_9_BLOCK_REWARD) * COIN;
-
-    int64_t netHashRate = chainActive.GetNetworkHashPS(24, nHeight);
-
 }
 
 /*
