@@ -84,7 +84,7 @@ public:
     /** Instamine Prevention, Zero reward to block **/
     int ANTI_INSTAMINE_TIME() const { return nAntiInstamineTime; }
     int COINBASE_MATURITY() const { return nMaturity; }
-    //CAmount MaxMoneyOut() const { return nMaxMoneyOut; }
+    CAmount MaxMoneyOut() const { return nMaxMoneyOut; }
     /** The masternode count that we will allow the see-saw reward payments to be off by */
     int MasternodePercentDrift() const { return nMasternodePercentDrift; }
     /** Make miner stop after a block is found. In RPC, don't return until nGenProcLimit blocks are generated */
@@ -154,7 +154,7 @@ protected:
     std::string strSporkKey;
     std::string strObfuscationPoolDummyAddress;
     int64_t nStartMasternodePayments;
-    CAmount nMinStakeInput;
+    //CAmount nMinStakeInput;
 };
 
 /**
