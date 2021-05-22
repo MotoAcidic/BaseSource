@@ -104,6 +104,7 @@ bool IsSporkActive(int nSporkID)
         if (nSporkID == SPORK_19_TIER_5_BLOCK_PERCENT) r = SPORK_19_TIER_5_BLOCK_PERCENT_DEFAULT;
 
         if (nSporkID == SPORK_20_SKIP_MN_SYNC) r = SPORK_20_SKIP_MN_SYNC_DEFAULT;
+        if (nSporkID == SPORK_21_ACTIVATE_MIN_STAKE) r = SPORK_21_ACTIVATE_MIN_STAKE_DEFAULT;
 
         if (r == -1) LogPrintf("GetSpork::Unknown Spork %d\n", nSporkID);
     }
@@ -143,6 +144,7 @@ int64_t GetSporkValue(int nSporkID)
         if (nSporkID == SPORK_19_TIER_5_BLOCK_PERCENT) r = SPORK_19_TIER_5_BLOCK_PERCENT_DEFAULT;
 
         if (nSporkID == SPORK_20_SKIP_MN_SYNC) r = SPORK_20_SKIP_MN_SYNC_DEFAULT;
+        if (nSporkID == SPORK_21_ACTIVATE_MIN_STAKE) r = SPORK_21_ACTIVATE_MIN_STAKE_DEFAULT;
 
 
         if (r == -1) LogPrintf("GetSpork::Unknown Spork %d\n", nSporkID);
@@ -297,6 +299,7 @@ int CSporkManager::GetSporkIDByName(std::string strName)
     if (strName == "SPORK_19_TIER_5_BLOCK_PERCENT") return SPORK_19_TIER_5_BLOCK_PERCENT;
 
     if (strName == "SPORK_20_SKIP_MN_SYNC") return SPORK_20_SKIP_MN_SYNC;
+    if (strName == "SPORK_21_ACTIVATE_MIN_STAKE") return SPORK_21_ACTIVATE_MIN_STAKE;
 
     return -1;
 }
@@ -326,6 +329,7 @@ std::string CSporkManager::GetSporkNameByID(int id)
     if (id == SPORK_19_TIER_5_BLOCK_PERCENT) return "SPORK_19_TIER_5_BLOCK_PERCENT";
 
     if (id == SPORK_20_SKIP_MN_SYNC) return "SPORK_20_SKIP_MN_SYNC";
+    if (id == SPORK_21_ACTIVATE_MIN_STAKE) return "SPORK_21_ACTIVATE_MIN_STAKE";
 
     return "Unknown";
 }
