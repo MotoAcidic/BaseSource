@@ -154,7 +154,7 @@ public:
         nMaxMoneyOut = 45000000 * COIN;
 
         nStartMasternodePaymentsBlock = 1001;
-        nMinStakeInput = GetSporkValue(SPORK_8_MIN_STAKE_INPUT) * COIN;
+        //nMinStakeInput = GetSporkValue(SPORK_8_MIN_STAKE_INPUT) * COIN;
 
         /** Height or Time Based Activations **/
         nLastPOWBlock = 105;

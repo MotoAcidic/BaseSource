@@ -3116,7 +3116,9 @@ bool CheckBlockHeader(const CBlockHeader& block, CValidationState& state, bool f
 bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bool fCheckMerkleRoot, bool fCheckSig)
 {
     // These are checks that are independent of context.
-    
+
+    // Define min amount of coins required to stake
+    CAmount MIN_STAKE_AMOUNT = GetSporkValue(SPORK_8_MIN_STAKE_INPUT) * COIN;
     // Check that the header is valid (particularly PoW).  This is mostly
     // redundant with the call in AcceptBlockHeader.
     if (!CheckBlockHeader(block, state, fCheckPOW && block.IsProofOfWork()))
@@ -3195,7 +3197,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
                 if (IsSporkActive(SPORK_21_ACTIVATE_MIN_STAKE)) {
                     if (!GetTransaction(block.vtx[1].vin[0].prevout.hash, txPrev, hashBlockPrev, true))
                         return state.DoS(100, error("CheckBlock() : stake failed to find vin transaction"));
-                    if (txPrev.vout[block.vtx[1].vin[0].prevout.n].nValue < Params().MinStakeInput())
+                    if (txPrev.vout[block.vtx[1].vin[0].prevout.n].nValue < MIN_STAKE_AMOUNT)
                         return state.DoS(100, error("CheckBlock() : stake input below minimum value"));
                 }
 	        }

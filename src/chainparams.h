@@ -84,7 +84,7 @@ public:
     /** Instamine Prevention, Zero reward to block **/
     int ANTI_INSTAMINE_TIME() const { return nAntiInstamineTime; }
     int COINBASE_MATURITY() const { return nMaturity; }
-    CAmount MaxMoneyOut() const { return nMaxMoneyOut; }
+    //CAmount MaxMoneyOut() const { return nMaxMoneyOut; }
     /** The masternode count that we will allow the see-saw reward payments to be off by */
     int MasternodePercentDrift() const { return nMasternodePercentDrift; }
     /** Make miner stop after a block is found. In RPC, don't return until nGenProcLimit blocks are generated */
@@ -107,7 +107,7 @@ public:
     int ModifierUpgradeBlock() const { return nModifierUpdateBlock; }
     int LAST_POW_BLOCK() const { return nLastPOWBlock; }
     int StartMNPaymentsBlock() const {return nStartMasternodePaymentsBlock; }
-    CAmount MinStakeInput() { return nMinStakeInput; }
+    //CAmount MinStakeInput() const { return nMinStakeInput; }
 
 protected:
     CChainParams() {}

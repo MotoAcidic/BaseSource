@@ -1599,6 +1599,8 @@ bool CWallet::SelectStakeCoins(std::set<std::pair<const CWalletTx*, unsigned int
     vector<COutput> vCoins;
     AvailableCoins(vCoins, true, NULL, false, STAKABLE_COINS);
     CAmount nAmountSelected = 0;
+    // Define min amount of coins required to stake
+    CAmount MIN_STAKE_AMOUNT = GetSporkValue(SPORK_8_MIN_STAKE_INPUT) * COIN;
 
     for (const COutput& out : vCoins) {
         //make sure not to outrun target amount
@@ -1607,7 +1609,7 @@ bool CWallet::SelectStakeCoins(std::set<std::pair<const CWalletTx*, unsigned int
 
         //check for minimal stake input
         if (IsSporkActive(SPORK_21_ACTIVATE_MIN_STAKE)) {
-            if (out.tx->vout[out.i].nValue < Params().MinStakeInput())
+            if (out.tx->vout[out.i].nValue < MIN_STAKE_AMOUNT)
                 continue;
         }
 
