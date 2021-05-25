@@ -866,7 +866,7 @@
                        </widget>
                       </item>
                       <item row="1" column="2">
-                       <widget class="QProgressBar" name="graphMN2_3">
+                       <widget class="QProgressBar" name="graphMN2">
                         <property name="minimumSize">
                          <size>
                           <width>0</width>
@@ -932,7 +932,7 @@
                        </widget>
                       </item>
                       <item row="2" column="2">
-                       <widget class="QProgressBar" name="graphMN3_7">
+                       <widget class="QProgressBar" name="graphMN3">
                         <property name="minimumSize">
                          <size>
                           <width>0</width>
@@ -998,7 +998,7 @@
                        </widget>
                       </item>
                       <item row="3" column="2">
-                       <widget class="QProgressBar" name="graphMN4_8">
+                       <widget class="QProgressBar" name="graphMN4">
                         <property name="minimumSize">
                          <size>
                           <width>0</width>
@@ -1064,7 +1064,7 @@
                        </widget>
                       </item>
                       <item row="4" column="2">
-                       <widget class="QProgressBar" name="graphMN5_9">
+                       <widget class="QProgressBar" name="graphMN5">
                         <property name="minimumSize">
                          <size>
                           <width>0</width>
@@ -1130,7 +1130,7 @@
                        </widget>
                       </item>
                       <item row="0" column="2">
-                       <widget class="QProgressBar" name="graphMN1_3">
+                       <widget class="QProgressBar" name="graphMN1">
                         <property name="minimumSize">
                          <size>
                           <width>0</width>
