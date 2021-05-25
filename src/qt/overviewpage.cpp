@@ -331,7 +331,7 @@ void OverviewPage::updateAlerts(const QString& warnings)
   //  this->ui->labelAlerts->setText(warnings);
 }
 
-double roi1, roi2, roi3;
+double roi1, roi2, roi3, roi4, roi5;
 
 void OverviewPage::updateMasternodeInfo()
 {
@@ -343,7 +343,10 @@ void OverviewPage::updateMasternodeInfo()
    int mn1=0;
    int mn2=0;
    int mn3=0;
+   int mn4=0;
+   int mn5=0;
    int totalmn=0;
+
    std::vector<CMasternode> vMasternodes = mnodeman.GetFullMasternodeMap();
     for(auto& mn : vMasternodes)
     {
@@ -355,31 +358,43 @@ void OverviewPage::updateMasternodeInfo()
            mn2++;break;
            case 3:
            mn3++;break;
+           case 4:
+           mn4++;break;
+           case 5:
+           mn5++;break;
        }
 
     }
-    totalmn=mn1+mn2+mn3;
+    totalmn=mn1+mn2+mn3+mn4+mn5;
     ui->labelMnTotal_Value->setText(QString::number(totalmn));
-    int maxMnValue = std::max( { mn1, mn2, mn3 }, [](const int& s1, const int& s2) { return s1 < s2; });
+    int maxMnValue = std::max( { mn1, mn2, mn3, mn4, mn5 }, [](const int& s1, const int& s2) { return s1 < s2; });
 
     ui->graphMN1->setMaximum(maxMnValue);
     ui->graphMN2->setMaximum(maxMnValue);
     ui->graphMN3->setMaximum(maxMnValue);
+    ui->graphMN4->setMaximum(maxMnValue);
+    ui->graphMN5->setMaximum(maxMnValue);
     
     ui->graphMN1->setValue(mn1);
     ui->graphMN2->setValue(mn2);
     ui->graphMN3->setValue(mn3);
+    ui->graphMN4->setValue(mn4);
+    ui->graphMN5->setValue(mn5);
 
     // TODO: need a read actual 24h blockcount from chain
     int BlockCount24h = block24hCount > 0 ? block24hCount : 1440;
 
     // update ROI
     double BlockReward = GetBlockValue(CurrentBlock);
+
     BlockReward -= BlockReward * Params().GetDevFee() / 100;
-	  BlockReward -= BlockReward * Params().GetFundFee() / 100;
+	BlockReward -= BlockReward * Params().GetFundFee() / 100;
+
     (mn1==0) ? roi1 = 0 : roi1 = (GetMasternodePayment(CurrentBlock, 1, BlockReward)*BlockCount24h)/mn1/COIN;
     (mn2==0) ? roi2 = 0 : roi2 = (GetMasternodePayment(CurrentBlock, 2, BlockReward)*BlockCount24h)/mn2/COIN;
     (mn3==0) ? roi3 = 0 : roi3 = (GetMasternodePayment(CurrentBlock, 3, BlockReward)*BlockCount24h)/mn3/COIN;
+    (mn4==0) ? roi4 = 0 : roi4 = (GetMasternodePayment(CurrentBlock, 4, BlockReward)*BlockCount24h)/mn4/ COIN;
+    (mn5==0) ? roi5 = 0 : roi5 = (GetMasternodePayment(CurrentBlock, 5, BlockReward)*BlockCount24h)/mn5/ COIN;
     
     if (CurrentBlock >= 0) {
         ui->roi_11->setText(mn1==0 ? "-" : QString::number(roi1,'f',0).append("  |"));
