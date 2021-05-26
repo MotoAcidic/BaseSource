@@ -403,11 +403,17 @@ void OverviewPage::updateMasternodeInfo()
         ui->roi_large->setText(mn4 == 0 ? "-" : QString::number(roi2, 'f', 0).append("  |"));
         ui->roi_full->setText(mn5 == 0 ? "-" : QString::number(roi3, 'f', 0).append("  |"));
 
-        ui->roi_mini_2->setText(mn1 == 0 ? " " : QString::number(GetSporkValue(SPORK_10_TIER_1_COLLATERAL) * COIN / roi1, 'f', 1).append(" days"));
+        ui->roi_mini_2->setText(mn1 == 0 ? " " : QString::number(GetSporkValue(SPORK_10_TIER_1_COLLATERAL) * COIN / roi1, 'f', 1).append(" days"));        
         ui->roi_small_2->setText(mn2 == 0 ? " " : QString::number(GetSporkValue(SPORK_11_TIER_2_COLLATERAL) * COIN / roi2, 'f', 1).append(" days"));
         ui->roi_medium_2->setText(mn3 == 0 ? " " : QString::number(GetSporkValue(SPORK_12_TIER_3_COLLATERAL) * COIN / roi3, 'f', 1).append(" days"));
         ui->roi_large_2->setText(mn2 == 0 ? " " : QString::number(GetSporkValue(SPORK_13_TIER_4_COLLATERAL) * COIN / roi2, 'f', 1).append(" days"));
         ui->roi_full_2->setText(mn3 == 0 ? " " : QString::number(GetSporkValue(SPORK_14_TIER_5_COLLATERAL) * COIN / roi3, 'f', 1).append(" days"));
+
+        ui->label_micolat->setText(mn1 == 0 ? " " : QString::number(GetSporkValue(SPORK_10_TIER_1_COLLATERAL) * COIN / roi1, 'f', 1));
+        ui->label_scolat->setText(mn2 == 0 ? " " : QString::number(GetSporkValue(SPORK_11_TIER_2_COLLATERAL) * COIN / roi1, 'f', 1));
+        ui->label_mcolat->setText(mn3 == 0 ? " " : QString::number(GetSporkValue(SPORK_12_TIER_3_COLLATERAL) * COIN / roi1, 'f', 1));
+        ui->label_lcolat->setText(mn4 == 0 ? " " : QString::number(GetSporkValue(SPORK_13_TIER_4_COLLATERAL) * COIN / roi1, 'f', 1));
+        ui->label_fcolat->setText(mn5 == 0 ? " " : QString::number(GetSporkValue(SPORK_14_TIER_5_COLLATERAL) * COIN / roi1, 'f', 1));
     }
     CAmount tNodesSumm = mn1*1000 + mn2*3000 + mn3*5000;
     CAmount tMoneySupply = chainActive.Tip()->nMoneySupply;
@@ -420,14 +426,16 @@ void OverviewPage::updateMasternodeInfo()
   }
 
   // update collateral info
+  /*
   if (CurrentBlock >= 0) {
-      ui->label_micolat->setText(GetSporkValue(SPORK_10_TIER_1_COLLATERAL));
+      
+      ui->label_micolat->setText(GetSporkValue(SPORK_10_TIER_1_COLLATERAL);
       ui->label_scolat->setText(GetSporkValue(SPORK_11_TIER_2_COLLATERAL));
       ui->label_mcolat->setText(GetSporkValue(SPORK_12_TIER_3_COLLATERAL));
       ui->label_lcolat->setText(GetSporkValue(SPORK_13_TIER_4_COLLATERAL));
       ui->label_fcolat->setText(GetSporkValue(SPORK_14_TIER_5_COLLATERAL));
   }
-
+  */
 }
 
 void OverviewPage::updateBlockChainInfo()
