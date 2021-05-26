@@ -421,9 +421,11 @@ void OverviewPage::updateMasternodeInfo()
 
   // update collateral info
   if (CurrentBlock >= 0) {
-      ui->label_lcolat->setText("1000 NWO");
-      ui->label_mcolat->setText("3000 NWO");
-      ui->label_fcolat->setText("5000 NWO");
+      ui->label_micolat->setText(GetSporkValue(SPORK_10_TIER_1_COLLATERAL));
+      ui->label_scolat->setText(GetSporkValue(SPORK_11_TIER_2_COLLATERAL));
+      ui->label_mcolat->setText(GetSporkValue(SPORK_12_TIER_3_COLLATERAL));
+      ui->label_lcolat->setText(GetSporkValue(SPORK_13_TIER_4_COLLATERAL));
+      ui->label_fcolat->setText(GetSporkValue(SPORK_14_TIER_5_COLLATERAL));
   }
 
 }

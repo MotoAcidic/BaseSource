@@ -151,15 +151,15 @@ public:
         nAntiInstamineTime = 720; // 720 blocks with 1 reward for instamine prevention
         nMaturity = 60;
         nMasternodePercentDrift = 3;
-        nMaxMoneyOut = 45000000 * COIN;
+        nMaxMoneyOut = 21000000 * COIN;
 
         nStartMasternodePaymentsBlock = 1001;
 
         /** Height or Time Based Activations **/
-        nLastPOWBlock = 105;
+        nLastPOWBlock = 300;
         nModifierUpdateBlock = std::numeric_limits<decltype(nModifierUpdateBlock)>::max();
 
-        const char* pszTimestamp = "One World United! 2018-09-09";
+        const char* pszTimestamp = "Tasmanian devils born on Australian mainland for first time in 3,000 years";
         CMutableTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
@@ -174,23 +174,23 @@ public:
         genesis.nBits = 0x1e0ffff0;
         genesis.nNonce = 1226015;
 
-        //MineGenesis(genesis);
+        MineGenesis(genesis);
 
 	    hashGenesisBlock = genesis.GetHash();
 
-        assert(hashGenesisBlock == uint256("000000c914b2c4a05d8e28f4ec8498b7f13798cd3513cf856c0da23690c00a89"));
-        assert(genesis.hashMerkleRoot == uint256("08b1bee241c6a39de8adb7de82bedeaa139976613b67d98d12c25de5bf8681c4"));
+        //assert(hashGenesisBlock == uint256("000000c914b2c4a05d8e28f4ec8498b7f13798cd3513cf856c0da23690c00a89"));
+        //assert(genesis.hashMerkleRoot == uint256("08b1bee241c6a39de8adb7de82bedeaa139976613b67d98d12c25de5bf8681c4"));
 
         //vSeeds.push_back(CDNSSeedData("nwonetwork.org", "seednode1.nwonetwork.org"));     // Primary DNS Seeder
-	//    vSeeds.push_back(CDNSSeedData("nwonetwork.org", "seednode2.nwonetwork.org"));
-       // vSeeds.push_back(CDNSSeedData("nwonetwork.org", "seednode3.nwonetwork.org"));
+	    //vSeeds.push_back(CDNSSeedData("nwonetwork.org", "seednode2.nwonetwork.org"));
+        //vSeeds.push_back(CDNSSeedData("nwonetwork.org", "seednode3.nwonetwork.org"));
         //vSeeds.push_back(CDNSSeedData("50.59.59.250", "50.59.59.250"));
-       // vSeeds.push_back(CDNSSeedData("108.61.148.90", "108.61.148.90"));
+        //vSeeds.push_back(CDNSSeedData("108.61.148.90", "108.61.148.90"));
         //vSeeds.push_back(CDNSSeedData("62.113.206.204", "62.113.206.204"));
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 68);
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 18);
-        base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 233);
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 78); // Y
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 63); // S
+        base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 135);    // w
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x02)(0x3D)(0x35)(0x37).convert_to_container<std::vector<unsigned char> >();
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x02)(0x31)(0x51)(0x2A).convert_to_container<std::vector<unsigned char> >();
         // BIP44 coin type is from https://github.com/satoshilabs/slips/blob/master/slip-0044.md
