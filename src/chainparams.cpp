@@ -256,9 +256,9 @@ public:
 
 	    //MineGenesis(genesis);
 
-        hashGenesisBlock = genesis.GetHash();
+        //hashGenesisBlock = genesis.GetHash();
 
-        assert(hashGenesisBlock == uint256("0x001"));
+        //assert(hashGenesisBlock == uint256("0x001"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -325,7 +325,7 @@ public:
         genesis.nBits = 0x207fffff;
         genesis.nNonce = 3909880;
 
-        hashGenesisBlock = genesis.GetHash();
+        //hashGenesisBlock = genesis.GetHash();
         nDefaultPort = 61112;
 
 	    //MineGenesis(genesis);
