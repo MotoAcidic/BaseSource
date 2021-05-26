@@ -415,7 +415,7 @@ void OverviewPage::updateMasternodeInfo()
         ui->label_lcolat->setText(mn4 == 0 ? " " : QString::number(GetSporkValue(SPORK_13_TIER_4_COLLATERAL) * COIN / roi1, 'f', 1));
         ui->label_fcolat->setText(mn5 == 0 ? " " : QString::number(GetSporkValue(SPORK_14_TIER_5_COLLATERAL) * COIN / roi1, 'f', 1));
     }
-    CAmount tNodesSumm = mn1*1000 + mn2*3000 + mn3*5000;
+    CAmount tNodesSumm = mn1*GetSporkValue(SPORK_10_TIER_1_COLLATERAL) + mn2*GetSporkValue(SPORK_11_TIER_2_COLLATERAL) + mn3*GetSporkValue(SPORK_12_TIER_3_COLLATERAL) + mn4*GetSporkValue(SPORK_13_TIER_4_COLLATERAL) + mn5*GetSporkValue(SPORK_14_TIER_5_COLLATERAL);
     CAmount tMoneySupply = chainActive.Tip()->nMoneySupply;
     double tLocked = tMoneySupply > 0 ? 100 * static_cast<double>(tNodesSumm) / static_cast<double>(tMoneySupply / COIN) : 0;
     ui->label_LockedCoin_value->setText(QString::number(tNodesSumm).append(" (" + QString::number(tLocked,'f',1) + "%)"));

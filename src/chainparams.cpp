@@ -56,11 +56,7 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 //    timestamp before)
 // + Contains no strange transactions
 static Checkpoints::MapCheckpoints mapCheckpoints =
-    boost::assign::map_list_of(0, uint256("0x000000c914b2c4a05d8e28f4ec8498b7f13798cd3513cf856c0da23690c00a89"))
-                            //  (50, uint256("0x00000095487e7b6c6e10eca3d1c16f42af2b7daa85c6ebc3880647361aa22ba4"))
-                            //  (60200, uint256("0x000000000b791c519d51f8547ccdb4ca6657e7ebc4bcd3a11a01ade338074066"))
-			//  (91268, uint256("0x00000000288b93b6501a6b877a029064b58963d6d892f275f23e04a5945ff64a"))
-                          //    (403872, uint256("0000000068708e8055130118c63c8ab0234530f65c6626d807b5be0630fddab8"))
+    boost::assign::map_list_of(0, uint256("0x001"))
 	;
 
 static const Checkpoints::CCheckpointData data = {
@@ -72,7 +68,7 @@ static const Checkpoints::CCheckpointData data = {
 };
 
 static Checkpoints::MapCheckpoints mapCheckpointsTestnet =
-    boost::assign::map_list_of(0, uint256("00000c5daaf65811373c50c5484f7453bef8e7ee071f275112a84f53b422369c"));
+    boost::assign::map_list_of(0, uint256("0x001"));
 static const Checkpoints::CCheckpointData dataTestnet = {
     &mapCheckpointsTestnet,
     1536512401,
@@ -80,7 +76,7 @@ static const Checkpoints::CCheckpointData dataTestnet = {
     250};
 
 static Checkpoints::MapCheckpoints mapCheckpointsRegtest =
-    boost::assign::map_list_of(0, uint256("0000065c21928f425a473b9e61b4f25865077176507d5b80ed4260bb4f8b1a89"));
+    boost::assign::map_list_of(0, uint256("0x001"));
 static const Checkpoints::CCheckpointData dataRegtest = {
     &mapCheckpointsRegtest,
     1536512402,
@@ -176,7 +172,7 @@ public:
 
         MineGenesis(genesis);
 
-	    hashGenesisBlock = genesis.GetHash();
+	    //hashGenesisBlock = genesis.GetHash();
 
         //assert(hashGenesisBlock == uint256("000000c914b2c4a05d8e28f4ec8498b7f13798cd3513cf856c0da23690c00a89"));
         //assert(genesis.hashMerkleRoot == uint256("08b1bee241c6a39de8adb7de82bedeaa139976613b67d98d12c25de5bf8681c4"));
@@ -262,13 +258,13 @@ public:
 
         hashGenesisBlock = genesis.GetHash();
 
-        assert(hashGenesisBlock == uint256("000009c1d826b2bf02ee235da98251fc7580c4280a15f88503d1b6f823ebccbc"));
+        assert(hashGenesisBlock == uint256("0x001"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
-        vSeeds.push_back(CDNSSeedData("nwonetwork.org", "seednode1.nwonetwork.org"));     // Primary DNS Seeder
-	    vSeeds.push_back(CDNSSeedData("nwonetwork.org", "seednode2.nwonetwork.org"));
-        vSeeds.push_back(CDNSSeedData("nwonetwork.org", "seednode3.nwonetwork.org"));
+        //vSeeds.push_back(CDNSSeedData("nwonetwork.org", "seednode1.nwonetwork.org"));     // Primary DNS Seeder
+	    //vSeeds.push_back(CDNSSeedData("nwonetwork.org", "seednode2.nwonetwork.org"));
+        //vSeeds.push_back(CDNSSeedData("nwonetwork.org", "seednode3.nwonetwork.org"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 128); // Testnet NWO addresses start with 't'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 11);
@@ -334,7 +330,7 @@ public:
 
 	    //MineGenesis(genesis);
 
-        assert(hashGenesisBlock == uint256("0000065c21928f425a473b9e61b4f25865077176507d5b80ed4260bb4f8b1a89"));
+        //assert(hashGenesisBlock == uint256("0000065c21928f425a473b9e61b4f25865077176507d5b80ed4260bb4f8b1a89"));
 
         vFixedSeeds.clear(); //! Testnet mode doesn't have any fixed seeds.
         vSeeds.clear();      //! Testnet mode doesn't have any DNS seeds.
