@@ -385,7 +385,7 @@ void OverviewPage::updateMasternodeInfo()
     int BlockCount24h = block24hCount > 0 ? block24hCount : 1440;
 
     // update ROI
-    double BlockReward = GetBlockValue(CurrentBlock);
+    double BlockReward = GetSporkValue(SPORK_9_BLOCK_REWARD);
 
     BlockReward -= BlockReward * Params().GetDevFee() / 100;
 	BlockReward -= BlockReward * Params().GetFundFee() / 100;
@@ -393,17 +393,21 @@ void OverviewPage::updateMasternodeInfo()
     (mn1==0) ? roi1 = 0 : roi1 = (GetMasternodePayment(CurrentBlock, 1, BlockReward)*BlockCount24h)/mn1/COIN;
     (mn2==0) ? roi2 = 0 : roi2 = (GetMasternodePayment(CurrentBlock, 2, BlockReward)*BlockCount24h)/mn2/COIN;
     (mn3==0) ? roi3 = 0 : roi3 = (GetMasternodePayment(CurrentBlock, 3, BlockReward)*BlockCount24h)/mn3/COIN;
-    (mn4==0) ? roi4 = 0 : roi4 = (GetMasternodePayment(CurrentBlock, 4, BlockReward)*BlockCount24h)/mn4/ COIN;
-    (mn5==0) ? roi5 = 0 : roi5 = (GetMasternodePayment(CurrentBlock, 5, BlockReward)*BlockCount24h)/mn5/ COIN;
+    (mn4==0) ? roi4 = 0 : roi4 = (GetMasternodePayment(CurrentBlock, 4, BlockReward)*BlockCount24h)/mn4/COIN;
+    (mn5==0) ? roi5 = 0 : roi5 = (GetMasternodePayment(CurrentBlock, 5, BlockReward)*BlockCount24h)/mn5/COIN;
     
     if (CurrentBlock >= 0) {
-        ui->roi_11->setText(mn1==0 ? "-" : QString::number(roi1,'f',0).append("  |"));
-        ui->roi_21->setText(mn2==0 ? "-" : QString::number(roi2,'f',0).append("  |"));
-        ui->roi_31->setText(mn3==0 ? "-" : QString::number(roi3,'f',0).append("  |"));
+        ui->roi_mini->setText(mn1==0 ? "-" : QString::number(roi1,'f',0).append("  |"));
+        ui->roi_small->setText(mn2==0 ? "-" : QString::number(roi2,'f',0).append("  |"));
+        ui->roi_medium->setText(mn3==0 ? "-" : QString::number(roi3,'f',0).append("  |"));
+        ui->roi_large->setText(mn4 == 0 ? "-" : QString::number(roi2, 'f', 0).append("  |"));
+        ui->roi_full->setText(mn5 == 0 ? "-" : QString::number(roi3, 'f', 0).append("  |"));
 
-        ui->roi_12->setText(mn1==0 ? " " : QString::number( 1000/roi1,'f',1).append(" days"));
-        ui->roi_22->setText(mn2==0 ? " " : QString::number( 3000/roi2,'f',1).append(" days"));
-        ui->roi_32->setText(mn3==0 ? " " : QString::number( 5000/roi3,'f',1).append(" days"));
+        ui->roi_mini_2->setText(mn1 == 0 ? " " : QString::number(GetSporkValue(SPORK_10_TIER_1_COLLATERAL) * COIN / roi1, 'f', 1).append(" days"));
+        ui->roi_small_2->setText(mn2 == 0 ? " " : QString::number(GetSporkValue(SPORK_11_TIER_2_COLLATERAL) * COIN / roi2, 'f', 1).append(" days"));
+        ui->roi_medium_2->setText(mn3 == 0 ? " " : QString::number(GetSporkValue(SPORK_12_TIER_3_COLLATERAL) * COIN / roi3, 'f', 1).append(" days"));
+        ui->roi_large_2->setText(mn2 == 0 ? " " : QString::number(GetSporkValue(SPORK_13_TIER_4_COLLATERAL) * COIN / roi2, 'f', 1).append(" days"));
+        ui->roi_full_2->setText(mn3 == 0 ? " " : QString::number(GetSporkValue(SPORK_14_TIER_5_COLLATERAL) * COIN / roi3, 'f', 1).append(" days"));
     }
     CAmount tNodesSumm = mn1*1000 + mn2*3000 + mn3*5000;
     CAmount tMoneySupply = chainActive.Tip()->nMoneySupply;
