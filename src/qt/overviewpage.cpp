@@ -409,11 +409,11 @@ void OverviewPage::updateMasternodeInfo()
         ui->roi_large_2->setText(mn2 == 0 ? " " : QString::number(GetSporkValue(SPORK_13_TIER_4_COLLATERAL) * COIN / roi2, 'f', 1).append(" days"));
         ui->roi_full_2->setText(mn3 == 0 ? " " : QString::number(GetSporkValue(SPORK_14_TIER_5_COLLATERAL) * COIN / roi3, 'f', 1).append(" days"));
 
-        ui->label_micolat->setText(QString::number(GetSporkValue(SPORK_10_TIER_1_COLLATERAL));
-        ui->label_scolat->setText(QString::number(GetSporkValue(SPORK_11_TIER_2_COLLATERAL));
-        ui->label_mcolat->setText(QString::number(GetSporkValue(SPORK_12_TIER_3_COLLATERAL));
-        ui->label_lcolat->setText(QString::number(GetSporkValue(SPORK_13_TIER_4_COLLATERAL));
-        ui->label_fcolat->setText(QString::number(GetSporkValue(SPORK_14_TIER_5_COLLATERAL));
+        ui->label_micolat->setText(QString::number(GetSporkValue(SPORK_10_TIER_1_COLLATERAL)));
+        ui->label_scolat->setText(QString::number(GetSporkValue(SPORK_11_TIER_2_COLLATERAL)));
+        ui->label_mcolat->setText(QString::number(GetSporkValue(SPORK_12_TIER_3_COLLATERAL)));
+        ui->label_lcolat->setText(QString::number(GetSporkValue(SPORK_13_TIER_4_COLLATERAL)));
+        ui->label_fcolat->setText(QString::number(GetSporkValue(SPORK_14_TIER_5_COLLATERAL)));
     }
     CAmount tNodesSumm = mn1*GetSporkValue(SPORK_10_TIER_1_COLLATERAL) + mn2*GetSporkValue(SPORK_11_TIER_2_COLLATERAL) + mn3*GetSporkValue(SPORK_12_TIER_3_COLLATERAL) + mn4*GetSporkValue(SPORK_13_TIER_4_COLLATERAL) + mn5*GetSporkValue(SPORK_14_TIER_5_COLLATERAL);
     CAmount tMoneySupply = chainActive.Tip()->nMoneySupply;
