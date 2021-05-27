@@ -56,7 +56,7 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 //    timestamp before)
 // + Contains no strange transactions
 static Checkpoints::MapCheckpoints mapCheckpoints =
-    boost::assign::map_list_of(0, uint256("0x001"))
+    boost::assign::map_list_of(0, uint256("00000c3de8228b98ee3203ab5fb9ca57029928b8995d2c117722ad7691b013d8"))
 	;
 
 static const Checkpoints::CCheckpointData data = {
@@ -112,6 +112,12 @@ void MineGenesis(CBlock genesis)
     printf("block.merkle = %s\n", genesis.hashMerkleRoot.ToString().c_str());
     std::fflush(stdout);
 }
+/*
+block.nTime = 1536512400
+block.nNonce = 2423888
+block.GetHash = 00000c3de8228b98ee3203ab5fb9ca57029928b8995d2c117722ad7691b013d8
+block.merkle = ba531bb5ddc495cc26b166db5c48ea549b4af1374f50b87ca4a2c375428d491f
+*/
 
 class CMainParams : public CChainParams
 {
@@ -168,14 +174,14 @@ public:
         genesis.nVersion = 1;
         genesis.nTime = 1536512400;
         genesis.nBits = 0x1e0ffff0;
-        genesis.nNonce = 1226015;
+        genesis.nNonce = 2423888;
 
-        MineGenesis(genesis);
+        //MineGenesis(genesis);
 
-	    //hashGenesisBlock = genesis.GetHash();
+	    hashGenesisBlock = genesis.GetHash();
 
-        //assert(hashGenesisBlock == uint256("000000c914b2c4a05d8e28f4ec8498b7f13798cd3513cf856c0da23690c00a89"));
-        //assert(genesis.hashMerkleRoot == uint256("08b1bee241c6a39de8adb7de82bedeaa139976613b67d98d12c25de5bf8681c4"));
+        assert(hashGenesisBlock == uint256("00000c3de8228b98ee3203ab5fb9ca57029928b8995d2c117722ad7691b013d8"));
+        assert(genesis.hashMerkleRoot == uint256("ba531bb5ddc495cc26b166db5c48ea549b4af1374f50b87ca4a2c375428d491f"));
 
         //vSeeds.push_back(CDNSSeedData("nwonetwork.org", "seednode1.nwonetwork.org"));     // Primary DNS Seeder
 	    //vSeeds.push_back(CDNSSeedData("nwonetwork.org", "seednode2.nwonetwork.org"));
