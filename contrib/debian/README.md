@@ -1,20 +1,20 @@
 
 Debian
 ====================
-This directory contains files used to package nwod/nwo-qt
-for Debian-based Linux systems. If you compile nwod/nwo-qt yourself, there are some useful files here.
+This directory contains files used to package yswd/ysw-qt
+for Debian-based Linux systems. If you compile yswd/ysw-qt yourself, there are some useful files here.
 
-## nwo: URI support ##
+## ysw: URI support ##
 
 
-nwo-qt.desktop  (Gnome / Open Desktop)
+ysw-qt.desktop  (Gnome / Open Desktop)
 To install:
 
-	sudo desktop-file-install nwo-qt.desktop
+	sudo desktop-file-install ysw-qt.desktop
 	sudo update-desktop-database
 
 If you build yourself, you will either need to modify the paths in
-the .desktop file or copy or symlink your nwoqt binary to `/usr/bin`
-and the `../../share/pixmaps/nwo128.png` to `/usr/share/pixmaps`
+the .desktop file or copy or symlink your yswqt binary to `/usr/bin`
+and the `../../share/pixmaps/ysw128.png` to `/usr/share/pixmaps`
 
-nwo-qt.protocol (KDE)
+ysw-qt.protocol (KDE)

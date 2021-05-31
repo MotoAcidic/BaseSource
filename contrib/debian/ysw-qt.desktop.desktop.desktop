@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=YSW
+Comment=YSW P2P Cryptocurrency
+Exec=ysw-qt %u
+Terminal=false
+Type=Application
+Icon=ysw128
+MimeType=x-scheme-handler/ysw;
+Categories=Office;Finance;
+Name[ru]=ysw-qt.desktop.desktop

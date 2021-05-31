@@ -275,7 +275,7 @@ bool GetKernelStakeModifier(uint256 hashBlockFrom, uint64_t& nStakeModifier, int
 
 uint256 stakeHash(unsigned int nTimeTx, CDataStream ss, unsigned int prevoutIndex, uint256 prevoutHash, unsigned int nTimeBlockFrom)
 {
-    //NWO will hash in the transaction hash and the index number in order to make sure each hash is unique
+    //YSW will hash in the transaction hash and the index number in order to make sure each hash is unique
 //    LogPrintf("stakehash: nTimeTx %d, prevoutIndex: %d, nTimeBlockFrom: %d\n\tprevoutHash: %s\n",
 //              nTimeTx, prevoutIndex, nTimeBlockFrom, prevoutHash.GetHex());
     ss << nTimeBlockFrom << prevoutIndex << prevoutHash << nTimeTx;
@@ -332,7 +332,7 @@ bool CheckStakeKernelHash(unsigned int nBits, const CBlock blockFrom, const CTra
         return stakeTargetHit(hashProofOfStake, nValueIn, bnTargetPerCoinDay);
     }
 
-    bool fSnwoess = false;
+    bool fSyswess = false;
     unsigned int nTryTime = 0;
     unsigned int i;
     int nHeightStart = chainActive.Height();
@@ -350,7 +350,7 @@ bool CheckStakeKernelHash(unsigned int nBits, const CBlock blockFrom, const CTra
         if (!stakeTargetHit(hashProofOfStake, nValueIn, bnTargetPerCoinDay))
             continue;
 
-        fSnwoess = true; // if we make it this far then we have successfully created a stake hash
+        fSyswess = true; // if we make it this far then we have successfully created a stake hash
         nTimeTx = nTryTime;
 
         if (fDebug || fPrintProofOfStake) {
@@ -370,7 +370,7 @@ bool CheckStakeKernelHash(unsigned int nBits, const CBlock blockFrom, const CTra
 
     mapHashedBlocks.clear();
     mapHashedBlocks[chainActive.Tip()->nHeight] = GetTime(); //store a time stamp of when we last hashed on this block
-    return fSnwoess;
+    return fSyswess;
 }
 
 // Check kernel hash target and coinstake signature

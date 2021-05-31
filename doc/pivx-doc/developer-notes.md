@@ -31,7 +31,7 @@ class Class
             ...
         }
 
-        // Snwoess return is usually at the end
+        // Syswess return is usually at the end
         return true;
     }
 }

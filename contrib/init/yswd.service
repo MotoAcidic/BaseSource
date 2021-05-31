@@ -1,0 +1,26 @@
+[Unit]
+Description=YSW's distributed currency daemon
+After=network.target
+
+[Service]
+User=ysw
+Group=ysw
+
+Type=forking
+PIDFile=/var/lib/yswd/yswd.pid
+
+ExecStart=/usr/bin/yswd -daemon -pid=/var/lib/yswd/yswd.pid \
+          -conf=/etc/ysw/ysw.conf -datadir=/var/lib/yswd
+
+ExecStop=-/usr/bin/ysw-cli -conf=/etc/ysw/ysw.conf \
+         -datadir=/var/lib/yswd stop
+
+Restart=always
+PrivateTmp=true
+TimeoutStopSec=60s
+TimeoutStartSec=2s
+StartLimitInterval=120s
+StartLimitBurst=5
+
+[Install]
+WantedBy=multi-user.target

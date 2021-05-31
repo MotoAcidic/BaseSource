@@ -703,7 +703,7 @@ void DBImpl::BackgroundCompaction() {
         versions_->LevelSummary(&tmp));
   } else {
     CompactionState* compact = new CompactionState(c);
-    status = DoCompactionWork(compact);
+      status = DoCompactionWork(compact);
     if (!status.ok()) {
       RecordBackgroundError(status);
     }
@@ -852,7 +852,8 @@ Status DBImpl::InstallCompactionResults(CompactionState* compact) {
   return versions_->LogAndApply(compact->compaction->edit(), &mutex_);
 }
 
-Status DBImpl::DoCompactionWork(CompactionState* compact) {
+Status DBImpl::DoCompactionWork(CompactionState* compact)
+{
   const uint64_t start_micros = env_->NowMicros();
   int64_t imm_micros = 0;  // Micros spent doing imm_ compactions
 

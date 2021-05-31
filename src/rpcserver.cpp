@@ -244,10 +244,10 @@ UniValue stop(const UniValue& params, bool fHelp)
     if (fHelp || params.size() > 1)
         throw runtime_error(
             "stop\n"
-            "\nStop NWO server.");
+            "\nStop YSW server.");
     // Shutdown will take long enough that the response should get back
     StartShutdown();
-    return "NWO server stopping";
+    return "YSW server stopping";
 }
 
 
@@ -325,25 +325,25 @@ static const CRPCCommand vRPCCommands[] =
         {"hidden", "reconsiderblock", &reconsiderblock, true, true, false},
         {"hidden", "setmocktime", &setmocktime, true, false, false},
 
-        /* NWO features */
-        {"nwo", "masternode", &masternode, true, true, false},
-        {"nwo", "listmasternodes", &listmasternodes, true, true, false},
-        {"nwo", "getmasternodecount", &getmasternodecount, true, true, false},
-        {"nwo", "masternodeconnect", &masternodeconnect, true, true, false},
-        {"nwo", "masternodecurrent", &masternodecurrent, true, true, false},
-        {"nwo", "masternodedebug", &masternodedebug, true, true, false},
-        {"nwo", "startmasternode", &startmasternode, true, true, false},
-        {"nwo", "createmasternodekey", &createmasternodekey, true, true, false},
-        {"nwo", "getmasternodeoutputs", &getmasternodeoutputs, true, true, false},
-        {"nwo", "listmasternodeconf", &listmasternodeconf, true, true, false},
-        {"nwo", "getmasternodestatus", &getmasternodestatus, true, true, false},
-        {"nwo", "getmasternodewinners", &getmasternodewinners, true, true, false},
-        {"nwo", "getmasternodescores", &getmasternodescores, true, true, false},
-        {"nwo", "mnsync", &mnsync, true, true, false},
-        {"nwo", "spork", &spork, true, true, false},
-        {"nwo", "getpoolinfo", &getpoolinfo, true, true, false},
+        /* YSW features */
+        {"ysw", "masternode", &masternode, true, true, false},
+        {"ysw", "listmasternodes", &listmasternodes, true, true, false},
+        {"ysw", "getmasternodecount", &getmasternodecount, true, true, false},
+        {"ysw", "masternodeconnect", &masternodeconnect, true, true, false},
+        {"ysw", "masternodecurrent", &masternodecurrent, true, true, false},
+        {"ysw", "masternodedebug", &masternodedebug, true, true, false},
+        {"ysw", "startmasternode", &startmasternode, true, true, false},
+        {"ysw", "createmasternodekey", &createmasternodekey, true, true, false},
+        {"ysw", "getmasternodeoutputs", &getmasternodeoutputs, true, true, false},
+        {"ysw", "listmasternodeconf", &listmasternodeconf, true, true, false},
+        {"ysw", "getmasternodestatus", &getmasternodestatus, true, true, false},
+        {"ysw", "getmasternodewinners", &getmasternodewinners, true, true, false},
+        {"ysw", "getmasternodescores", &getmasternodescores, true, true, false},
+        {"ysw", "mnsync", &mnsync, true, true, false},
+        {"ysw", "spork", &spork, true, true, false},
+        {"ysw", "getpoolinfo", &getpoolinfo, true, true, false},
 #ifdef ENABLE_WALLET
-        {"nwo", "obfuscation", &obfuscation, false, false, true}, /* not threadSafe because of SendMoney */
+        {"ysw", "obfuscation", &obfuscation, false, false, true}, /* not threadSafe because of SendMoney */
 
         /* Wallet */
         {"wallet", "addmultisigaddress", &addmultisigaddress, true, false, true},
@@ -609,16 +609,16 @@ void StartRPCThreads()
         unsigned char rand_pwd[32];
         GetRandBytes(rand_pwd, 32);
         uiInterface.ThreadSafeMessageBox(strprintf(
-                                             _("To use nwod, or the -server option to nwo-qt, you must set an rpcpassword in the configuration file:\n"
+                                             _("To use yswd, or the -server option to ysw-qt, you must set an rpcpassword in the configuration file:\n"
                                                "%s\n"
                                                "It is recommended you use the following random password:\n"
-                                               "rpcuser=nworpc\n"
+                                               "rpcuser=yswrpc\n"
                                                "rpcpassword=%s\n"
                                                "(you do not need to remember this password)\n"
                                                "The username and password MUST NOT be the same.\n"
                                                "If the file does not exist, create it with owner-readable-only file permissions.\n"
                                                "It is also recommended to set alertnotify so you are notified of problems;\n"
-                                               "for example: alertnotify=echo %%s | mail -s \"NWO Alert\" admin@foo.com\n"),
+                                               "for example: alertnotify=echo %%s | mail -s \"YSW Alert\" admin@foo.com\n"),
                                              GetConfigFile().string(),
                                              EncodeBase58(&rand_pwd[0], &rand_pwd[0] + 32)),
             "", CClientUIInterface::MSG_ERROR | CClientUIInterface::SECURE);
@@ -1069,7 +1069,7 @@ std::vector<std::string> CRPCTable::listCommands() const
 
 std::string HelpExampleCli(string methodname, string args)
 {
-    return "> nwo-cli " + methodname + " " + args + "\n";
+    return "> ysw-cli " + methodname + " " + args + "\n";
 }
 
 std::string HelpExampleRpc(string methodname, string args)

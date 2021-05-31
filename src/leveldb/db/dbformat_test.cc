@@ -22,9 +22,9 @@ static std::string Shorten(const std::string& s, const std::string& l) {
   return result;
 }
 
-static std::string ShortSnwoessor(const std::string& s) {
+static std::string ShortSyswessor(const std::string& s) {
   std::string result = s;
-  InternalKeyComparator(BytewiseComparator()).FindShortSnwoessor(&result);
+  InternalKeyComparator(BytewiseComparator()).FindShortSyswessor(&result);
   return result;
 }
 
@@ -98,11 +98,11 @@ TEST(FormatTest, InternalKeyShortSeparator) {
                     IKey("foo", 200, kTypeValue)));
 }
 
-TEST(FormatTest, InternalKeyShortestSnwoessor) {
+TEST(FormatTest, InternalKeyShortestSyswessor) {
   ASSERT_EQ(IKey("g", kMaxSequenceNumber, kValueTypeForSeek),
-            ShortSnwoessor(IKey("foo", 100, kTypeValue)));
+            ShortSyswessor(IKey("foo", 100, kTypeValue)));
   ASSERT_EQ(IKey("\xff\xff", 100, kTypeValue),
-            ShortSnwoessor(IKey("\xff\xff", 100, kTypeValue)));
+            ShortSyswessor(IKey("\xff\xff", 100, kTypeValue)));
 }
 
 }  // namespace leveldb

@@ -161,7 +161,7 @@ UniValue getrawmempool(const UniValue& params, bool fHelp)
             "{                           (json object)\n"
             "  \"transactionid\" : {       (json object)\n"
             "    \"size\" : n,             (numeric) transaction size in bytes\n"
-            "    \"fee\" : n,              (numeric) transaction fee in nwo\n"
+            "    \"fee\" : n,              (numeric) transaction fee in ysw\n"
             "    \"time\" : n,             (numeric) local time transaction entered pool in seconds since 1 Jan 1970 GMT\n"
             "    \"height\" : n,           (numeric) block height when transaction entered pool\n"
             "    \"startingpriority\" : n, (numeric) priority when transaction entered pool\n"
@@ -406,8 +406,8 @@ UniValue gettxout(const UniValue& params, bool fHelp)
             "     \"hex\" : \"hex\",        (string) \n"
             "     \"reqSigs\" : n,          (numeric) Number of required signatures\n"
             "     \"type\" : \"pubkeyhash\", (string) The type, eg pubkeyhash\n"
-            "     \"addresses\" : [          (array of string) array of nwo addresses\n"
-            "     \"nwoaddress\"   	 	(string) nwo address\n"
+            "     \"addresses\" : [          (array of string) array of ysw addresses\n"
+            "     \"yswaddress\"   	 	(string) ysw address\n"
             "        ,...\n"
             "     ]\n"
             "  },\n"
@@ -499,7 +499,7 @@ UniValue getblockchaininfo(const UniValue& params, bool fHelp)
             "  \"bestblockhash\": \"...\", (string) the hash of the currently best block\n"
             "  \"difficulty\": xxxxxx,     (numeric) the current difficulty\n"
             "  \"verificationprogress\": xxxx, (numeric) estimate of verification progress [0..1]\n"
-            "  \"chainwork\": \"xxxx\"     (string) total amount of work in active chain, in hexadecimal\n"
+            "  \"chaiyswrk\": \"xxxx\"     (string) total amount of work in active chain, in hexadecimal\n"
             "}\n"
             "\nExamples:\n" +
             HelpExampleCli("getblockchaininfo", "") + HelpExampleRpc("getblockchaininfo", ""));
@@ -561,7 +561,7 @@ UniValue getchaintips(const UniValue& params, bool fHelp)
             HelpExampleCli("getchaintips", "") + HelpExampleRpc("getchaintips", ""));
 
     /* Build up a list of chain tips.  We start with the list of all
-       known blocks, and snwoessively remove blocks that appear as pprev
+       known blocks, and syswessively remove blocks that appear as pprev
        of another block.  */
     std::set<const CBlockIndex*, CompareBlocksByHeight> setTips;
     BOOST_FOREACH (const PAIRTYPE(const uint256, CBlockIndex*) & item, mapBlockIndex)

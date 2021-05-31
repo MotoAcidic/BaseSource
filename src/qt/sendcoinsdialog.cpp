@@ -67,7 +67,7 @@ ui->checkUseObfuscation->setVisible(false);
     connect(ui->splitBlockCheckBox, SIGNAL(stateChanged(int)), this, SLOT(splitBlockChecked(int)));
     connect(ui->splitBlockLineEdit, SIGNAL(textChanged(const QString&)), this, SLOT(splitBlockLineEditChanged(const QString&)));
 
-    // NWO specific
+    // YSW specific
     QSettings settings;
     if (!settings.contains("bUseObfuScation"))
         settings.setValue("bUseObfuScation", false);
@@ -911,7 +911,7 @@ void SendCoinsDialog::coinControlChangeEdited(const QString& text)
             ui->labelCoinControlChangeLabel->setText("");
         } else if (!addr.IsValid()) // Invalid address
         {
-            ui->labelCoinControlChangeLabel->setText(tr("Warning: Invalid NWO address"));
+            ui->labelCoinControlChangeLabel->setText(tr("Warning: Invalid YSW address"));
         } else // Valid address
         {
             CPubKey pubkey;

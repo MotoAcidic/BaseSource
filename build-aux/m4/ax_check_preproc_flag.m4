@@ -4,15 +4,15 @@
 #
 # SYNOPSIS
 #
-#   AX_CHECK_PREPROC_FLAG(FLAG, [ACTION-SNWOESS], [ACTION-FAILURE], [EXTRA-FLAGS])
+#   AX_CHECK_PREPROC_FLAG(FLAG, [ACTION-SYSWESS], [ACTION-FAILURE], [EXTRA-FLAGS])
 #
 # DESCRIPTION
 #
 #   Check whether the given FLAG works with the current language's
 #   preprocessor or gives an error.  (Warnings, however, are ignored)
 #
-#   ACTION-SNWOESS/ACTION-FAILURE are shell commands to execute on
-#   snwoess/failure.
+#   ACTION-SYSWESS/ACTION-FAILURE are shell commands to execute on
+#   syswess/failure.
 #
 #   If EXTRA-FLAGS is defined, it is added to the preprocessor's default
 #   flags when the check is done.  The check is thus made with the flags:

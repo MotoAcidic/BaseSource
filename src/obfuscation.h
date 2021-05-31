@@ -31,7 +31,7 @@ class CActiveMasternode;
 #define POOL_STATUS_SIGNING 5              // check inputs/outputs, sign final tx
 #define POOL_STATUS_TRANSMISSION 6         // transmit transaction
 #define POOL_STATUS_ERROR 7                // error
-#define POOL_STATUS_SNWOESS 8              // snwoess
+#define POOL_STATUS_SYSWESS 8              // syswess
 
 // status update message constants
 #define MASTERNODE_ACCEPTED 1
@@ -247,7 +247,7 @@ public:
 class CObfuScationSigner
 {
 public:
-    /// Is the inputs associated with this public key? (and there is deposit NWO amount - checking if valid masternode)
+    /// Is the inputs associated with this public key? (and there is deposit YSW amount - checking if valid masternode)
     bool IsVinAssociatedWithPubkey(CTxIn& vin, CPubKey& pubkey);
     /// Set the private/public key values, returns true if successful
     bool GetKeysFromSecret(std::string strSecret, CKey& keyRet, CPubKey& pubkeyRet);
@@ -255,7 +255,7 @@ public:
     bool SetKey(std::string strSecret, std::string& errorMessage, CKey& key, CPubKey& pubkey);
     /// Sign the message, returns true if successful
     bool SignMessage(std::string strMessage, std::string& errorMessage, std::vector<unsigned char>& vchSig, CKey key);
-    /// Verify the message, returns true if snwocessful
+    /// Verify the message, returns true if syswcessful
     bool VerifyMessage(CPubKey pubkey, std::vector<unsigned char>& vchSig, std::string strMessage, std::string& errorMessage);
 };
 
@@ -287,7 +287,7 @@ private:
     bool sessionFoundMasternode; //If we've found a compatible Masternode
     std::vector<CTransaction> vecSessionCollateral;
 
-    int cachedLastSnwoess;
+    int cachedLastSyswess;
 
     int minBlockSpacing; //required blocks between mixes
     CMutableTransaction txCollateral;
@@ -319,7 +319,7 @@ public:
         ERR_MISSING_TX,
         ERR_VERSION,
         MSG_NOERR,
-        MSG_SNWOESS,
+        MSG_SYSWESS,
         MSG_ENTRIES_ADDED
     };
 
@@ -335,7 +335,7 @@ public:
         /* Obfuscation uses collateral addresses to trust parties entering the pool
             to behave themselves. If they don't it takes their money. */
 
-        cachedLastSnwoess = 0;
+        cachedLastSyswess = 0;
         cachedNumBlocks = std::numeric_limits<int>::max();
         unitTest = false;
         txCollateral = CMutableTransaction();
@@ -410,8 +410,8 @@ public:
     // Set the 'state' value, with some logging and capturing when the state changed
     void UpdateState(unsigned int newState)
     {
-        if (fMasterNode && (newState == POOL_STATUS_ERROR || newState == POOL_STATUS_SNWOESS)) {
-            LogPrint("obfuscation", "CObfuscationPool::UpdateState() - Can't set state to ERROR or SNWOESS as a Masternode. \n");
+        if (fMasterNode && (newState == POOL_STATUS_ERROR || newState == POOL_STATUS_SYSWESS)) {
+            LogPrint("obfuscation", "CObfuscationPool::UpdateState() - Can't set state to ERROR or SYSWESS as a Masternode. \n");
             return;
         }
 
@@ -493,7 +493,7 @@ public:
 
     void GetDenominationsToString(int nDenom, std::string& strDenom);
 
-    /// Get the denominations for a specific amount of NWO.
+    /// Get the denominations for a specific amount of YSW.
     int GetDenominationsByAmount(CAmount nAmount, int nDenomTarget = 0); // is not used anymore?
     int GetDenominationsByAmounts(std::vector<CAmount>& vecAmount);
 

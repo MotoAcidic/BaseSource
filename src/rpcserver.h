@@ -98,7 +98,7 @@ public:
 };
 
 /**
- * NWO RPC command dispatcher.
+ * YSW RPC command dispatcher.
  */
 class CRPCTable
 {

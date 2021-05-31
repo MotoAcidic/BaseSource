@@ -9,8 +9,8 @@
 #include <vector>
 
 /**
- * CBaseChainParams defines the base parameters (shared between nwo-cli and nwod)
- * of a given instance of the NWO system.
+ * CBaseChainParams defines the base parameters (shared between ysw-cli and yswd)
+ * of a given instance of the YSW system.
  */
 class CBaseChainParams
 {

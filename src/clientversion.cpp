@@ -10,10 +10,10 @@
 
 /**
  * Name of client reported in the 'version' message. Report the same name
- * for both nwod and nwo-qt, to make it harder for attackers to
+ * for both yswd and ysw-qt, to make it harder for attackers to
  * target servers or GUI users specifically.
  */
-const std::string CLIENT_NAME("NWO Core");
+const std::string CLIENT_NAME("YSW Core");
 
 /**
  * Client version number

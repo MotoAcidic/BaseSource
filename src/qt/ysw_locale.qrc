@@ -1,0 +1,29 @@
+<!DOCTYPE RCC><RCC version="1.0">
+    <qresource prefix="/translations">
+        <file alias="bg">locale/ysw_bg.qm</file>
+        <file alias="ca">locale/ysw_ca.qm</file>
+        <file alias="cs">locale/ysw_cs.qm</file>
+        <file alias="da">locale/ysw_da.qm</file>
+        <file alias="de">locale/ysw_de.qm</file>
+        <file alias="en">locale/ysw_en.qm</file>
+        <file alias="en_US">locale/ysw_en_US.qm</file>
+        <file alias="es">locale/ysw_es.qm</file>
+        <file alias="fi">locale/ysw_fi.qm</file>
+        <file alias="fr_FR">locale/ysw_fr_FR.qm</file>
+        <file alias="it">locale/ysw_it.qm</file>
+        <file alias="ja">locale/ysw_ja.qm</file>
+        <file alias="ko_KR">locale/ysw_ko_KR.qm</file>
+        <file alias="nl">locale/ysw_nl.qm</file>
+        <file alias="pl">locale/ysw_pl.qm</file>
+        <file alias="pt">locale/ysw_pt.qm</file>
+        <file alias="pt_BR">locale/ysw_pt_BR.qm</file>
+        <file alias="ro_RO">locale/ysw_ro_RO.qm</file>
+        <file alias="ru">locale/ysw_ru.qm</file>
+        <file alias="sk">locale/ysw_sk.qm</file>
+        <file alias="sv">locale/ysw_sv.qm</file>
+        <file alias="tr">locale/ysw_tr.qm</file>
+        <file alias="uk">locale/ysw_uk.qm</file>
+        <file alias="zh_CN">locale/ysw_zh_CN.qm</file>
+        <file alias="zh_TW">locale/ysw_zh_TW.qm</file>
+    </qresource>
+</RCC>

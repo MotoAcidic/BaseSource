@@ -181,7 +181,7 @@
       <string>Asks</string>
      </property>
     </widget>
-    <widget class="QLabel" name="NWOSupply">
+    <widget class="QLabel" name="YSWSupply">
      <property name="geometry">
       <rect>
        <x>540</x>
@@ -197,7 +197,7 @@
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="nwodemand">
+    <widget class="QLabel" name="yswdemand">
      <property name="geometry">
       <rect>
        <x>160</x>
@@ -432,7 +432,7 @@
     <attribute name="title">
      <string>Buy</string>
     </attribute>
-    <widget class="QPushButton" name="BuyNWO">
+    <widget class="QPushButton" name="BuyYSW">
      <property name="geometry">
       <rect>
        <x>30</x>
@@ -442,10 +442,10 @@
       </rect>
      </property>
      <property name="text">
-      <string>Buy NWO</string>
+      <string>Buy YSW</string>
      </property>
      <property name="icon">
-      <iconset resource="../nwo.qrc">
+      <iconset resource="../ysw.qrc">
        <normaloff>:/icons/bitcoin</normaloff>:/icons/bitcoin</iconset>
      </property>
     </widget>
@@ -512,7 +512,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>NWO</string>
+      <string>YSW</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_5">
@@ -1704,10 +1704,10 @@
       </rect>
      </property>
      <property name="text">
-      <string>NWO</string>
+      <string>YSW</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="UnitsInputNWO">
+    <widget class="QLineEdit" name="UnitsInputYSW">
      <property name="geometry">
       <rect>
        <x>310</x>
@@ -1741,7 +1741,7 @@
       </font>
      </property>
     </widget>
-    <widget class="QPushButton" name="SellNWOBTN">
+    <widget class="QPushButton" name="SellYSWBTN">
      <property name="geometry">
       <rect>
        <x>30</x>
@@ -1751,10 +1751,10 @@
       </rect>
      </property>
      <property name="text">
-      <string>Sell NWO</string>
+      <string>Sell YSW</string>
      </property>
      <property name="icon">
-      <iconset resource="../nwo">
+      <iconset resource="../ysw">
        <normaloff>:/icons/bitcoin</normaloff>:/icons/bitcoin</iconset>
      </property>
     </widget>
@@ -1777,12 +1777,12 @@
          </font>
         </property>
         <property name="text">
-         <string>NWO Available:</string>
+         <string>YSW Available:</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="NWOAvailableLabel">
+       <widget class="QLabel" name="YSWAvailableLabel">
         <property name="palette">
          <palette>
           <active>
@@ -2213,7 +2213,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="labelNWO">
+       <widget class="QLabel" name="labelYSW">
         <property name="font">
          <font>
           <weight>75</weight>
@@ -2221,7 +2221,7 @@
          </font>
         </property>
         <property name="text">
-         <string>NWO</string>
+         <string>YSW</string>
         </property>
        </widget>
       </item>
@@ -2733,7 +2733,7 @@
       <string>TextLabel</string>
      </property>
     </widget>
-    <widget class="QLabel" name="NWOBalanceLabel">
+    <widget class="QLabel" name="YSWBalanceLabel">
      <property name="geometry">
       <rect>
        <x>150</x>
@@ -2762,7 +2762,7 @@
       </font>
      </property>
      <property name="text">
-      <string>NWO Balance:</string>
+      <string>YSW Balance:</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_12">
@@ -2784,7 +2784,7 @@
       <string>BTC Balance:</string>
      </property>
     </widget>
-    <widget class="QLabel" name="NWOAvailableLabel_2">
+    <widget class="QLabel" name="YSWAvailableLabel_2">
      <property name="geometry">
       <rect>
        <x>150</x>
@@ -2813,7 +2813,7 @@
       </font>
      </property>
      <property name="text">
-      <string>NWO Available:</string>
+      <string>YSW Available:</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_14">
@@ -2832,10 +2832,10 @@
       </font>
      </property>
      <property name="text">
-      <string>NWO Pending:</string>
+      <string>YSW Pending:</string>
      </property>
     </widget>
-    <widget class="QLabel" name="NWOPendingLabel">
+    <widget class="QLabel" name="YSWPendingLabel">
      <property name="geometry">
       <rect>
        <x>150</x>
@@ -2928,7 +2928,7 @@
       </font>
      </property>
      <property name="text">
-      <string>Bittrex NWO Deposit Address:</string>
+      <string>Bittrex YSW Deposit Address:</string>
      </property>
     </widget>
     <widget class="QPushButton" name="GenDepositBTN">
@@ -2941,10 +2941,10 @@
       </rect>
      </property>
      <property name="text">
-      <string>Generate NWO Deposit Address</string>
+      <string>Generate YSW Deposit Address</string>
      </property>
      <property name="icon">
-      <iconset resource="../nwo.qrc">
+      <iconset resource="../ysw.qrc">
        <normaloff>:/icons/bitcoin</normaloff>:/icons/bitcoin</iconset>
      </property>
     </widget>
@@ -3206,7 +3206,7 @@
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="../nwo.qrc">:/icons/transaction_1</pixmap>
+       <pixmap resource="../ysw.qrc">:/icons/transaction_1</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -3253,7 +3253,7 @@
       <string>Update API Keys</string>
      </property>
      <property name="icon">
-      <iconset resource="../nwo.qrc">
+      <iconset resource="../ysw.qrc">
        <normaloff>:/icons/bitcoin</normaloff>:/icons/bitcoin</iconset>
      </property>
     </widget>
@@ -3408,7 +3408,7 @@
   </widget>
  </widget>
  <resources>
-  <include location="../nwo.qrc"/>
+  <include location="../ysw.qrc"/>
  </resources>
  <connections/>
 </ui>

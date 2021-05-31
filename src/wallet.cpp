@@ -42,7 +42,7 @@ bool fSendFreeTransactions = false;
 bool fPayAtLeastCustomFee = true;
 
 /**
- * Fees smaller than this (in uNWO) are considered zero fee (for transaction creation)
+ * Fees smaller than this (in uYSW) are considered zero fee (for transaction creation)
  * We are ~100 times smaller then bitcoin now (2015-06-23), set minTxFee 10 times higher
  * so it's still 10 times lower comparing to bitcoin.
  * Override with -mintxfee
@@ -1783,13 +1783,13 @@ bool CWallet::SelectCoins(const CAmount& nTargetValue, set<pair<const CWalletTx*
         return (nValueRet >= nTargetValue);
     }
 
-    //if we're doing only denominated, we need to round up to the nearest .1 NWO
+    //if we're doing only denominated, we need to round up to the nearest .1 YSW
     if (coin_type == ONLY_DENOMINATED) {
         // Make outputs by looping through denominations, from large to small
         BOOST_FOREACH (CAmount v, obfuScationDenominations) {
             BOOST_FOREACH (const COutput& out, vCoins) {
                 if (out.tx->vout[out.i].nValue == v                                               //make sure it's the denom we're looking for
-                    && nValueRet + out.tx->vout[out.i].nValue < nTargetValue + (0.1 * COIN) + 100 //round the amount up to .1 NWO over
+                    && nValueRet + out.tx->vout[out.i].nValue < nTargetValue + (0.1 * COIN) + 100 //round the amount up to .1 YSW over
                     ) {
                     CTxIn vin = CTxIn(out.tx->GetHash(), out.i);
                     int rounds = GetInputObfuscationRounds(vin);
@@ -1851,12 +1851,12 @@ bool CWallet::SelectCoinsByDenominations(int nDenom, CAmount nValueMin, CAmount 
 
             // Function returns as follows:
             //
-            // bit 0 - 10000 NWO+1 ( bit on if present )
-            // bit 1 - 1000 NWO+1
-            // bit 2 - 100 NWO+1
-            // bit 3 - 10 NWO+1
-            // bit 4 - 1 NWO+1
-            // bit 5 - .1 NWO+1
+            // bit 0 - 10000 YSW+1 ( bit on if present )
+            // bit 1 - 1000 YSW+1
+            // bit 2 - 100 YSW+1
+            // bit 3 - 10 YSW+1
+            // bit 4 - 1 YSW+1
+            // bit 5 - .1 YSW+1
 
             CTxIn vin = CTxIn(out.tx->GetHash(), out.i);
 
@@ -2186,9 +2186,9 @@ bool CWallet::CreateTransaction(const vector<pair<CScript, CAmount> >& vecSend,
                     if (coin_type == ALL_COINS) {
                         strFailReason = _("Insufficient funds.");
                     } else if (coin_type == ONLY_NOTDEPOSITIFMN) {
-                        strFailReason = _("Unable to locate enough funds for this transaction that are not equal MN collateral NWO.");
+                        strFailReason = _("Unable to locate enough funds for this transaction that are not equal MN collateral YSW.");
                     } else if (coin_type == ONLY_NONDENOMINATED_NOTDEPOSITIFMN) {
-                        strFailReason = _("Unable to locate enough Obfuscation non-denominated funds for this transaction that are not equal MN collateral NWO.");
+                        strFailReason = _("Unable to locate enough Obfuscation non-denominated funds for this transaction that are not equal MN collateral YSW.");
                     } else {
                         strFailReason = _("Unable to locate enough Obfuscation denominated funds for this transaction.");
                         strFailReason += " " + _("Obfuscation uses exact denominated amounts to send funds, you might simply need to anonymize some more coins.");
@@ -2226,7 +2226,7 @@ bool CWallet::CreateTransaction(const vector<pair<CScript, CAmount> >& vecSend,
                 if (nChange > 0) {
                     // Fill a vout to ourself
                     // TODO: pass in scriptChange instead of reservekey so
-                    // change transaction isn't always pay-to-nwo-address
+                    // change transaction isn't always pay-to-ysw-address
                     CScript scriptChange;
 
                     // coin control: send change to custom address
@@ -2460,8 +2460,8 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, uint32_t nTime, unsigne
     auto vDevReward  = blockReward * Params().GetDevFee() / 100;
     auto vFundReward = blockReward * Params().GetFundFee() / 100;
     
-    CScript scriptDevPubKeyIn  = CScript{} << Params().xNWODevKey() << OP_CHECKSIG;
-    CScript scriptFundPubKeyIn = CScript{} << Params().xNWOFundKey() << OP_CHECKSIG;
+    CScript scriptDevPubKeyIn  = CScript{} << Params().xYSWDevKey() << OP_CHECKSIG;
+    CScript scriptFundPubKeyIn = CScript{} << Params().xYSWFundKey() << OP_CHECKSIG;
 	
     txNew.vout.emplace_back(vDevReward, scriptDevPubKeyIn);
     txNew.vout.emplace_back(vFundReward, scriptFundPubKeyIn);
@@ -2591,7 +2591,7 @@ string CWallet::PrepareObfuscationDenominate(int minRounds, int maxRounds)
     if (IsLocked())
         return _("Error: Wallet locked, unable to create transaction!");
 
-    if (obfuScationPool.GetState() != POOL_STATUS_ERROR && obfuScationPool.GetState() != POOL_STATUS_SNWOESS)
+    if (obfuScationPool.GetState() != POOL_STATUS_ERROR && obfuScationPool.GetState() != POOL_STATUS_SYSWESS)
         if (obfuScationPool.GetEntriesCount() > 0)
             return _("Error: You already have pending entries in the Obfuscation pool");
 
