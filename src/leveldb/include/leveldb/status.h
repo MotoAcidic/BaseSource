@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file. See the AUTHORS file for names of contributors.
 //
-// A Status encapsulates the result of an operation.  It may indicate syswess,
+// A Status encapsulates the result of an operation.  It may indicate success,
 // or it may indicate an error with an associated error message.
 //
 // Multiple threads can invoke const methods on a Status without
@@ -20,7 +20,7 @@ namespace leveldb {
 
 class Status {
  public:
-  // Create a syswess status.
+  // Create a success status.
   Status() : state_(NULL) { }
   ~Status() { delete[] state_; }
 
@@ -28,7 +28,7 @@ class Status {
   Status(const Status& s);
   void operator=(const Status& s);
 
-  // Return a syswess status.
+  // Return a success status.
   static Status OK() { return Status(); }
 
   // Return error status of an appropriate type.
@@ -48,7 +48,7 @@ class Status {
     return Status(kIOError, msg, msg2);
   }
 
-  // Returns true iff the status indicates syswess.
+  // Returns true iff the status indicates success.
   bool ok() const { return (state_ == NULL); }
 
   // Returns true iff the status indicates a NotFound error.
@@ -61,7 +61,7 @@ class Status {
   bool IsIOError() const { return code() == kIOError; }
 
   // Return a string representation of this status suitable for printing.
-  // Returns the string "OK" for syswess.
+  // Returns the string "OK" for success.
   std::string ToString() const;
 
  private:

@@ -315,16 +315,16 @@ void CObfuscationPool::ProcessMessageObfuscation(CNode* pfrom, std::string& strC
         vector<CTxIn> sigs;
         vRecv >> sigs;
 
-        bool syswess = false;
+        bool success = false;
         int count = 0;
 
         BOOST_FOREACH (const CTxIn item, sigs) {
-            if (AddScriptSig(item)) syswess = true;
+            if (AddScriptSig(item)) success = true;
             LogPrint("obfuscation", " -- sigs count %d %d\n", (int)sigs.size(), count);
             count++;
         }
 
-        if (syswess) {
+        if (success) {
             obfuScationPool.Check();
             RelayStatus(obfuScationPool.sessionID, obfuScationPool.GetState(), obfuScationPool.GetEntriesCount(), MASTERNODE_RESET);
         }
@@ -817,7 +817,7 @@ void CObfuscationPool::CheckTimeout()
             Check();
             break;
         case POOL_STATUS_SYSWESS:
-            LogPrint("obfuscation", "CObfuscationPool::CheckTimeout() -- Pool syswess -- Running Check()\n");
+            LogPrint("obfuscation", "CObfuscationPool::CheckTimeout() -- Pool success -- Running Check()\n");
             Check();
             break;
         }
@@ -1357,7 +1357,7 @@ void CObfuscationPool::CompletedTransaction(bool error, int errorID)
         UnlockCoins();
         SetNull();
     } else {
-        LogPrintf("CompletedTransaction -- syswess \n");
+        LogPrintf("CompletedTransaction -- success \n");
         UpdateState(POOL_STATUS_SYSWESS);
 
         UnlockCoins();
@@ -1690,8 +1690,8 @@ bool CObfuscationPool::SendRandomPaymentToSelf()
     vecSend.push_back(make_pair(scriptChange, nPayment));
 
     CCoinControl* coinControl = NULL;
-    bool syswess = pwalletMain->CreateTransaction(vecSend, wtx, reservekey, nFeeRet, strFail, coinControl, ONLY_DENOMINATED);
-    if (!syswess) {
+    bool success = pwalletMain->CreateTransaction(vecSend, wtx, reservekey, nFeeRet, strFail, coinControl, ONLY_DENOMINATED);
+    if (!success) {
         LogPrintf("SendRandomPaymentToSelf: Error - %s\n", strFail);
         return false;
     }
@@ -1726,16 +1726,16 @@ bool CObfuscationPool::MakeCollateralAmounts()
     vecSend.push_back(make_pair(scriptCollateral, OBFUSCATION_COLLATERAL * 4));
 
     // try to use non-denominated and not mn-like funds
-    bool syswess = pwalletMain->CreateTransaction(vecSend, wtx, reservekeyChange,
+    bool success = pwalletMain->CreateTransaction(vecSend, wtx, reservekeyChange,
         nFeeRet, strFail, &coinControl, ONLY_NONDENOMINATED_NOTDEPOSITIFMN);
-    if (!syswess) {
+    if (!success) {
         // if we failed (most likeky not enough funds), try to use all coins instead -
         // MN-like funds should not be touched in any case and we can't mix denominated without collaterals anyway
         CCoinControl* coinControlNull = NULL;
         LogPrintf("MakeCollateralAmounts: ONLY_NONDENOMINATED_NOTDEPOSITIFMN Error - %s\n", strFail);
-        syswess = pwalletMain->CreateTransaction(vecSend, wtx, reservekeyChange,
+        success = pwalletMain->CreateTransaction(vecSend, wtx, reservekeyChange,
             nFeeRet, strFail, coinControlNull, ONLY_NOTDEPOSITIFMN);
-        if (!syswess) {
+        if (!success) {
             LogPrintf("MakeCollateralAmounts: ONLY_NOTDEPOSITIFMN Error - %s\n", strFail);
             reservekeyCollateral.ReturnKey();
             return false;
@@ -1813,9 +1813,9 @@ bool CObfuscationPool::CreateDenominated(CAmount nTotalValue)
     // if we have anything left over, it will be automatically send back as change - there is no need to send it manually
 
     CCoinControl* coinControl = NULL;
-    bool syswess = pwalletMain->CreateTransaction(vecSend, wtx, reservekeyChange,
+    bool success = pwalletMain->CreateTransaction(vecSend, wtx, reservekeyChange,
         nFeeRet, strFail, coinControl, ONLY_NONDENOMINATED_NOTDEPOSITIFMN);
-    if (!syswess) {
+    if (!success) {
         LogPrintf("CreateDenominated: Error - %s\n", strFail);
         // TODO: return reservekeyDenom here
         reservekeyCollateral.ReturnKey();

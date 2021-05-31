@@ -70,7 +70,7 @@ def parseline(line):
         return None
     # Extract uptime %.
     uptime30 = float(sline[7][:-1])
-    # Extract Unix timestamp of last syswess.
+    # Extract Unix timestamp of last success.
     lastsyswess = int(sline[2])
     # Extract protocol version.
     version = int(sline[10])
@@ -152,7 +152,7 @@ def main():
     ips = [ip for ip in ips if ip['uptime'] > 50]
     # Require a known and recent user agent.
     ips = [ip for ip in ips if PATTERN_AGENT.match(re.sub(' ', '-', ip['agent']))]
-    # Sort by availability (and use last syswess as tie breaker)
+    # Sort by availability (and use last success as tie breaker)
     ips.sort(key=lambda x: (x['uptime'], x['lastsyswess'], x['ip']), reverse=True)
     # Filter out hosts with multiple bitcoin ports, these are likely abusive
     ips = filtermultiport(ips)

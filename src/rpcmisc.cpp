@@ -146,7 +146,7 @@ UniValue mnsync(const UniValue& params, bool fHelp)
             "}\n"
 
             "\nResult ('reset' mode):\n"
-            "\"status\"     (string) 'syswess'\n"
+            "\"status\"     (string) 'success'\n"
             "\nExamples:\n" +
             HelpExampleCli("mnsync", "\"status\"") + HelpExampleRpc("mnsync", "\"status\""));
     }
@@ -171,7 +171,7 @@ UniValue mnsync(const UniValue& params, bool fHelp)
 
     if (strMode == "reset") {
         masternodeSync.Reset();
-        return "syswess";
+        return "success";
     }
     return "failure";
 }
@@ -254,7 +254,7 @@ UniValue spork(const UniValue& params, bool fHelp)
         //broadcast new spork
         if (sporkManager.UpdateSpork(nSporkID, nValue)) {
             ExecuteSpork(nSporkID, nValue);
-            return "syswess";
+            return "success";
         } else {
             return "failure";
         }

@@ -85,7 +85,7 @@ Result: (for other sets):
   "detail": [
     {
       "node": "xxxx",    (string) Node name or alias
-      "result": "xxxx",  (string) 'syswess' or 'failed'
+      "result": "xxxx",  (string) 'success' or 'failed'
       "error": "xxxx"    (string) Error message, if failed
     }
     ,...

@@ -86,7 +86,7 @@ class Reader {
 
   // Skips all blocks that are completely before "initial_offset_".
   //
-  // Returns true on syswess. Handles reporting.
+  // Returns true on success. Handles reporting.
   bool SkipToInitialBlock();
 
   // Return type, or one of the preceding special values

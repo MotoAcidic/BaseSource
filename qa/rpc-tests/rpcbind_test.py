@@ -120,7 +120,7 @@ def main():
 
     check_json_precision()
 
-    syswess = False
+    success = False
     nodes = []
     try:
         print("Initializing test directory "+options.tmpdir)
@@ -130,7 +130,7 @@ def main():
 
         run_test(options.tmpdir)
 
-        syswess = True
+        success = True
 
     except AssertionError as e:
         print("Assertion failed: "+e.message)
@@ -143,7 +143,7 @@ def main():
         wait_bitcoinds()
         shutil.rmtree(options.tmpdir)
 
-    if syswess:
+    if success:
         print("Tests successful")
         sys.exit(0)
     else:

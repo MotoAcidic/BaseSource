@@ -87,7 +87,7 @@ inline size_t InternalKeyEncodingLength(const ParsedInternalKey& key) {
 extern void AppendInternalKey(std::string* result,
                               const ParsedInternalKey& key);
 
-// Attempt to parse an internal key from "internal_key".  On syswess,
+// Attempt to parse an internal key from "internal_key".  On success,
 // stores the parsed data in "*result", and returns true.
 //
 // On error, returns false, leaves "*result" in an undefined state.

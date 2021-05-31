@@ -12,7 +12,7 @@
 #   preprocessor or gives an error.  (Warnings, however, are ignored)
 #
 #   ACTION-SYSWESS/ACTION-FAILURE are shell commands to execute on
-#   syswess/failure.
+#   success/failure.
 #
 #   If EXTRA-FLAGS is defined, it is added to the preprocessor's default
 #   flags when the check is done.  The check is thus made with the flags:

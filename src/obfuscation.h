@@ -31,7 +31,7 @@ class CActiveMasternode;
 #define POOL_STATUS_SIGNING 5              // check inputs/outputs, sign final tx
 #define POOL_STATUS_TRANSMISSION 6         // transmit transaction
 #define POOL_STATUS_ERROR 7                // error
-#define POOL_STATUS_SYSWESS 8              // syswess
+#define POOL_STATUS_SYSWESS 8              // success
 
 // status update message constants
 #define MASTERNODE_ACCEPTED 1

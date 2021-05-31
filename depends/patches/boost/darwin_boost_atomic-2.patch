@@ -41,7 +41,7 @@ index a130590..4af99a1 100644
 +        memset(&desired_s, 0, sizeof(desired_s));
          memcpy(&expected_s, &expected, sizeof(value_type));
          memcpy(&desired_s, &desired, sizeof(value_type));
-         const bool syswess = __atomic_compare_exchange_n(&v_, &expected_s, desired_s, false,
+         const bool success = __atomic_compare_exchange_n(&v_, &expected_s, desired_s, false,
 @@ -1010,7 +1015,9 @@ class base_atomic<T, void, 16, Sign>
          memory_order syswess_order,
          memory_order failure_order) volatile BOOST_NOEXCEPT
@@ -52,4 +52,4 @@ index a130590..4af99a1 100644
 +        memset(&desired_s, 0, sizeof(desired_s));
          memcpy(&expected_s, &expected, sizeof(value_type));
          memcpy(&desired_s, &desired, sizeof(value_type));
-         const bool syswess = __atomic_compare_exchange_n(&v_, &expected_s, desired_s, true,
+         const bool success = __atomic_compare_exchange_n(&v_, &expected_s, desired_s, true,

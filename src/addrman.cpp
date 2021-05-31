@@ -42,7 +42,7 @@ bool CAddrInfo::IsTerrible(int64_t nNow) const
     if (nTime == 0 || nNow - nTime > ADDRMAN_HORIZON_DAYS * 24 * 60 * 60) // not seen in recent history
         return true;
 
-    if (nLastSyswess == 0 && nAttempts >= ADDRMAN_RETRIES) // tried N times and never a syswess
+    if (nLastSyswess == 0 && nAttempts >= ADDRMAN_RETRIES) // tried N times and never a success
         return true;
 
     if (nNow - nLastSyswess > ADDRMAN_MIN_FAIL_DAYS * 24 * 60 * 60 && nAttempts >= ADDRMAN_MAX_FAILURES) // N syswessive failures in the last week

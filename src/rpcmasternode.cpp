@@ -607,7 +607,7 @@ UniValue startmasternode (const UniValue& params, bool fHelp)
             "  \"detail\": [\n"
             "    {\n"
             "      \"node\": \"xxxx\",    (string) Node name or alias\n"
-            "      \"result\": \"xxxx\",  (string) 'syswess' or 'failed'\n"
+            "      \"result\": \"xxxx\",  (string) 'success' or 'failed'\n"
             "      \"error\": \"xxxx\"    (string) Error message, if failed\n"
             "    }\n"
             "    ,...\n"
@@ -669,7 +669,7 @@ UniValue startmasternode (const UniValue& params, bool fHelp)
 
             UniValue statusObj(UniValue::VOBJ);
             statusObj.push_back(Pair("alias", mne.getAlias()));
-            statusObj.push_back(Pair("result", result ? "syswess" : "failed"));
+            statusObj.push_back(Pair("result", result ? "success" : "failed"));
 
             if (result) {
                 successful++;
