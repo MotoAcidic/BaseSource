@@ -670,7 +670,7 @@
                            </size>
                           </property>
                           <property name="text">
-                           <string>Mini:</string>
+                           <string>Yield Staking Node:</string>
                           </property>
                           <property name="alignment">
                            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -692,7 +692,7 @@
                            </size>
                           </property>
                           <property name="text">
-                           <string>Small:</string>
+                           <string>Yield Staking Node:</string>
                           </property>
                           <property name="alignment">
                            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -714,7 +714,7 @@
                            </size>
                           </property>
                           <property name="text">
-                           <string>Medium:</string>
+                           <string>Yield Staking Node:</string>
                           </property>
                           <property name="alignment">
                            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -736,7 +736,7 @@
                            </size>
                           </property>
                           <property name="text">
-                           <string>Large:</string>
+                           <string>Yield Staking Node:</string>
                           </property>
                           <property name="alignment">
                            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -758,7 +758,7 @@
                            </size>
                           </property>
                           <property name="text">
-                           <string>Full:</string>
+                           <string>Yield Staking Node:</string>
                           </property>
                           <property name="alignment">
                            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
