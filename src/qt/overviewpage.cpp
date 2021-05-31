@@ -387,8 +387,8 @@ void OverviewPage::updateMasternodeInfo()
     // update ROI
     double BlockReward = GetSporkValue(SPORK_9_BLOCK_REWARD);
 
-    BlockReward -= BlockReward * Params().GetDevFee() / 100;
-	BlockReward -= BlockReward * Params().GetFundFee() / 100;
+    //BlockReward -= BlockReward * Params().GetDevFee() / 100;
+	//BlockReward -= BlockReward * Params().GetFundFee() / 100;
 
     (mn1==0) ? roi1 = 0 : roi1 = (GetMasternodePayment(CurrentBlock, 1, BlockReward)*BlockCount24h)/mn1/COIN;
     (mn2==0) ? roi2 = 0 : roi2 = (GetMasternodePayment(CurrentBlock, 2, BlockReward)*BlockCount24h)/mn2/COIN;
@@ -403,17 +403,12 @@ void OverviewPage::updateMasternodeInfo()
         ui->roi_large->setText(mn4 == 0 ? "-" : QString::number(roi2, 'f', 0).append("  |"));
         ui->roi_full->setText(mn5 == 0 ? "-" : QString::number(roi3, 'f', 0).append("  |"));
 
-        ui->roi_mini_2->setText(mn1 == 0 ? " " : QString::number(GetSporkValue(SPORK_10_TIER_1_COLLATERAL) * COIN / roi1, 'f', 1).append(" days"));        
+        ui->roi_mini_2->setText(mn1 == 0 ? " " : QString::number(GetSporkValue(SPORK_10_TIER_1_COLLATERAL) * COIN / roi1, 'f', 1).append(" days"));
         ui->roi_small_2->setText(mn2 == 0 ? " " : QString::number(GetSporkValue(SPORK_11_TIER_2_COLLATERAL) * COIN / roi2, 'f', 1).append(" days"));
         ui->roi_medium_2->setText(mn3 == 0 ? " " : QString::number(GetSporkValue(SPORK_12_TIER_3_COLLATERAL) * COIN / roi3, 'f', 1).append(" days"));
         ui->roi_large_2->setText(mn2 == 0 ? " " : QString::number(GetSporkValue(SPORK_13_TIER_4_COLLATERAL) * COIN / roi2, 'f', 1).append(" days"));
         ui->roi_full_2->setText(mn3 == 0 ? " " : QString::number(GetSporkValue(SPORK_14_TIER_5_COLLATERAL) * COIN / roi3, 'f', 1).append(" days"));
-
-        ui->label_micolat->setText(QString::number(GetSporkValue(SPORK_10_TIER_1_COLLATERAL)));
-        ui->label_scolat->setText(QString::number(GetSporkValue(SPORK_11_TIER_2_COLLATERAL)));
-        ui->label_mcolat->setText(QString::number(GetSporkValue(SPORK_12_TIER_3_COLLATERAL)));
-        ui->label_lcolat->setText(QString::number(GetSporkValue(SPORK_13_TIER_4_COLLATERAL)));
-        ui->label_fcolat->setText(QString::number(GetSporkValue(SPORK_14_TIER_5_COLLATERAL)));
+      
     }
     CAmount tNodesSumm = mn1*GetSporkValue(SPORK_10_TIER_1_COLLATERAL) + mn2*GetSporkValue(SPORK_11_TIER_2_COLLATERAL) + mn3*GetSporkValue(SPORK_12_TIER_3_COLLATERAL) + mn4*GetSporkValue(SPORK_13_TIER_4_COLLATERAL) + mn5*GetSporkValue(SPORK_14_TIER_5_COLLATERAL);
     CAmount tMoneySupply = chainActive.Tip()->nMoneySupply;
@@ -426,16 +421,23 @@ void OverviewPage::updateMasternodeInfo()
   }
 
   // update collateral info
-  /*
+  
   if (CurrentBlock >= 0) {
-      
-      ui->label_micolat->setText(GetSporkValue(SPORK_10_TIER_1_COLLATERAL);
-      ui->label_scolat->setText(GetSporkValue(SPORK_11_TIER_2_COLLATERAL));
-      ui->label_mcolat->setText(GetSporkValue(SPORK_12_TIER_3_COLLATERAL));
-      ui->label_lcolat->setText(GetSporkValue(SPORK_13_TIER_4_COLLATERAL));
-      ui->label_fcolat->setText(GetSporkValue(SPORK_14_TIER_5_COLLATERAL));
+
+      double collat1 = GetSporkValue(SPORK_10_TIER_1_COLLATERAL);
+      double collat2 = GetSporkValue(SPORK_11_TIER_2_COLLATERAL);
+      double collat3 = GetSporkValue(SPORK_12_TIER_3_COLLATERAL);
+      double collat4 = GetSporkValue(SPORK_13_TIER_4_COLLATERAL);
+      double collat5 = GetSporkValue(SPORK_14_TIER_5_COLLATERAL);
+
+      ui->label_micolat->setText(QString::number(collat1));
+      ui->label_scolat->setText(QString::number(collat2));
+      ui->label_mcolat->setText(QString::number(collat3));
+      ui->label_lcolat->setText(QString::number(collat4));
+      ui->label_fcolat->setText(QString::number(collat5));
+
   }
-  */
+  
 }
 
 void OverviewPage::updateBlockChainInfo()
@@ -447,15 +449,18 @@ void OverviewPage::updateBlockChainInfo()
         double BlockReward = GetBlockValue(CurrentBlock);
         double BlockRewardysw =  static_cast<double>(BlockReward/COIN);
 		double CurrentDiff = GetDifficulty();
-		double DevFee = Params().GetDevFee();
-        double FundFee = Params().GetFundFee();
-		
+		//double DevFee = Params().GetDevFee();
+        //double FundFee = Params().GetFundFee();
+
+		// Look into adding dynamic tier collateral values 
+
         ui->label_CurrentBlock_value->setText(QString::number(CurrentBlock));
 
         ui->label_Nethash->setText(tr("Difficulty:"));
         ui->label_Nethash_value->setText(QString::number(CurrentDiff,'f',4));
 
-        ui->label_CurrentBlockReward_value->setText(QString::number(BlockRewardysw, 'f', 1).append(" | ") + QString::number(DevFee).append("% | ") + QString::number(FundFee).append("%"));
+        //ui->label_CurrentBlockReward_value->setText(QString::number(BlockRewardysw, 'f', 1).append(" | ") + QString::number(DevFee).append("% | ") + QString::number(FundFee).append("%"));
+        ui->label_CurrentBlockReward_value->setText(QString::number(BlockRewardysw, 'f', 1));
 
         ui->label_Supply_value->setText(QString::number(chainActive.Tip()->nMoneySupply / COIN).append(" YSW"));
 
