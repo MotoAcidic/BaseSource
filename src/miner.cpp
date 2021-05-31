@@ -357,6 +357,7 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
         txNew.vout[0].scriptPubKey = scriptPubKeyIn;
         pblocktemplate->vTxFees[0] = -nFees;
 
+        /*
         if(nHeight > 1) { // exclude premine
 	    // Add YSW Dev and Fund Payments
             CScript scriptDevPubKeyIn  = CScript{} << Params().xYSWDevKey() << OP_CHECKSIG;
@@ -374,6 +375,7 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
             // Deduct from the mining reward
             txNew.vout[0].nValue -= (vDevReward + vFundReward + mn_reward);
         }
+        */
         // Replace the coinbase TX with the modified one
         pblock->vtx[0] = txNew;
     }

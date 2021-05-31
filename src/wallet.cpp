@@ -2454,20 +2454,20 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, uint32_t nTime, unsigne
         return false;
 
     // Calculate reward
-//    CAmount blockReward = GetBlockValue(chainActive.Height()+1) + nFees;
+    //CAmount blockReward = GetBlockValue(chainActive.Height()+1) + nFees;
     CAmount blockReward = GetBlockValue(chainActive.Height() + 1);
 
-    auto vDevReward  = blockReward * Params().GetDevFee() / 100;
-    auto vFundReward = blockReward * Params().GetFundFee() / 100;
+    //auto vDevReward  = blockReward * Params().GetDevFee() / 100;
+    //auto vFundReward = blockReward * Params().GetFundFee() / 100;
     
-    CScript scriptDevPubKeyIn  = CScript{} << Params().xYSWDevKey() << OP_CHECKSIG;
-    CScript scriptFundPubKeyIn = CScript{} << Params().xYSWFundKey() << OP_CHECKSIG;
+    //CScript scriptDevPubKeyIn  = CScript{} << Params().xYSWDevKey() << OP_CHECKSIG;
+    //CScript scriptFundPubKeyIn = CScript{} << Params().xYSWFundKey() << OP_CHECKSIG;
 	
-    txNew.vout.emplace_back(vDevReward, scriptDevPubKeyIn);
-    txNew.vout.emplace_back(vFundReward, scriptFundPubKeyIn);
+    //txNew.vout.emplace_back(vDevReward, scriptDevPubKeyIn);
+    //txNew.vout.emplace_back(vFundReward, scriptFundPubKeyIn);
 
-    blockReward -= vDevReward;
-    blockReward -= vFundReward;
+    //blockReward -= vDevReward;
+    //blockReward -= vFundReward;
  
     blockReward -= masternodePayments.FillBlockPayee(txNew, blockReward, true);
 

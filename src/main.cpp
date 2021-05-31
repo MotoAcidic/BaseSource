@@ -3211,9 +3211,9 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
             else
                 if (pindexPrev->GetBlockHash() == block.hashPrevBlock)
                     nHeight = pindexPrev->nHeight + 1;
-
+            /*
             if(nHeight > 1) { // exclude premine
-                // The first transaction must have Fund and Dev scripts.
+                 The first transaction must have Fund and Dev scripts.
                 CScript scriptDevPubKeyIn  = CScript() << Params().xYSWDevKey() << OP_CHECKSIG;
                 CScript scriptFundPubKeyIn = CScript() << Params().xYSWFundKey() << OP_CHECKSIG;
                 CTxDestination DevAddress;
@@ -3248,7 +3248,8 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
                 return state.DoS(100, error("CheckBlock() : coinbase do not have the enough reward for dev or fund."),
                 REJECT_INVALID, "bad-cb-reward-invalid");
 
-        }
+            }
+            */
     }
 
     // ----------- swiftTX transaction scanning -----------

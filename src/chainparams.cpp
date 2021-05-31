@@ -137,9 +137,9 @@ public:
         pchMessageStart[3] = 0x3f;
         vAlertPubKey = ParseHex("0470278d0645942e9816abfb0596ddb92c9e15f4efcb59d05f46579398de5f0cbc73c5dad1bf3078d26b7eff021c5628140933a8cfc430ab7c00276304d7353d9e");
         vYSWDevKey = ParseHex("0329b41789e8fd75dc7168d05dec322c25df364f6b010fb59c96b4637e5f4487cb"); // TEAMPubKey for fees
-        vYSWFundKey = ParseHex("031f3b25791150d4243608c51f39c13a5b340cb73e4bf44c4d0258ad65506cd6c2"); // SWAPPubKey for fees
+        //vYSWFundKey = ParseHex("031f3b25791150d4243608c51f39c13a5b340cb73e4bf44c4d0258ad65506cd6c2"); // SWAPPubKey for fees
         nDevFee = 3; // TEAMFee %
-        nFundFee = 7; // SWAPFee %
+        //nFundFee = 7; // SWAPFee %
         nDefaultPort = 41110;
         bnProofOfWorkLimit = ~uint256(0) >> 20;
         bnStartWork = ~uint256(0) >> 24;

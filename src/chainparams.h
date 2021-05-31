@@ -52,10 +52,10 @@ public:
     const MessageStartChars& MessageStart() const { return pchMessageStart; }
     const std::vector<unsigned char>& AlertKey() const { return vAlertPubKey; }
 
-    const std::vector<unsigned char>& xYSWDevKey() const { return vYSWDevKey; }
-    const std::vector<unsigned char>& xYSWFundKey() const { return vYSWFundKey; }
-    int GetDevFee() const { return nDevFee; }
-    int GetFundFee() const { return nFundFee; }
+    //const std::vector<unsigned char>& xYSWDevKey() const { return vYSWDevKey; }
+    //const std::vector<unsigned char>& xYSWFundKey() const { return vYSWFundKey; }
+    //int GetDevFee() const { return nDevFee; }
+    //int GetFundFee() const { return nFundFee; }
 
     int GetDefaultPort() const { return nDefaultPort; }
     const uint256& ProofOfWorkLimit() const { return bnProofOfWorkLimit; }
@@ -116,10 +116,10 @@ protected:
     MessageStartChars pchMessageStart;
     //! Raw pub key bytes for the broadcast alert signing key.
     std::vector<unsigned char> vAlertPubKey;
-    std::vector<unsigned char> vYSWDevKey;
-    std::vector<unsigned char> vYSWFundKey;
-    int nDevFee;
-    int nFundFee;
+    //std::vector<unsigned char> vYSWDevKey;
+    //std::vector<unsigned char> vYSWFundKey;
+    //int nDevFee;
+    //int nFundFee;
     int nDefaultPort;
     uint256 bnProofOfWorkLimit;
     uint256 bnStartWork;
