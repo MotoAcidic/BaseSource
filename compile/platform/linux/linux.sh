@@ -22,9 +22,9 @@ echo VPS Server prerequisites installed.
 ####################
 # Compile the Coin #
 ####################
-cd ../../../
+cd ../../..
 ./autogen.sh
-./configure --disable-gui-tests --disable-shared --disable-tests --disable-bench --with-unsupported-ssl --with-libressl --with-gui=qt5
+./configure --with-unsupported-ssl --with-libressl --with-gui=qt5
 make
 
 echo "Open up Winscp and connect to you vps that you compile this with. The location of the exe file is located 

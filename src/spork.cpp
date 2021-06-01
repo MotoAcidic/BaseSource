@@ -106,6 +106,8 @@ bool IsSporkActive(int nSporkID)
         if (nSporkID == SPORK_20_SKIP_MN_SYNC) r = SPORK_20_SKIP_MN_SYNC_DEFAULT;
         if (nSporkID == SPORK_21_ACTIVATE_MIN_STAKE) r = SPORK_21_ACTIVATE_MIN_STAKE_DEFAULT;
 
+        if (nSporkID == SPORK_22_COIN_MATURITY) r = SPORK_22_COIN_MATURITY_DEFAULT;
+
         if (r == -1) LogPrintf("GetSpork::Unknown Spork %d\n", nSporkID);
     }
     if (r == -1) r = 4070908800; //return 2099-1-1 by default
@@ -145,6 +147,8 @@ int64_t GetSporkValue(int nSporkID)
 
         if (nSporkID == SPORK_20_SKIP_MN_SYNC) r = SPORK_20_SKIP_MN_SYNC_DEFAULT;
         if (nSporkID == SPORK_21_ACTIVATE_MIN_STAKE) r = SPORK_21_ACTIVATE_MIN_STAKE_DEFAULT;
+
+        if (nSporkID == SPORK_22_COIN_MATURITY) r = SPORK_22_COIN_MATURITY_DEFAULT;
 
 
         if (r == -1) LogPrintf("GetSpork::Unknown Spork %d\n", nSporkID);
@@ -301,6 +305,8 @@ int CSporkManager::GetSporkIDByName(std::string strName)
     if (strName == "SPORK_20_SKIP_MN_SYNC") return SPORK_20_SKIP_MN_SYNC;
     if (strName == "SPORK_21_ACTIVATE_MIN_STAKE") return SPORK_21_ACTIVATE_MIN_STAKE;
 
+    if (strName == "SPORK_22_COIN_MATURITY") return SPORK_22_COIN_MATURITY;
+
     return -1;
 }
 
@@ -330,6 +336,8 @@ std::string CSporkManager::GetSporkNameByID(int id)
 
     if (id == SPORK_20_SKIP_MN_SYNC) return "SPORK_20_SKIP_MN_SYNC";
     if (id == SPORK_21_ACTIVATE_MIN_STAKE) return "SPORK_21_ACTIVATE_MIN_STAKE";
+
+    if (id == SPORK_22_COIN_MATURITY) return "SPORK_22_COIN_MATURITY";
 
     return "Unknown";
 }

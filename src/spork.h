@@ -27,7 +27,7 @@ using namespace boost;
     - This would result in old clients getting confused about which spork is for what
 */
 #define SPORK_START 10001
-#define SPORK_END 10021
+#define SPORK_END 10022
 
 #define SPORK_1_SWIFTTX 10001
 #define SPORK_2_SWIFTTX_BLOCK_FILTERING 10002
@@ -54,6 +54,8 @@ using namespace boost;
 #define SPORK_20_SKIP_MN_SYNC 10020
 #define SPORK_21_ACTIVATE_MIN_STAKE 10021
 
+#define SPORK_22_COIN_MATURITY 10022
+
 #define SPORK_1_SWIFTTX_DEFAULT 978307200                         //2001-1-1
 #define SPORK_2_SWIFTTX_BLOCK_FILTERING_DEFAULT 1424217600        //2015-2-18
 #define SPORK_3_MAX_VALUE_DEFAULT 1000                            //1000 YSW
@@ -76,8 +78,10 @@ using namespace boost;
 #define SPORK_18_TIER_4_BLOCK_PERCENT_DEFAULT 20
 #define SPORK_19_TIER_5_BLOCK_PERCENT_DEFAULT 40
 
-#define SPORK_20_SKIP_MN_SYNC_DEFAULT 4070908800ULL
-#define SPORK_21_ACTIVATE_MIN_STAKE_DEFAULT 20000
+#define SPORK_20_SKIP_MN_SYNC_DEFAULT 4070908800ULL             // Off by default
+#define SPORK_21_ACTIVATE_MIN_STAKE_DEFAULT 20000               // On by default
+
+#define SPORK_22_COIN_MATURITY_DEFAULT 10                       // We start out with 10 confirms for easy launch
 
 class CSporkMessage;
 class CSporkManager;
