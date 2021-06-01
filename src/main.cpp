@@ -3110,6 +3110,14 @@ bool CheckBlockHeader(const CBlockHeader& block, CValidationState& state, bool f
         return state.DoS(50, error("CheckBlockHeader() : proof of work failed"),
             REJECT_INVALID, "high-hash");
 
+    // Check if freeze spork is active
+    if (IsSporkActive(SPORK_23_FREEZE_CHAIN))
+    {
+        LogPrintf("Chain has been put in a frozen state via Spork 23");
+        return state.DoS(0, error("%s : something has been noticed, chain is paused!", __func__),
+            REJECT_INVALID, "Spork-23");
+    }
+
     return true;
 }
 
@@ -3121,9 +3129,11 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
     CAmount MIN_STAKE_AMOUNT = GetSporkValue(SPORK_8_MIN_STAKE_INPUT) * COIN;
     // Check that the header is valid (particularly PoW).  This is mostly
     // redundant with the call in AcceptBlockHeader.
-    if (!CheckBlockHeader(block, state, fCheckPOW && block.IsProofOfWork()))
-        return state.DoS(100, error("CheckBlock() : CheckBlockHeader failed"),
-            REJECT_INVALID, "bad-header", true);
+    if (!CheckBlockHeader(block, state, fCheckPOW)) {
+        int nDoS;
+        state.IsInvalid(nDoS);
+        return state.DoS(nDoS > 0 ? 100 : 0, error("CheckBlock() : CheckBlockHeader failed"), REJECT_INVALID, "bad-header", true);
+    }
 
     // Check timestamp
     LogPrint("debug", "%s: block=%s  is proof of stake=%d\n", __func__, block.GetHash().ToString().c_str(), block.IsProofOfStake());
@@ -3364,6 +3374,13 @@ bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationState& sta
         LogPrintf("Block time = %d , GetMedianTimePast = %d \n", block.GetBlockTime(), pindexPrev->GetMedianTimePast());
         return state.Invalid(error("%s : block's timestamp is too early", __func__),
             REJECT_INVALID, "time-too-old");
+    }
+
+    // Check if freeze spork is active
+    if (IsSporkActive(SPORK_23_FREEZE_CHAIN)) {
+        LogPrintf("Chain has been put in a frozen state via Spork 23");
+        return state.DoS(0, error("%s : something has been noticed, chain is paused!", __func__),
+            REJECT_INVALID, "Spork-23");
     }
 
     // Check that the block chain matches the known block chain up to a checkpoint
