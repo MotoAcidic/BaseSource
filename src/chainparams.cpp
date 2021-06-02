@@ -140,7 +140,7 @@ public:
         //vYSWFundKey = ParseHex("031f3b25791150d4243608c51f39c13a5b340cb73e4bf44c4d0258ad65506cd6c2"); // SWAPPubKey for fees
         //nDevFee = 3; // TEAMFee %
         //nFundFee = 7; // SWAPFee %
-        nDefaultPort = 41110;
+        nDefaultPort = 51478;
         bnProofOfWorkLimit = ~uint256(0) >> 20;
         bnStartWork = ~uint256(0) >> 24;
 

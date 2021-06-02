@@ -52,3 +52,15 @@ src/config/nwo-config.h.in
 .vs/BaseSource/v16/ipch/AutoPCH/3d27acf9b319b786/DB_IMPL.ipch
 
 .vs/BaseSource/v16/ipch/AutoPCH/e67ee26013702337/RPCMINING.ipch
+
+.vs/BaseSource/v16/ipch/AutoPCH/38819bbed1d8a7e9/RPCMINING.ipch
+
+.vs/BaseSource/v16/ipch/AutoPCH/719ea5fc9def13e2/RPCSERVER.ipch
+
+.vs/BaseSource/v16/ipch/AutoPCH/93b9c704f5a137de/RPCCLIENT.ipch
+
+.vs/BaseSource/v16/ipch/AutoPCH/9632d65a87ebd883/RPCMASTERNODE.ipch
+
+.vs/BaseSource/v16/ipch/AutoPCH/a0aae696379319d7/RPCDUMP.ipch
+
+.vs/BaseSource/v16/ipch/AutoPCH/bf6f05b4e6e89e/INIT.ipch
