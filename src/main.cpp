@@ -3184,10 +3184,25 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
         }
 
         // Second transaction must be coinstake, the rest must not be
-        if (block.vtx.empty() || !block.vtx[1].IsCoinStake()) {
-            LogPrintf("CheckBlock() : PoS Failure, block.vtx.empty()=%s, block.vtx[1].IsCoinStake()=%s\n",
-		      block.vtx.empty() ? "true" : "false", block.vtx[1].IsCoinStake() ? "true" : "false");
-            return state.DoS(100, error("CheckBlock() : second tx is not coinstake"));
+        if (block.vtx.empty() || !block.vtx[1].IsCoinStake())
+            return state.DoS(100, error("%s : second tx is not coinstake", __func__));
+        for (unsigned int i = 2; i < block.vtx.size(); i++)
+            if (block.vtx[i].IsCoinStake())
+                return state.DoS(100, error("%s : more than one coinstake", __func__));
+        //check for minimal stake input after fork
+        CBlockIndex* pindex = NULL;
+        CTransaction txPrev;
+        uint256 hashBlockPrev = block.hashPrevBlock;
+        BlockMap::iterator it = mapBlockIndex.find(hashBlockPrev);
+        if (it != mapBlockIndex.end())
+            pindex = it->second;
+        else
+            return state.DoS(100, error("CheckBlock() : stake failed to find block index"));
+        if (ActiveProtocol() >= MIN_STAKE_VERSION) {
+            if (!GetTransaction(block.vtx[1].vin[0].prevout.hash, txPrev, hashBlockPrev, true))
+                return state.DoS(100, error("CheckBlock() : stake failed to find vin transaction"));
+            if (txPrev.vout[block.vtx[1].vin[0].prevout.n].nValue < Params().StakeInput())
+                return state.DoS(100, error("CheckBlock() : stake input below minimum value"));
         }
         for (unsigned int i = 2; i < block.vtx.size(); i++) {
             if (block.vtx[i].IsCoinStake()) {
