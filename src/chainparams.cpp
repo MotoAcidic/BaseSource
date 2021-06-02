@@ -151,7 +151,7 @@ public:
         nMinerThreads = 0;
         nTargetSpacing = 1 * 60;  // YSW: 1 minute
         nAntiInstamineTime = 720; // 720 blocks with 1 reward for instamine prevention
-        nMaturity = 60;
+        nMaturity = GetSporkValue(SPORK_22_COIN_MATURITY);
         nMasternodePercentDrift = 3;
         nMaxMoneyOut = 21000000 * COIN;
 
@@ -200,8 +200,8 @@ public:
 
         //convertSeed6(vFixedSeeds, pnSeed6_main, ARRAYLEN(pnSeed6_main));
 
-        fRequireRPCPassword = true;
-        fMiningRequiresPeers = true;
+        fRequireRPCPassword = false;
+        fMiningRequiresPeers = false;
         fDefaultConsistencyChecks = false;
         fRequireStandard = true;
         fMineBlocksOnDemand = false;
