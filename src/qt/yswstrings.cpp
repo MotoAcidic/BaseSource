@@ -206,10 +206,10 @@ QT_TRANSLATE_NOOP("ysw-core", ""
 QT_TRANSLATE_NOOP("ysw-core", ""
 "You must specify a masternodeprivkey in the configuration. Please see "
 "documentation for help."),
-QT_TRANSLATE_NOOP("ysw-core", "(41110 could be used only on mainnet)"),
+QT_TRANSLATE_NOOP("ysw-core", "(51478 could be used only on mainnet)"),
 QT_TRANSLATE_NOOP("ysw-core", "(default: %s)"),
 QT_TRANSLATE_NOOP("ysw-core", "(default: 1)"),
-QT_TRANSLATE_NOOP("ysw-core", "(must be 41110 for mainnet)"),
+QT_TRANSLATE_NOOP("ysw-core", "(must be 51478 for mainnet)"),
 QT_TRANSLATE_NOOP("ysw-core", "<category> can be:"),
 QT_TRANSLATE_NOOP("ysw-core", "Accept command line and JSON-RPC commands"),
 QT_TRANSLATE_NOOP("ysw-core", "Accept connections from outside (default: 1 if no -proxy or -connect)"),
