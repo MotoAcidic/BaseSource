@@ -49,7 +49,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="../apollon.qrc"/>
+  <include location="../ysw.qrc"/>
  </resources>
  <connections/>
 </ui>

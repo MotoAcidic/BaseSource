@@ -35,7 +35,7 @@
         <string>&amp;Copy</string>
        </property>
        <property name="icon">
-        <iconset resource="../apollon.qrc">
+        <iconset resource="../ysw.qrc">
          <normaloff>:/icons/editcopy</normaloff>:/icons/editcopy</iconset>
        </property>
        <property name="autoDefault">
@@ -60,7 +60,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="../apollon.qrc"/>
+  <include location="../ysw.qrc"/>
  </resources>
  <connections/>
 </ui>
