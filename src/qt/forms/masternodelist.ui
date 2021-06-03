@@ -10,53 +10,74 @@
     <height>457</height>
    </rect>
   </property>
+   
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" name="topLayout" stretch="0">
-   <property name="leftMargin">
-    <number>9</number>
-   </property>
+
+   <layout class="QVBoxLayout" name="topLayout" stretch="0">
+     <property name="leftMargin">
+       <number>9</number>
+     </property>
+   </layout>
+   
    <property name="topMargin">
     <number>9</number>
    </property>
+   
    <property name="rightMargin">
     <number>9</number>
    </property>
+   
    <property name="bottomMargin">
     <number>9</number>
    </property>
+
    <item>
-    <layout class="QVBoxLayout" name="verticalLayout_Master" stretch="0,0">
-     <property name="spacing">
-      <number>0</number>
-     </property>
-     <item>
-      <widget class="QFrame" name="frame_Header">
-       <layout class="QVBoxLayout" name="verticalLayout_4">
-        <property name="leftMargin">
+     <layout class="QVBoxLayout" name="verticalLayout_Master" stretch="0,0">
+       <property name="spacing">
          <number>0</number>
-        </property>
+       </property>
+     </layout>
+   </item>
+
+   <item>
+     <widget class="QFrame" name="frame_Header">
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+         <property name="leftMargin">
+           <number>0</number>
+         </property>
+       </layout>
+     </widget>
+   </item>
+   
         <property name="topMargin">
          <number>0</number>
         </property>
+   
         <property name="rightMargin">
          <number>0</number>
         </property>
+   
         <property name="bottomMargin">
          <number>0</number>
         </property>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_Header" stretch="1,0,1">
-          <item>
-           <widget class="QLabel" name="labelOverviewHeaderLeft">
-            <property name="minimumSize">
+
+   <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_Header" stretch="1,0,1">
+       <item>
+         <widget class="QLabel" name="labelOverviewHeaderLeft">
+           <property name="minimumSize">
              <size>
-              <width>464</width>
-              <height>60</height>
+               <width>464</width>
+               <height>60</height>
              </size>
-            </property>
-           </column>
+           </property>
+         </widget>
+       </item>
+     </layout>
+   </item>
+             
            <column>
             <property name="text">
              <string>Level</string>
@@ -98,11 +119,7 @@
             </property>
            </column>
           </widget>
-         </item>
-        </layout>
-       </widget>
-      </widget>
-     </item>
+
      <item>
       <widget class="QFrame" name="frame_BG">
        <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -523,10 +540,7 @@
        </layout>
       </widget>
      </item>
-    </layout>
-   </item>
-  </layout>
- </widget>
+
  <resources/>
  <connections/>
 </ui>
