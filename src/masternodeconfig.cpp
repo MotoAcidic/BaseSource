@@ -123,7 +123,7 @@ void CMasternodeConfig::writeToMasternodeConf()
 	
 	std::string masternodeAliasBase = "";
 	
-	for (CMasternodeConfig::CMasternodeEntry mne : masternodeConfig.getEntries()) {
+	BOOST_FOREACH (CMasternodeConfig::CMasternodeEntry mne, masternodeConfig.getEntries()) {
 		// Orders configs in proper strings
 		std::string masternodeAliasLine  = mne.getAlias() + " " + mne.getIp() + " " + mne.getPrivKey() + " " + mne.getTxHash() + " " + mne.getOutputIndex() + "\n";
 		masternodeAliasBase = masternodeAliasBase + masternodeAliasLine;

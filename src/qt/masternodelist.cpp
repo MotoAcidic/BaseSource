@@ -73,15 +73,15 @@ MasternodeList::MasternodeList(QWidget* parent) : QWidget(parent),
     ui->tableWidgetMyMasternodes->setColumnWidth(8, column24hCoinsWidth);
     ui->tableWidgetMyMasternodes->setColumnWidth(9, columnLuckWidth);
 
-    ui->tableWidgetMasternodes->setColumnWidth(0, columnAddressWidth);
-    ui->tableWidgetMasternodes->setColumnWidth(1, columnLevelWidth);
-    ui->tableWidgetMasternodes->setColumnWidth(2, columnProtocolWidth);
-    ui->tableWidgetMasternodes->setColumnWidth(3, columnStatusWidth);
-    ui->tableWidgetMasternodes->setColumnWidth(4, columnActiveWidth);
-    ui->tableWidgetMasternodes->setColumnWidth(5, columnLastSeenWidth);
-    ui->tableWidgetMasternodes->setColumnWidth(6, columnPayeeWidth);
-    ui->tableWidgetMasternodes->setColumnWidth(7, column24hCoinsWidth);
-    ui->tableWidgetMasternodes->setColumnWidth(8, columnLuckWidth);
+    ui->tableWidgetMyMasternodes->setColumnWidth(0, columnAddressWidth);
+    ui->tableWidgetMyMasternodes->setColumnWidth(1, columnLevelWidth);
+    ui->tableWidgetMyMasternodes->setColumnWidth(2, columnProtocolWidth);
+    ui->tableWidgetMyMasternodes->setColumnWidth(3, columnStatusWidth);
+    ui->tableWidgetMyMasternodes->setColumnWidth(4, columnActiveWidth);
+    ui->tableWidgetMyMasternodes->setColumnWidth(5, columnLastSeenWidth);
+    ui->tableWidgetMyMasternodes->setColumnWidth(6, columnPayeeWidth);
+    ui->tableWidgetMyMasternodes->setColumnWidth(7, column24hCoinsWidth);
+    ui->tableWidgetMyMasternodes->setColumnWidth(8, columnLuckWidth);
 
     ui->tableWidgetMyMasternodes->setContextMenuPolicy(Qt::CustomContextMenu);
 
@@ -372,9 +372,9 @@ void MasternodeList::updateNodeList()
 
     QString strToFilter;
     ui->countLabel->setText("Updating...");
-    ui->tableWidgetMasternodes->setSortingEnabled(false);
-    ui->tableWidgetMasternodes->clearContents();
-    ui->tableWidgetMasternodes->setRowCount(0);
+    ui->tableWidgetMyMasternodes->setSortingEnabled(false);
+    ui->tableWidgetMyMasternodes->clearContents();
+    ui->tableWidgetMyMasternodes->setRowCount(0);
     std::vector<CMasternode> vMasternodes = mnodeman.GetFullMasternodeMap();
     int offsetFromUtc = GetOffsetFromUtc();
 
@@ -426,21 +426,21 @@ void MasternodeList::updateNodeList()
             if (!strToFilter.contains(strCurrentFilter)) continue;
         }
 
-        ui->tableWidgetMasternodes->insertRow(0);
-        ui->tableWidgetMasternodes->setItem(0, 0, addressItem);
-        ui->tableWidgetMasternodes->setItem(0, 1, levelItem);
-        ui->tableWidgetMasternodes->setItem(0, 2, protocolItem);
-        ui->tableWidgetMasternodes->setItem(0, 3, statusItem);
-        ui->tableWidgetMasternodes->setItem(0, 4, activeSecondsItem);
-        ui->tableWidgetMasternodes->setItem(0, 5, lastSeenItem);
-        ui->tableWidgetMasternodes->setItem(0, 6, pubkeyItem);
-        ui->tableWidgetMasternodes->setItem(0, 7, mnReward);
-        ui->tableWidgetMasternodes->setItem(0, 8, mnLuck);
+        ui->tableWidgetMyMasternodes->insertRow(0);
+        ui->tableWidgetMyMasternodes->setItem(0, 0, addressItem);
+        ui->tableWidgetMyMasternodes->setItem(0, 1, levelItem);
+        ui->tableWidgetMyMasternodes->setItem(0, 2, protocolItem);
+        ui->tableWidgetMyMasternodes->setItem(0, 3, statusItem);
+        ui->tableWidgetMyMasternodes->setItem(0, 4, activeSecondsItem);
+        ui->tableWidgetMyMasternodes->setItem(0, 5, lastSeenItem);
+        ui->tableWidgetMyMasternodes->setItem(0, 6, pubkeyItem);
+        ui->tableWidgetMyMasternodes->setItem(0, 7, mnReward);
+        ui->tableWidgetMyMasternodes->setItem(0, 8, mnLuck);
 
     }
 
-    ui->countLabel->setText(QString::number(ui->tableWidgetMasternodes->rowCount()));
-    ui->tableWidgetMasternodes->setSortingEnabled(true);
+    ui->countLabel->setText(QString::number(ui->tableWidgetMyMasternodes->rowCount()));
+    ui->tableWidgetMyMasternodes->setSortingEnabled(true);
 }
 
 void MasternodeList::on_filterLineEdit_textChanged(const QString &strFilterIn)
@@ -570,7 +570,7 @@ void MasternodeList::deleteAlias()
     int nSelectedRow = index.row();
     std::string strAlias = ui->tableWidgetMyMasternodes->item(nSelectedRow, 0)->text().toStdString();
 	int count = 0;
-    for (CMasternodeConfig::CMasternodeEntry mne : masternodeConfig.getEntries()) {
+    BOOST_FOREACH (CMasternodeConfig::CMasternodeEntry mne, masternodeConfig.getEntries()) {
 		count = count + 1;
 		if(strAlias == mne.getAlias()) {
             std::vector<COutPoint> confLockedCoins;
@@ -616,7 +616,7 @@ void MasternodeList::copyAlias()
     int nSelectedRow = index.row();
     std::string strAlias = ui->tableWidgetMyMasternodes->item(nSelectedRow, 0)->text().toStdString();
 
-    for (CMasternodeConfig::CMasternodeEntry mne : masternodeConfig.getEntries()) {
+    BOOST_FOREACH (CMasternodeConfig::CMasternodeEntry mne, masternodeConfig.getEntries()) {
 		
 		if(strAlias == mne.getAlias()) {
 			
