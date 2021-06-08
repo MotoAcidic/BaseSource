@@ -63,4 +63,34 @@ src/config/nwo-config.h.in
 
 .vs/BaseSource/v16/ipch/AutoPCH/a0aae696379319d7/RPCDUMP.ipch
 
+<<<<<<< HEAD
 .vs/BaseSource/v16/ipch/AutoPCH/bf6f05b4e6e89e/INIT.ipch
+=======
+.vs/Apollon/v16/Browse.VC.opendb
+
+.vs/Apollon/v15/.suo
+
+.vs/Apollon/v15/Browse.VC.db
+
+.vs/Apollon/v15/Browse.VC.opendb
+
+.vs/Apollon/v15/ipch/AutoPCH/6d9b0687d18f16b9/CHAINPARAMS.ipch
+
+.vs/Apollon/v15/ipch/AutoPCH/ad5f6c2842f76ad0/POW.ipch
+
+.vs/Apollon/v15/ipch/AutoPCH/c731084955db34db/MAIN.ipch
+
+.vs/Apollon/v16/ipch/AutoPCH/8873ca34163d00f6/CONFIGUREMASTERNODEPAGE.ipch
+
+.vs/Apollon/v16/ipch/AutoPCH/b8d6043c71082bee/OUTPUTSPAGE.ipch
+
+.vs/Apollon/v16/ipch/AutoPCH/20a13f5d4a389197/MASTERNODELIST.ipch
+
+.vs/Apollon/v16/ipch/AutoPCH/9520e0c0762c1f1e/RPCDUMP.ipch
+>>>>>>> 935ae0b... [MN] Helper Tool (#1)
+
+.vs/BaseSource/v16/ipch/AutoPCH/188a22ca37051929/MASTERNODELIST.ipch
+
+.vs/BaseSource/v16/ipch/AutoPCH/91e2203e60df0222/OUTPUTSPAGE.ipch
+
+.vs/BaseSource/v16/ipch/AutoPCH/ac614ede0142271e/CONFIGUREMASTERNODEPAGE.ipch
