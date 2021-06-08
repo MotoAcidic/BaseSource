@@ -10,10 +10,10 @@
 
 /**
  * Name of client reported in the 'version' message. Report the same name
- * for both nwod and nwo-qt, to make it harder for attackers to
+ * for both vkcd and vkc-qt, to make it harder for attackers to
  * target servers or GUI users specifically.
  */
-const std::string CLIENT_NAME("NWO Core");
+const std::string CLIENT_NAME("VKC Core");
 
 /**
  * Client version number

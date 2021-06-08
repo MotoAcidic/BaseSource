@@ -1,9 +1,9 @@
 /* src/config/ucc-config.h.  Generated from ucc-config.h.in by configure.  */
 /* src/config/ucc-config.h.in.  Generated from configure.ac by autoheader.  */
 
-#ifndef NWO_CONFIG_H
+#ifndef VKC_CONFIG_H
 
-#define NWO_CONFIG_H
+#define VKC_CONFIG_H
 
 /* Define if building universal (internal helper macro) */
 /* #undef AC_APPLE_UNIVERSAL_BUILD */
@@ -271,10 +271,10 @@
 #define PACKAGE_BUGREPORT "www.uccnetwork.org"
 
 /* Define to the full name of this package. */
-#define PACKAGE_NAME "NWO Wallet"
+#define PACKAGE_NAME "VKC Wallet"
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING "NWO Wallet 2.2.0"
+#define PACKAGE_STRING "VKC Wallet 2.2.0"
 
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "ucc"
@@ -340,4 +340,4 @@
 /* Define for large files, on AIX-style hosts. */
 /* #undef _LARGE_FILES */
 
-#endif //NWO_CONFIG_H
+#endif //VKC_CONFIG_H

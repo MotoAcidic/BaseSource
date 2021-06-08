@@ -4,15 +4,15 @@
 #
 # SYNOPSIS
 #
-#   AX_CHECK_COMPILE_FLAG(FLAG, [ACTION-SNWOESS], [ACTION-FAILURE], [EXTRA-FLAGS])
+#   AX_CHECK_COMPILE_FLAG(FLAG, [ACTION-SVKCESS], [ACTION-FAILURE], [EXTRA-FLAGS])
 #
 # DESCRIPTION
 #
 #   Check whether the given FLAG works with the current language's compiler
 #   or gives an error.  (Warnings, however, are ignored)
 #
-#   ACTION-SNWOESS/ACTION-FAILURE are shell commands to execute on
-#   snwoess/failure.
+#   ACTION-SVKCESS/ACTION-FAILURE are shell commands to execute on
+#   svkcess/failure.
 #
 #   If EXTRA-FLAGS is defined, it is added to the current language's default
 #   flags (e.g. CFLAGS) when the check is done.  The check is thus made with

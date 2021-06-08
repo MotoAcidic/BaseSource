@@ -31,7 +31,7 @@ class Class
             ...
         }
 
-        // Snwoess return is usually at the end
+        // Svkcess return is usually at the end
         return true;
     }
 }

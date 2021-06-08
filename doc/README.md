@@ -1,39 +1,39 @@
-NWO
+VKC
 =====================
 
 Setup
 ---------------------
-[NWO](http://nwonetwork.org/wallet) is the original NWO client and it builds the backbone of the network. However, it downloads and stores the entire history of NWO transactions; depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more. Thankfully you only have to do this once.
+[VKC](http://vkcnetwork.org/wallet) is the original VKC client and it builds the backbone of the network. However, it downloads and stores the entire history of VKC transactions; depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more. Thankfully you only have to do this once.
 
 Running
 ---------------------
-The following are some helpful notes on how to run NWO on your native platform.
+The following are some helpful notes on how to run VKC on your native platform.
 
 ### Unix
 
 Unpack the files into a directory and run:
 
-- bin/32/nwo-qt (GUI, 32-bit) or bin/32/nwod (headless, 32-bit)
-- bin/64/nwo-qt (GUI, 64-bit) or bin/64/nwod (headless, 64-bit)
+- bin/32/vkc-qt (GUI, 32-bit) or bin/32/vkcd (headless, 32-bit)
+- bin/64/vkc-qt (GUI, 64-bit) or bin/64/vkcd (headless, 64-bit)
 
 ### Windows
 
-Unpack the files into a directory, and then run nwo-qt.exe.
+Unpack the files into a directory, and then run vkc-qt.exe.
 
 ### OSX
 
-Drag NWO-Qt to your applications folder, and then run NWO-Qt.
+Drag VKC-Qt to your applications folder, and then run VKC-Qt.
 
 ### Need Help?
 
-* See the documentation at the [NWO Wiki](https://en.nwonetwork.org/wiki/Main_Page) ***TODO***
+* See the documentation at the [VKC Wiki](https://en.vkcnetwork.org/wiki/Main_Page) ***TODO***
 for help and more information.
-* Ask for help on [BitcoinTalk](https://bitcointalk.org) or on the [NWO Forum](http://forum.nwonetwork.org/).
+* Ask for help on [BitcoinTalk](https://bitcointalk.org) or on the [VKC Forum](http://forum.vkcnetwork.org/).
 * Join our Discord server [Discord Server](https://discord.gg/S9adMgS)
 
 Building
 ---------------------
-The following are developer notes on how to build NWO on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
+The following are developer notes on how to build VKC on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
 
 - [OSX Build Notes](build-osx.md)
 - [Unix Build Notes](build-unix.md)
@@ -42,7 +42,7 @@ The following are developer notes on how to build NWO on your native platform. T
 
 Development
 ---------------------
-The NWO repo's [root README](https://github.com/NWO-Core/NWO/blob/master/README.md) contains relevant information on the development process and automated testing.
+The VKC repo's [root README](https://github.com/VKC-Core/VKC/blob/master/README.md) contains relevant information on the development process and automated testing.
 
 - [Developer Notes](developer-notes.md)
 - [Multiwallet Qt Development](multiwallet-qt.md)
@@ -56,7 +56,7 @@ The NWO repo's [root README](https://github.com/NWO-Core/NWO/blob/master/README.
 
 ### Resources
 
-* Discuss on the [BitcoinTalk](https://bitcointalk.org/index.php?topic=1262920.0) or the [NWO](http://forum.nwonetwork.org/) forum.
+* Discuss on the [BitcoinTalk](https://bitcointalk.org/index.php?topic=1262920.0) or the [VKC](http://forum.vkcnetwork.org/) forum.
 
 ### Miscellaneous
 - [Assets Attribution](assets-attribution.md)

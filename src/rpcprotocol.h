@@ -28,7 +28,7 @@ enum HTTPStatusCode {
     HTTP_SERVICE_UNAVAILABLE = 503,
 };
 
-//! NWO RPC error codes
+//! VKC RPC error codes
 enum RPCErrorCode {
     //! Standard JSON-RPC 2.0 errors
     RPC_INVALID_REQUEST = -32600,
@@ -57,7 +57,7 @@ enum RPCErrorCode {
     RPC_TRANSACTION_ALREADY_IN_CHAIN = RPC_VERIFY_ALREADY_IN_CHAIN,
 
     //! P2P client errors
-    RPC_CLIENT_NOT_CONNECTED = -9,        //! NWO is not connected
+    RPC_CLIENT_NOT_CONNECTED = -9,        //! VKC is not connected
     RPC_CLIENT_IN_INITIAL_DOWNLOAD = -10, //! Still downloading initial blocks
     RPC_CLIENT_NODE_ALREADY_ADDED = -23,  //! Node is already added
     RPC_CLIENT_NODE_NOT_ADDED = -24,      //! Node has not been added before
@@ -120,7 +120,7 @@ public:
             endpoint_iterator = resolver.resolve(query);
 #if BOOST_VERSION >= 104300
         } catch (boost::system::system_error& e) {
-            // If we at first don't snwoeed, try blanket lookup (IPv4+IPv6 independent of configured interfaces)
+            // If we at first don't svkceed, try blanket lookup (IPv4+IPv6 independent of configured interfaces)
             tcp::resolver::query query(server.c_str(), port.c_str(), resolver_query_base::flags());
             endpoint_iterator = resolver.resolve(query);
         }

@@ -1,60 +1,60 @@
-Sample init scripts and service configuration for nwod
+Sample init scripts and service configuration for vkcd
 ==========================================================
 
 Sample scripts and configuration files for systemd, Upstart and OpenRC
 can be found in the contrib/init folder.
 
-    contrib/init/nwod.service:    systemd service unit configuration
-    contrib/init/nwod.openrc:     OpenRC compatible SysV style init script
-    contrib/init/nwod.openrcconf: OpenRC conf.d file
-    contrib/init/nwod.conf:       Upstart service configuration file
-    contrib/init/nwod.init:       CentOS compatible SysV style init script
+    contrib/init/vkcd.service:    systemd service unit configuration
+    contrib/init/vkcd.openrc:     OpenRC compatible SysV style init script
+    contrib/init/vkcd.openrcconf: OpenRC conf.d file
+    contrib/init/vkcd.conf:       Upstart service configuration file
+    contrib/init/vkcd.init:       CentOS compatible SysV style init script
 
 1. Service User
 ---------------------------------
 
-All three startup configurations assume the existence of a "nwo" user
+All three startup configurations assume the existence of a "vkc" user
 and group.  They must be created before attempting to use these scripts.
 
 2. Configuration
 ---------------------------------
 
-At a bare minimum, nwod requires that the rpcpassword setting be set
+At a bare minimum, vkcd requires that the rpcpassword setting be set
 when running as a daemon.  If the configuration file does not exist or this
-setting is not set, nwod will shutdown promptly after startup.
+setting is not set, vkcd will shutdown promptly after startup.
 
 This password does not have to be remembered or typed as it is mostly used
-as a fixed token that nwod and client programs read from the configuration
+as a fixed token that vkcd and client programs read from the configuration
 file, however it is recommended that a strong and secure password be used
 as this password is security critical to securing the wallet should the
 wallet be enabled.
 
-If nwod is run with "-daemon" flag, and no rpcpassword is set, it will
+If vkcd is run with "-daemon" flag, and no rpcpassword is set, it will
 print a randomly generated suitable password to stderr.  You can also
 generate one from the shell yourself like this:
 
 bash -c 'tr -dc a-zA-Z0-9 < /dev/urandom | head -c32 && echo'
 
-Once you have a password in hand, set rpcpassword= in /etc/nwo/nwo.conf
+Once you have a password in hand, set rpcpassword= in /etc/vkc/vkc.conf
 
 For an example configuration file that describes the configuration settings,
-see contrib/debian/examples/nwo.conf.
+see contrib/debian/examples/vkc.conf.
 
 3. Paths
 ---------------------------------
 
 All three configurations assume several paths that might need to be adjusted.
 
-Binary:              /usr/bin/nwod
-Configuration file:  /etc/nwo/nwo.conf
-Data directory:      /var/lib/nwod
-PID file:            /var/run/nwod/nwod.pid (OpenRC and Upstart)
-                     /var/lib/nwod/nwod.pid (systemd)
+Binary:              /usr/bin/vkcd
+Configuration file:  /etc/vkc/vkc.conf
+Data directory:      /var/lib/vkcd
+PID file:            /var/run/vkcd/vkcd.pid (OpenRC and Upstart)
+                     /var/lib/vkcd/vkcd.pid (systemd)
 
 The configuration file, PID directory (if applicable) and data directory
-should all be owned by the nwo user and group.  It is advised for security
+should all be owned by the vkc user and group.  It is advised for security
 reasons to make the configuration file and data directory only readable by the
-nwo user and group.  Access to nwo-cli and other nwod rpc clients
+vkc user and group.  Access to vkc-cli and other vkcd rpc clients
 can then be controlled by group membership.
 
 4. Installing Service Configuration
@@ -66,19 +66,19 @@ Installing this .service file consists on just copying it to
 /usr/lib/systemd/system directory, followed by the command
 "systemctl daemon-reload" in order to update running systemd configuration.
 
-To test, run "systemctl start nwod" and to enable for system startup run
-"systemctl enable nwod"
+To test, run "systemctl start vkcd" and to enable for system startup run
+"systemctl enable vkcd"
 
 4b) OpenRC
 
-Rename nwod.openrc to nwod and drop it in /etc/init.d.  Double
+Rename vkcd.openrc to vkcd and drop it in /etc/init.d.  Double
 check ownership and permissions and make it executable.  Test it with
-"/etc/init.d/nwod start" and configure it to run on startup with
-"rc-update add nwod"
+"/etc/init.d/vkcd start" and configure it to run on startup with
+"rc-update add vkcd"
 
 4c) Upstart (for Debian/Ubuntu based distributions)
 
-Drop nwod.conf in /etc/init.  Test by running "service nwod start"
+Drop vkcd.conf in /etc/init.  Test by running "service vkcd start"
 it will automatically start on reboot.
 
 NOTE: This script is incompatible with CentOS 5 and Amazon Linux 2014 as they
@@ -86,11 +86,11 @@ use old versions of Upstart and do not supply the start-stop-daemon uitility.
 
 4d) CentOS
 
-Copy nwod.init to /etc/init.d/nwod. Test by running "service nwod start".
+Copy vkcd.init to /etc/init.d/vkcd. Test by running "service vkcd start".
 
-Using this script, you can adjust the path and flags to the nwod program by
-setting the nwod and FLAGS environment variables in the file
-/etc/sysconfig/nwod. You can also use the DAEMONOPTS environment variable here.
+Using this script, you can adjust the path and flags to the vkcd program by
+setting the vkcd and FLAGS environment variables in the file
+/etc/sysconfig/vkcd. You can also use the DAEMONOPTS environment variable here.
 
 5. Auto-respawn
 -----------------------------------

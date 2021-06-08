@@ -26,7 +26,7 @@ import collections
 PATTERN_IPV4 = re.compile(r"^((\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})):(\d+)$")
 PATTERN_IPV6 = re.compile(r"^\[([0-9a-z:]+)\]:(\d+)$")
 PATTERN_ONION = re.compile(r"^([abcdefghijklmnopqrstuvwxyz234567]{16}\.onion):(\d+)$")
-PATTERN_AGENT = re.compile(r"^(/NWOCore:1.0.(0|1|99)/)$")
+PATTERN_AGENT = re.compile(r"^(/VKCCore:1.0.(0|1|99)/)$")
 
 def parseline(line):
     sline = line.split()
@@ -70,8 +70,8 @@ def parseline(line):
         return None
     # Extract uptime %.
     uptime30 = float(sline[7][:-1])
-    # Extract Unix timestamp of last snwoess.
-    lastsnwoess = int(sline[2])
+    # Extract Unix timestamp of last svkcess.
+    lastsvkcess = int(sline[2])
     # Extract protocol version.
     version = int(sline[10])
     # Extract user agent.
@@ -90,7 +90,7 @@ def parseline(line):
         'port': port,
         'ipnum': ip,
         'uptime': uptime30,
-        'lastsnwoess': lastsnwoess,
+        'lastsvkcess': lastsvkcess,
         'version': version,
         'agent': agent,
         'service': service,
@@ -152,8 +152,8 @@ def main():
     ips = [ip for ip in ips if ip['uptime'] > 50]
     # Require a known and recent user agent.
     ips = [ip for ip in ips if PATTERN_AGENT.match(re.sub(' ', '-', ip['agent']))]
-    # Sort by availability (and use last snwoess as tie breaker)
-    ips.sort(key=lambda x: (x['uptime'], x['lastsnwoess'], x['ip']), reverse=True)
+    # Sort by availability (and use last svkcess as tie breaker)
+    ips.sort(key=lambda x: (x['uptime'], x['lastsvkcess'], x['ip']), reverse=True)
     # Filter out hosts with multiple bitcoin ports, these are likely abusive
     ips = filtermultiport(ips)
     # Look up ASNs and limit results, both per ASN and globally.

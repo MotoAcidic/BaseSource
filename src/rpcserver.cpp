@@ -244,10 +244,10 @@ UniValue stop(const UniValue& params, bool fHelp)
     if (fHelp || params.size() > 1)
         throw runtime_error(
             "stop\n"
-            "\nStop NWO server.");
+            "\nStop VKC server.");
     // Shutdown will take long enough that the response should get back
     StartShutdown();
-    return "NWO server stopping";
+    return "VKC server stopping";
 }
 
 
@@ -325,25 +325,25 @@ static const CRPCCommand vRPCCommands[] =
         {"hidden", "reconsiderblock", &reconsiderblock, true, true, false},
         {"hidden", "setmocktime", &setmocktime, true, false, false},
 
-        /* NWO features */
-        {"nwo", "masternode", &masternode, true, true, false},
-        {"nwo", "listmasternodes", &listmasternodes, true, true, false},
-        {"nwo", "getmasternodecount", &getmasternodecount, true, true, false},
-        {"nwo", "masternodeconnect", &masternodeconnect, true, true, false},
-        {"nwo", "masternodecurrent", &masternodecurrent, true, true, false},
-        {"nwo", "masternodedebug", &masternodedebug, true, true, false},
-        {"nwo", "startmasternode", &startmasternode, true, true, false},
-        {"nwo", "createmasternodekey", &createmasternodekey, true, true, false},
-        {"nwo", "getmasternodeoutputs", &getmasternodeoutputs, true, true, false},
-        {"nwo", "listmasternodeconf", &listmasternodeconf, true, true, false},
-        {"nwo", "getmasternodestatus", &getmasternodestatus, true, true, false},
-        {"nwo", "getmasternodewinners", &getmasternodewinners, true, true, false},
-        {"nwo", "getmasternodescores", &getmasternodescores, true, true, false},
-        {"nwo", "mnsync", &mnsync, true, true, false},
-        {"nwo", "spork", &spork, true, true, false},
-        {"nwo", "getpoolinfo", &getpoolinfo, true, true, false},
+        /* VKC features */
+        {"vkc", "masternode", &masternode, true, true, false},
+        {"vkc", "listmasternodes", &listmasternodes, true, true, false},
+        {"vkc", "getmasternodecount", &getmasternodecount, true, true, false},
+        {"vkc", "masternodeconnect", &masternodeconnect, true, true, false},
+        {"vkc", "masternodecurrent", &masternodecurrent, true, true, false},
+        {"vkc", "masternodedebug", &masternodedebug, true, true, false},
+        {"vkc", "startmasternode", &startmasternode, true, true, false},
+        {"vkc", "createmasternodekey", &createmasternodekey, true, true, false},
+        {"vkc", "getmasternodeoutputs", &getmasternodeoutputs, true, true, false},
+        {"vkc", "listmasternodeconf", &listmasternodeconf, true, true, false},
+        {"vkc", "getmasternodestatus", &getmasternodestatus, true, true, false},
+        {"vkc", "getmasternodewinners", &getmasternodewinners, true, true, false},
+        {"vkc", "getmasternodescores", &getmasternodescores, true, true, false},
+        {"vkc", "mnsync", &mnsync, true, true, false},
+        {"vkc", "spork", &spork, true, true, false},
+        {"vkc", "getpoolinfo", &getpoolinfo, true, true, false},
 #ifdef ENABLE_WALLET
-        {"nwo", "obfuscation", &obfuscation, false, false, true}, /* not threadSafe because of SendMoney */
+        {"vkc", "obfuscation", &obfuscation, false, false, true}, /* not threadSafe because of SendMoney */
 
         /* Wallet */
         {"wallet", "addmultisigaddress", &addmultisigaddress, true, false, true},
@@ -609,16 +609,16 @@ void StartRPCThreads()
         unsigned char rand_pwd[32];
         GetRandBytes(rand_pwd, 32);
         uiInterface.ThreadSafeMessageBox(strprintf(
-                                             _("To use nwod, or the -server option to nwo-qt, you must set an rpcpassword in the configuration file:\n"
+                                             _("To use vkcd, or the -server option to vkc-qt, you must set an rpcpassword in the configuration file:\n"
                                                "%s\n"
                                                "It is recommended you use the following random password:\n"
-                                               "rpcuser=nworpc\n"
+                                               "rpcuser=vkcrpc\n"
                                                "rpcpassword=%s\n"
                                                "(you do not need to remember this password)\n"
                                                "The username and password MUST NOT be the same.\n"
                                                "If the file does not exist, create it with owner-readable-only file permissions.\n"
                                                "It is also recommended to set alertnotify so you are notified of problems;\n"
-                                               "for example: alertnotify=echo %%s | mail -s \"NWO Alert\" admin@foo.com\n"),
+                                               "for example: alertnotify=echo %%s | mail -s \"VKC Alert\" admin@foo.com\n"),
                                              GetConfigFile().string(),
                                              EncodeBase58(&rand_pwd[0], &rand_pwd[0] + 32)),
             "", CClientUIInterface::MSG_ERROR | CClientUIInterface::SECURE);
@@ -1069,7 +1069,7 @@ std::vector<std::string> CRPCTable::listCommands() const
 
 std::string HelpExampleCli(string methodname, string args)
 {
-    return "> nwo-cli " + methodname + " " + args + "\n";
+    return "> vkc-cli " + methodname + " " + args + "\n";
 }
 
 std::string HelpExampleRpc(string methodname, string args)

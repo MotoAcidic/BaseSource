@@ -1,4 +1,4 @@
-/**************************************NWO**********************************************/
+/**************************************VKC**********************************************/
 /****************************************************************************************/
                     /*************** GLOBAL STYLE*****************/
 /****************************************************************************************/
@@ -698,7 +698,7 @@
         
 
      
-         QWidget .QPushButton#blabel_NWO {
+         QWidget .QPushButton#blabel_VKC {
             background-color: transparent;
             border:0;
             border-radius:0px;
@@ -733,7 +733,7 @@
      }
 
 
-     QWidget .QFrame#frame_blue .QLabel#label_NWO2 { /*NWO */
+     QWidget .QFrame#frame_blue .QLabel#label_VKC2 { /*VKC */
         background-color:transparent;
         color:rgb(255, 255, 255);
         font-size:15px;
@@ -751,7 +751,7 @@
         font-size:30px;
      }
 
-     QWidget .QFrame#frame_blue .QLabel#label_NWO3 { /*NWO */
+     QWidget .QFrame#frame_blue .QLabel#label_VKC3 { /*VKC */
         background-color:transparent;
         color:rgb(255, 255, 255);
         font-size:15px;
@@ -771,7 +771,7 @@
      }
 
 
-     QWidget .QFrame#frame_blue .QLabel#label_NWO4 { /*NWO */
+     QWidget .QFrame#frame_blue .QLabel#label_VKC4 { /*VKC */
         background-color:transparent;
         color:rgb(255, 255, 255);
         font-size:15px;
@@ -782,7 +782,7 @@
 
     QWidget .QFrame#frame_blue_3 { /* logo */
 
-        background-image: url(':/images/nwo_logo_horizontal');
+        background-image: url(':/images/vkc_logo_horizontal');
         background-repeat:none;
         border-style: none;
 
@@ -2150,7 +2150,7 @@
     border:0;
     }
 
-    /* About NWO Dialog */
+    /* About VKC Dialog */
     QDialog#AboutDialog QLabel#label, QDialog#AboutDialog QLabel#copyrightLabel, QDialog#AboutDialog QLabel#label_2 { /* About Bulwark Contents */
     margin-left:10px;
     }

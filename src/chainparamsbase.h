@@ -9,8 +9,8 @@
 #include <vector>
 
 /**
- * CBaseChainParams defines the base parameters (shared between nwo-cli and nwod)
- * of a given instance of the NWO system.
+ * CBaseChainParams defines the base parameters (shared between vkc-cli and vkcd)
+ * of a given instance of the VKC system.
  */
 class CBaseChainParams
 {

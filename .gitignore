@@ -155,3 +155,15 @@ Makefile.am.user
 
 #Netbeans
 nbproject
+
+.vs/BaseSource/v16/Browse.VC.db
+
+.vs/BaseSource/v16/Browse.VC.db-shm
+
+.vs/BaseSource/v16/Browse.VC.db-wal
+
+.vs/BaseSource/v16/Browse.VC.opendb
+
+.vs/ProjectSettings.json
+
+.vs/slnx.sqlite

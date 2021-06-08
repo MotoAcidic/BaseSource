@@ -62,12 +62,12 @@
         <translation>Adresy pro přijetí peněz</translation>
     </message>
     <message>
-        <source>These are your NWO addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Toto jsou Vaše NWO adresy pro poslání platby. Vždy si překontrolujte množství peněz a cílovou adresu než platbu odešlete.</translation>
+        <source>These are your VKC addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Toto jsou Vaše VKC adresy pro poslání platby. Vždy si překontrolujte množství peněz a cílovou adresu než platbu odešlete.</translation>
     </message>
     <message>
-        <source>These are your NWO addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Toto jsou Vaše NWO adresy pro přijetí plateb. Je doporučeno použít novou adresu pro každou novou transakci.</translation>
+        <source>These are your VKC addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Toto jsou Vaše VKC adresy pro přijetí plateb. Je doporučeno použít novou adresu pro každou novou transakci.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -176,16 +176,16 @@
         <translation>Potvrdit zašifrování peněženky</translation>
     </message>
     <message>
-        <source>NWO will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your NWOs from being stolen by malware infecting your computer.</source>
-        <translation>NWO se teď zavře pro dokončení šifrovacího procesu. Prosím, vemte na vědomí, že zašifrování Vaší peněženky plně neochrání Vaše NWOy před krádží, pokud je Váš počítač infikován malwarem.</translation>
+        <source>VKC will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your VKCs from being stolen by malware infecting your computer.</source>
+        <translation>VKC se teď zavře pro dokončení šifrovacího procesu. Prosím, vemte na vědomí, že zašifrování Vaší peněženky plně neochrání Vaše VKCy před krádží, pokud je Váš počítač infikován malwarem.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
         <translation>Opravdu chcete zašifrovat Vaši peněženku?</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR NWO&lt;/b&gt;!</source>
-        <translation>Varování: Pokud zašifrujete svou peněženku a ztratíte frázové heslo, tak &lt;b&gt;ZTRATÍTE VŠECHNY VAŠE NWOy&lt;/b&gt;!</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR VKC&lt;/b&gt;!</source>
+        <translation>Varování: Pokud zašifrujete svou peněženku a ztratíte frázové heslo, tak &lt;b&gt;ZTRATÍTE VŠECHNY VAŠE VKCy&lt;/b&gt;!</translation>
     </message>
     <message>
         <source>Wallet encrypted</source>
@@ -239,16 +239,16 @@
         <translation>&amp;BIP 38 Šifrovat</translation>
     </message>
     <message>
-        <source>Enter a NWO Address that you would like to encrypt using BIP 38. Enter a passphrase in the middle box. Press encrypt to compute the encrypted private key.</source>
-        <translation>Zadejte NWO adresu, kterou si přejete zašifrovat pomocí BIP38. Frázové heslo zadejte do prostředního boxu. Stiskněte šifrovat pro výpočet šifrovaného privátního klíče.</translation>
+        <source>Enter a VKC Address that you would like to encrypt using BIP 38. Enter a passphrase in the middle box. Press encrypt to compute the encrypted private key.</source>
+        <translation>Zadejte VKC adresu, kterou si přejete zašifrovat pomocí BIP38. Frázové heslo zadejte do prostředního boxu. Stiskněte šifrovat pro výpočet šifrovaného privátního klíče.</translation>
     </message>
     <message>
         <source>Address:</source>
         <translation>Adresa:</translation>
     </message>
     <message>
-        <source>The NWO address to sign the message with</source>
-        <translation>NWO adresa pro podepsání zprávy</translation>
+        <source>The VKC address to sign the message with</source>
+        <translation>VKC adresa pro podepsání zprávy</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -279,8 +279,8 @@
         <translation>Kopírovat aktuální podpis do systémové mezipaměti</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this NWO address</source>
-        <translation>Podepsat zprávu k prokázání, že vlastníte tuto NWO adresu</translation>
+        <source>Sign the message to prove you own this VKC address</source>
+        <translation>Podepsat zprávu k prokázání, že vlastníte tuto VKC adresu</translation>
     </message>
     <message>
         <source>Encrypt &amp;Key</source>
@@ -303,12 +303,12 @@
         <translation>Vložte BIP 38 šifrovaný privítní klíc. Frázové heslo vložte do prostředního boxu. Kliknětě na Dešifrovat Klíč pro výpočet privátního klíče. Poté co bude klíč dešifrován, kliknutím na 'Importovat Adresu' přidáte privátní klíč do Vaší peněženky.</translation>
     </message>
     <message>
-        <source>The NWO address the message was signed with</source>
-        <translation>NWO adresa zprávy byla podpsána</translation>
+        <source>The VKC address the message was signed with</source>
+        <translation>VKC adresa zprávy byla podpsána</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified NWO address</source>
-        <translation>Verifikujte zprávu pro ujištění, že byla podepsána zmíněnou NWO adresou</translation>
+        <source>Verify the message to ensure it was signed with the specified VKC address</source>
+        <translation>Verifikujte zprávu pro ujištění, že byla podepsána zmíněnou VKC adresou</translation>
     </message>
     <message>
         <source>Decrypt &amp;Key</source>
@@ -598,16 +598,16 @@
         <translation>Nástrojová lišta záložek</translation>
     </message>
     <message>
-        <source>NWO Core</source>
-        <translation>NWO Core</translation>
+        <source>VKC Core</source>
+        <translation>VKC Core</translation>
     </message>
     <message>
-        <source>Send coins to a NWO address</source>
-        <translation>Odeslat platbuna NWO adresu</translation>
+        <source>Send coins to a VKC address</source>
+        <translation>Odeslat platbuna VKC adresu</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and nwo: URIs)</source>
-        <translation>Vyžádat platbu (generování QK kódu a nwo: URIs)</translation>
+        <source>Request payments (generates QR codes and vkc: URIs)</source>
+        <translation>Vyžádat platbu (generování QK kódu a vkc: URIs)</translation>
     </message>
     <message>
         <source>&amp;Masternodes</source>
@@ -618,24 +618,24 @@
         <translation>Procházet masternody</translation>
     </message>
     <message>
-        <source>&amp;About NWO Core</source>
-        <translation>&amp;O NWO Core</translation>
+        <source>&amp;About VKC Core</source>
+        <translation>&amp;O VKC Core</translation>
     </message>
     <message>
-        <source>Show information about NWO Core</source>
-        <translation>Zobraz informace o NWO Core</translation>
+        <source>Show information about VKC Core</source>
+        <translation>Zobraz informace o VKC Core</translation>
     </message>
     <message>
-        <source>Modify configuration options for NWO</source>
-        <translation>Upravit možnosti konfigurace pro NWO</translation>
+        <source>Modify configuration options for VKC</source>
+        <translation>Upravit možnosti konfigurace pro VKC</translation>
     </message>
     <message>
-        <source>Sign messages with your NWO addresses to prove you own them</source>
-        <translation>Podepsat zprávy Vaší NWO adresou pro prokázaní, že jste jejich vlastníkem</translation>
+        <source>Sign messages with your VKC addresses to prove you own them</source>
+        <translation>Podepsat zprávy Vaší VKC adresou pro prokázaní, že jste jejich vlastníkem</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified NWO addresses</source>
-        <translation>Ověřit zprávy k zajištění, že bylypodepsány vybranými NWO adresami</translation>
+        <source>Verify messages to ensure they were signed with specified VKC addresses</source>
+        <translation>Ověřit zprávy k zajištění, že bylypodepsány vybranými VKC adresami</translation>
     </message>
     <message>
         <source>&amp;BIP38 tool</source>
@@ -666,8 +666,8 @@
         <translation>Otevřít Masternodový konfigurační soubor</translation>
     </message>
     <message>
-        <source>Open a NWO: URI or payment request</source>
-        <translation>Otevřít NWO: URI nebo platební žádost</translation>
+        <source>Open a VKC: URI or payment request</source>
+        <translation>Otevřít VKC: URI nebo platební žádost</translation>
     </message>
     <message>
         <source>&amp;Blockchain explorer</source>
@@ -678,12 +678,12 @@
         <translation>Okno blokového průzkumníka</translation>
     </message>
     <message>
-        <source>Show the NWO Core help message to get a list with possible NWO command-line options</source>
-        <translation>Zobrazit NWO Core pomocnou zpráv pro získání seznamu možných parametrů NWO pro příkazy do příkazové řádky</translation>
+        <source>Show the VKC Core help message to get a list with possible VKC command-line options</source>
+        <translation>Zobrazit VKC Core pomocnou zpráv pro získání seznamu možných parametrů VKC pro příkazy do příkazové řádky</translation>
     </message>
     <message>
-        <source>NWO Core client</source>
-        <translation>NWO Core klient</translation>
+        <source>VKC Core client</source>
+        <translation>VKC Core klient</translation>
     </message>
     <message>
         <source>Synchronizing with network...</source>
@@ -809,8 +809,8 @@ MultiSend: %1</translation>
         <translation>TextPopisku</translation>
     </message>
     <message>
-        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (nwo.conf).</source>
-        <translation>Ne všechny transakce budou zobrazeny. Pro zobrazení všech transackí nastavte v konfiguračním souboru (nwo.conf) txindex=1.</translation>
+        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (vkc.conf).</source>
+        <translation>Ne všechny transakce budou zobrazeny. Pro zobrazení všech transackí nastavte v konfiguračním souboru (vkc.conf) txindex=1.</translation>
     </message>
 </context>
 <context>
@@ -1070,8 +1070,8 @@ MultiSend: %1</translation>
         <translation>Upravit adresu k odeslání platby</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid NWO address.</source>
-        <translation>Zadaná adresa "%1" není validní NWO adresa.</translation>
+        <source>The entered address "%1" is not a valid VKC address.</source>
+        <translation>Zadaná adresa "%1" není validní VKC adresa.</translation>
     </message>
     <message>
         <source>The entered address "%1" is already in the address book.</source>
@@ -1116,12 +1116,12 @@ MultiSend: %1</translation>
         <translation>verze</translation>
     </message>
     <message>
-        <source>NWO Core</source>
-        <translation>NWO Core</translation>
+        <source>VKC Core</source>
+        <translation>VKC Core</translation>
     </message>
     <message>
-        <source>About NWO Core</source>
-        <translation>O NWO Core</translation>
+        <source>About VKC Core</source>
+        <translation>O VKC Core</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -1155,16 +1155,16 @@ MultiSend: %1</translation>
         <translation>Vítejte</translation>
     </message>
     <message>
-        <source>Welcome to NWO Core.</source>
-        <translation>Vítejte v NWO Core.</translation>
+        <source>Welcome to VKC Core.</source>
+        <translation>Vítejte v VKC Core.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where NWO Core will store its data.</source>
-        <translation>Při prvním spuštění programu si můžete vybrat, kam bude NWO Core ukládat svá data.</translation>
+        <source>As this is the first time the program is launched, you can choose where VKC Core will store its data.</source>
+        <translation>Při prvním spuštění programu si můžete vybrat, kam bude VKC Core ukládat svá data.</translation>
     </message>
     <message>
-        <source>NWO Core will download and store a copy of the NWO block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>NWO Core stáhne a uloží kopii NWO blockchainu. Nejméně %1GB dat bude do této složky uloženo a v průběhu času bude ukládat další data. Peněženka bude v této složce uložena také.</translation>
+        <source>VKC Core will download and store a copy of the VKC block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>VKC Core stáhne a uloží kopii VKC blockchainu. Nejméně %1GB dat bude do této složky uloženo a v průběhu času bude ukládat další data. Peněženka bude v této složce uložena také.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1175,8 +1175,8 @@ MultiSend: %1</translation>
         <translation>Použít vlastní složku pro data</translation>
     </message>
     <message>
-        <source>NWO Core</source>
-        <translation>NWO Core</translation>
+        <source>VKC Core</source>
+        <translation>VKC Core</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -1442,24 +1442,24 @@ Prosím zkontrolujte adresu a zkuste to znovu.</translation>
         <translation>Vyberte úrpvěň ochrany soukromí</translation>
     </message>
     <message>
-        <source>Use 2 separate masternodes to mix funds up to 10000 NWO</source>
-        <translation>Použí 2 oddělené masternody k promíchání prostředků až do 10000 NWO</translation>
+        <source>Use 2 separate masternodes to mix funds up to 10000 VKC</source>
+        <translation>Použí 2 oddělené masternody k promíchání prostředků až do 10000 VKC</translation>
     </message>
     <message>
         <source>Use 16 separate masternodes</source>
         <translation>Použít 16 oddělených masternodů</translation>
     </message>
     <message>
-        <source>This option is the quickest and will cost about ~0.025 NWO to anonymize 10000 NWO</source>
-        <translation>Tato možnost je nejrychleší a bude stát zhruba ~0.025 NWO pro anonymizaci 10000 NWO</translation>
+        <source>This option is the quickest and will cost about ~0.025 VKC to anonymize 10000 VKC</source>
+        <translation>Tato možnost je nejrychleší a bude stát zhruba ~0.025 VKC pro anonymizaci 10000 VKC</translation>
     </message>
     <message>
         <source>This is the slowest and most secure option. Using maximum anonymity will cost</source>
         <translation>Toto je nejpomalejší a nejvíce bezpečná volba. Použití maximalní anonymity bude stát</translation>
     </message>
     <message>
-        <source>0.1 NWO per 10000 NWO you anonymize.</source>
-        <translation>0.1 NWO za 10000 NWO anonymizujete.</translation>
+        <source>0.1 VKC per 10000 VKC you anonymize.</source>
+        <translation>0.1 VKC za 10000 VKC anonymizujete.</translation>
     </message>
     <message>
         <source>Obfuscation Configuration</source>
@@ -1524,16 +1524,16 @@ Prosím zkontrolujte adresu a zkuste to znovu.</translation>
         <translation>Expert</translation>
     </message>
     <message>
-        <source>Automatically start NWO after logging in to the system.</source>
-        <translation>Automaticky spustit NWO po přihlášení do systému</translation>
+        <source>Automatically start VKC after logging in to the system.</source>
+        <translation>Automaticky spustit VKC po přihlášení do systému</translation>
     </message>
     <message>
-        <source>&amp;Start NWO on system login</source>
-        <translation>&amp;Spusti NWO při přihlášení do systému</translation>
+        <source>&amp;Start VKC on system login</source>
+        <translation>&amp;Spusti VKC při přihlášení do systému</translation>
     </message>
     <message>
-        <source>Amount of NWO to keep anonymized</source>
-        <translation>Počet NWO pro anonymní držení</translation>
+        <source>Amount of VKC to keep anonymized</source>
+        <translation>Počet VKC pro anonymní držení</translation>
     </message>
     <message>
         <source>Show Masternodes Tab</source>
@@ -1639,8 +1639,8 @@ Prosím zkontrolujte adresu a zkuste to znovu.</translation>
         <translation>Obfuskační Balance:</translation>
     </message>
     <message>
-        <source>0 NWO / 0 Rounds</source>
-        <translation>0 NWO / 0 Kol</translation>
+        <source>0 VKC / 0 Rounds</source>
+        <translation>0 VKC / 0 Kol</translation>
     </message>
     <message>
         <source>Enabled/Disabled</source>
@@ -2066,8 +2066,8 @@ Prosím zkontrolujte adresu a zkuste to znovu.</translation>
         <translation>Změna:</translation>
     </message>
     <message>
-        <source>0 NWO</source>
-        <translation>0 NWO</translation>
+        <source>0 VKC</source>
+        <translation>0 VKC</translation>
     </message>
     <message>
         <source>Transaction Fee:</source>
@@ -2199,8 +2199,8 @@ Prosím zkontrolujte adresu a zkuste to znovu.</translation>
 <context>
     <name>SignVerifyMessageDialog</name>
     <message>
-        <source>The NWO address to sign the message with</source>
-        <translation>NWO adresa pro podepsání zprávy</translation>
+        <source>The VKC address to sign the message with</source>
+        <translation>VKC adresa pro podepsání zprávy</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -2227,16 +2227,16 @@ Prosím zkontrolujte adresu a zkuste to znovu.</translation>
         <translation>Kopírovat aktuální podpis do systémové mezipaměti</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this NWO address</source>
-        <translation>Podepsat zprávu k prokázání, že vlastníte tuto NWO adresu</translation>
+        <source>Sign the message to prove you own this VKC address</source>
+        <translation>Podepsat zprávu k prokázání, že vlastníte tuto VKC adresu</translation>
     </message>
     <message>
-        <source>The NWO address the message was signed with</source>
-        <translation>NWO adresa zprávy byla podpsána</translation>
+        <source>The VKC address the message was signed with</source>
+        <translation>VKC adresa zprávy byla podpsána</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified NWO address</source>
-        <translation>Verifikujte zprávu pro ujištění, že byla podepsána zmíněnou NWO adresou</translation>
+        <source>Verify the message to ensure it was signed with the specified VKC address</source>
+        <translation>Verifikujte zprávu pro ujištění, že byla podepsána zmíněnou VKC adresou</translation>
     </message>
     <message>
         <source>Sign &amp;Message</source>
@@ -2278,8 +2278,8 @@ Prosím zkontrolujte adresu a zkuste to znovu.</translation>
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>NWO Core</source>
-        <translation>NWO Core</translation>
+        <source>VKC Core</source>
+        <translation>VKC Core</translation>
     </message>
     </context>
 <context>
@@ -2382,7 +2382,7 @@ Prosím zkontrolujte adresu a zkuste to znovu.</translation>
     </message>
     </context>
 <context>
-    <name>nwo-core</name>
+    <name>vkc-core</name>
     <message>
         <source>Error</source>
         <translation>Chyba</translation>

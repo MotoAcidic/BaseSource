@@ -11,7 +11,7 @@
   </array>
 
   <key>CFBundleIconFile</key>
-  <string>nwo.icns</string>
+  <string>vkc.icns</string>
 
   <key>CFBundlePackageType</key>
   <string>APPL</string>
@@ -29,10 +29,10 @@
   <string>????</string>
 
   <key>CFBundleExecutable</key>
-  <string>NWO-Qt</string>
+  <string>VKC-Qt</string>
 
   <key>CFBundleIdentifier</key>
-  <string>io.nwo.NWO-Qt</string>
+  <string>io.vkc.VKC-Qt</string>
 
   <key>CFBundleURLTypes</key>
   <array>
@@ -40,10 +40,10 @@
       <key>CFBundleTypeRole</key>
       <string>Editor</string>
       <key>CFBundleURLName</key>
-      <string>io.nwo.UccPayment</string>
+      <string>io.vkc.UccPayment</string>
       <key>CFBundleURLSchemes</key>
       <array>
-        <string>nwo</string>
+        <string>vkc</string>
       </array>
     </dict>
   </array>
@@ -52,9 +52,9 @@
   <array>
     <dict>
       <key>UTTypeIdentifier</key>
-      <string>io.nwo.paymentrequest</string>
+      <string>io.vkc.paymentrequest</string>
       <key>UTTypeDescription</key>
-      <string>NWO payment request</string>
+      <string>VKC payment request</string>
       <key>UTTypeConformsTo</key>
       <array>
         <string>public.data</string>
@@ -62,10 +62,10 @@
       <key>UTTypeTagSpecification</key>
       <dict>
         <key>public.mime-type</key>
-        <string>application/x-nwo-payment-request</string>
+        <string>application/x-vkc-payment-request</string>
         <key>public.filename-extension</key>
         <array>
-          <string>nwopaymentrequest</string>
+          <string>vkcpaymentrequest</string>
         </array>
       </dict>
     </dict>
@@ -78,7 +78,7 @@
       <string>Editor</string>
       <key>LSItemContentTypes</key>
       <array>
-        <string>io.nwo.paymentrequest</string>
+        <string>io.vkc.paymentrequest</string>
       </array>
       <key>LSHandlerRank</key>
       <string>Owner</string>

@@ -42,10 +42,10 @@ bool CAddrInfo::IsTerrible(int64_t nNow) const
     if (nTime == 0 || nNow - nTime > ADDRMAN_HORIZON_DAYS * 24 * 60 * 60) // not seen in recent history
         return true;
 
-    if (nLastSnwoess == 0 && nAttempts >= ADDRMAN_RETRIES) // tried N times and never a snwoess
+    if (nLastSvkcess == 0 && nAttempts >= ADDRMAN_RETRIES) // tried N times and never a svkcess
         return true;
 
-    if (nNow - nLastSnwoess > ADDRMAN_MIN_FAIL_DAYS * 24 * 60 * 60 && nAttempts >= ADDRMAN_MAX_FAILURES) // N snwoessive failures in the last week
+    if (nNow - nLastSvkcess > ADDRMAN_MIN_FAIL_DAYS * 24 * 60 * 60 && nAttempts >= ADDRMAN_MAX_FAILURES) // N svkcessive failures in the last week
         return true;
 
     return false;
@@ -211,7 +211,7 @@ void CAddrMan::Good_(const CService& addr, int64_t nTime)
         return;
 
     // update info
-    info.nLastSnwoess = nTime;
+    info.nLastSvkcess = nTime;
     info.nLastTry = nTime;
     info.nAttempts = 0;
     // nTime is not updated here, to avoid leaking information about
@@ -383,7 +383,7 @@ int CAddrMan::Check_()
         int n = (*it).first;
         CAddrInfo& info = (*it).second;
         if (info.fInTried) {
-            if (!info.nLastSnwoess)
+            if (!info.nLastSvkcess)
                 return -1;
             if (info.nRefCount)
                 return -2;
@@ -401,7 +401,7 @@ int CAddrMan::Check_()
             return -14;
         if (info.nLastTry < 0)
             return -6;
-        if (info.nLastSnwoess < 0)
+        if (info.nLastSvkcess < 0)
             return -8;
     }
 

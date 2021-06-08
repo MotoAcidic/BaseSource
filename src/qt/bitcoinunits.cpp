@@ -20,18 +20,18 @@ BitcoinUnits::BitcoinUnits(QObject* parent) : QAbstractListModel(parent),
 QList<BitcoinUnits::Unit> BitcoinUnits::availableUnits()
 {
     QList<BitcoinUnits::Unit> unitlist;
-    unitlist.append(NWO);
-   // unitlist.append(mNWO);
-   // unitlist.append(uNWO);
+    unitlist.append(VKC);
+   // unitlist.append(mVKC);
+   // unitlist.append(uVKC);
     return unitlist;
 }
 
 bool BitcoinUnits::valid(int unit)
 {
     switch (unit) {
-    case NWO:
-    case mNWO:
-    case uNWO:
+    case VKC:
+    case mVKC:
+    case uVKC:
         return true;
     default:
         return false;
@@ -41,12 +41,12 @@ bool BitcoinUnits::valid(int unit)
 QString BitcoinUnits::id(int unit)
 {
     switch (unit) {
-    case NWO:
-        return QString("nwo");
-    case mNWO:
-        return QString("mnwo");
-    case uNWO:
-        return QString::fromUtf8("unwo");
+    case VKC:
+        return QString("vkc");
+    case mVKC:
+        return QString("mvkc");
+    case uVKC:
+        return QString::fromUtf8("uvkc");
     default:
         return QString("???");
     }
@@ -56,23 +56,23 @@ QString BitcoinUnits::name(int unit)
 {
     if (Params().NetworkID() == CBaseChainParams::MAIN) {
         switch (unit) {
-        case NWO:
-            return QString("NWO");
-        case mNWO:
+        case VKC:
+            return QString("VKC");
+        case mVKC:
             return QString("mDNA");
-        case uNWO:
-            return QString::fromUtf8("μNWO");
+        case uVKC:
+            return QString::fromUtf8("μVKC");
         default:
             return QString("???");
         }
     } else {
         switch (unit) {
-        case NWO:
-            return QString("tNWO");
-        case mNWO:
+        case VKC:
+            return QString("tVKC");
+        case mVKC:
             return QString("mXtDNA");
-        case uNWO:
-            return QString::fromUtf8("μtNWO");
+        case uVKC:
+            return QString::fromUtf8("μtVKC");
         default:
             return QString("???");
         }
@@ -83,23 +83,23 @@ QString BitcoinUnits::description(int unit)
 {
     if (Params().NetworkID() == CBaseChainParams::MAIN) {
         switch (unit) {
-        case NWO:
-            return QString("NWO");
-        case mNWO:
-            return QString("Milli-NWO (1 / 1" THIN_SP_UTF8 "000)");
-        case uNWO:
-            return QString("Micro-NWO (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+        case VKC:
+            return QString("VKC");
+        case mVKC:
+            return QString("Milli-VKC (1 / 1" THIN_SP_UTF8 "000)");
+        case uVKC:
+            return QString("Micro-VKC (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
         default:
             return QString("???");
         }
     } else {
         switch (unit) {
-        case NWO:
-            return QString("TestNWOs");
-        case mNWO:
-            return QString("Milli-TestNWOs (1 / 1" THIN_SP_UTF8 "000)");
-        case uNWO:
-            return QString("Micro-TestNWOs (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+        case VKC:
+            return QString("TestVKCs");
+        case mVKC:
+            return QString("Milli-TestVKCs (1 / 1" THIN_SP_UTF8 "000)");
+        case uVKC:
+            return QString("Micro-TestVKCs (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
         default:
             return QString("???");
         }
@@ -109,11 +109,11 @@ QString BitcoinUnits::description(int unit)
 qint64 BitcoinUnits::factor(int unit)
 {
     switch (unit) {
-    case NWO:
+    case VKC:
         return 100000000;
-    case mNWO:
+    case mVKC:
         return 100000;
-    case uNWO:
+    case uVKC:
         return 100;
     default:
         return 100000000;
@@ -123,11 +123,11 @@ qint64 BitcoinUnits::factor(int unit)
 int BitcoinUnits::decimals(int unit)
 {
     switch (unit) {
-    case NWO:
+    case VKC:
         return 8;
-    case mNWO:
+    case mVKC:
         return 5;
-    case uNWO:
+    case uVKC:
         return 2;
     default:
         return 0;

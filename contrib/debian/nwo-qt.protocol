@@ -1,6 +1,6 @@
 [Protocol]
-exec=nwo-qt '%u'
-protocol=nwo
+exec=vkc-qt '%u'
+protocol=vkc
 input=none
 output=none
 helper=true

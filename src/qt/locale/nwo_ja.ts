@@ -263,6 +263,6 @@
     </message>
     </context>
 <context>
-    <name>nwo-core</name>
+    <name>vkc-core</name>
     </context>
 </TS>

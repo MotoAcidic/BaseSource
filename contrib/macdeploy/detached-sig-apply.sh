@@ -5,7 +5,7 @@ UNSIGNED=$1
 SIGNATURE=$2
 ARCH=x86_64
 ROOTDIR=dist
-BUNDLE=${ROOTDIR}/NWO-Qt.app
+BUNDLE=${ROOTDIR}/VKC-Qt.app
 TEMPDIR=signed.temp
 OUTDIR=signed-app
 
@@ -46,7 +46,7 @@ for i in `find ${TEMPDIR} -name "*.sign"`; do
   dd if=$i of=${i}.tmp bs=1 seek=${OFFSET} count=${SIZE} 2>/dev/null
   mv ${i}.tmp ${TARGET_FILE}
   rm ${i}
-  echo "Snwoess."
+  echo "Svkcess."
 done
 mv ${TEMPDIR}/${ROOTDIR} ${OUTDIR}
 rm -rf ${TEMPDIR}

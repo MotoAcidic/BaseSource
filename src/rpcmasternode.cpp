@@ -46,7 +46,7 @@ void SendMoney(const CTxDestination& address, CAmount nValue, CWalletTx& wtxNew,
         throw JSONRPCError(RPC_WALLET_ERROR, strError);
     }
 
-    // Parse NWO address
+    // Parse VKC address
     CScript scriptPubKey = GetScriptForDestination(address);
 
     // Create and send the transaction
@@ -66,8 +66,8 @@ UniValue obfuscation(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() == 0)
         throw runtime_error(
-            "obfuscation <nwoaddress> <amount>\n"
-            "nwoaddress, reset, or auto (AutoDenominate)"
+            "obfuscation <vkcaddress> <amount>\n"
+            "vkcaddress, reset, or auto (AutoDenominate)"
             "<amount> is a real and will be rounded to the next 0.1" +
             HelpRequiringPassphrase());
 
@@ -88,14 +88,14 @@ UniValue obfuscation(const UniValue& params, bool fHelp)
 
     if (params.size() != 2)
         throw runtime_error(
-            "obfuscation <nwoaddress> <amount>\n"
-            "nwoaddress, denominate, or auto (AutoDenominate)"
+            "obfuscation <vkcaddress> <amount>\n"
+            "vkcaddress, denominate, or auto (AutoDenominate)"
             "<amount> is a real and will be rounded to the next 0.1" +
             HelpRequiringPassphrase());
 
     CBitcoinAddress address(params[0].get_str());
     if (!address.IsValid())
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid NWO address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid VKC address");
 
     // Amount
     CAmount nAmount = AmountFromValue(params[1]);
@@ -120,7 +120,7 @@ UniValue getpoolinfo(const UniValue& params, bool fHelp)
 
             "\nResult:\n"
             "{\n"
-            "  \"current\": \"addr\",  (string) NWO address of current masternode\n"
+            "  \"current\": \"addr\",  (string) VKC address of current masternode\n"
             "  \"state\": xxxx,        (string) unknown\n"
             "  \"entries\": xxxx,      (numeric) Number of entries\n"
             "  \"accepted\": xxxx,     (numeric) Number of entries accepted\n"
@@ -167,7 +167,7 @@ UniValue masternode(const UniValue& params, bool fHelp)
             "  debug        - Print masternode status\n"
             "  genkey       - Generate new masternodeprivkey\n"
             "  outputs      - Print masternode compatible outputs\n"
-            "  start        - Start masternode configured in nwo.conf\n"
+            "  start        - Start masternode configured in vkc.conf\n"
             "  start-alias  - Start single masternode by assigned alias configured in masternode.conf\n"
             "  start-<mode> - Start masternodes configured in masternode.conf (<mode>: 'all', 'missing', 'disabled')\n"
             "  status       - Print masternode status information\n"
@@ -303,7 +303,7 @@ UniValue listmasternodes(const UniValue& params, bool fHelp)
             "    \"txhash\": \"hash\",  (string) Collateral transaction hash\n"
             "    \"outidx\": n,         (numeric) Collateral transaction output index\n"
             "    \"status\": s,         (string) Status (ENABLED/EXPIRED/REMOVE/etc)\n"
-            "    \"addr\": \"addr\",    (string) Masternode NWO address\n"
+            "    \"addr\": \"addr\",    (string) Masternode VKC address\n"
             "    \"version\": v,        (numeric) Masternode protocol version\n"
             "    \"lastseen\": ttt,     (numeric) The time in seconds since epoch (Jan 1 1970 GMT) of the last seen\n"
             "    \"activetime\": ttt,   (numeric) The time in seconds since epoch (Jan 1 1970 GMT) masternode has been active\n"
@@ -607,7 +607,7 @@ UniValue startmasternode (const UniValue& params, bool fHelp)
             "  \"detail\": [\n"
             "    {\n"
             "      \"node\": \"xxxx\",    (string) Node name or alias\n"
-            "      \"result\": \"xxxx\",  (string) 'snwoess' or 'failed'\n"
+            "      \"result\": \"xxxx\",  (string) 'svkcess' or 'failed'\n"
             "      \"error\": \"xxxx\"    (string) Error message, if failed\n"
             "    }\n"
             "    ,...\n"
@@ -669,7 +669,7 @@ UniValue startmasternode (const UniValue& params, bool fHelp)
 
             UniValue statusObj(UniValue::VOBJ);
             statusObj.push_back(Pair("alias", mne.getAlias()));
-            statusObj.push_back(Pair("result", result ? "snwoess" : "failed"));
+            statusObj.push_back(Pair("result", result ? "svkcess" : "failed"));
 
             if (result) {
                 successful++;
@@ -871,7 +871,7 @@ UniValue getmasternodestatus (const UniValue& params, bool fHelp)
             "  \"txhash\": \"xxxx\",      (string) Collateral transaction hash\n"
             "  \"outputidx\": n,        (numeric) Collateral transaction output index number\n"
             "  \"netaddr\": \"xxxx\",     (string) Masternode network address\n"
-            "  \"addr\": \"xxxx\",        (string) NWO address for masternode payments\n"
+            "  \"addr\": \"xxxx\",        (string) VKC address for masternode payments\n"
             "  \"status\": \"xxxx\",      (string) Masternode status\n"
             "  \"message\": \"xxxx\"      (string) Masternode status message\n"
             "}\n"
@@ -913,7 +913,7 @@ UniValue getmasternodewinners(const UniValue& params, bool fHelp)
             "  {\n"
             "    \"nHeight\": n,           (numeric) block height\n"
             "    \"winner\": {\n"
-            "      \"address\": \"xxxx\",  (string)  NWO MN Address\n"
+            "      \"address\": \"xxxx\",  (string)  VKC MN Address\n"
             "      \"level\": n,           (numeric) Masternode level\n"
             "      \"nVotes\": n,          (numeric) Number of votes for winner\n"
             "    }\n"
@@ -927,7 +927,7 @@ UniValue getmasternodewinners(const UniValue& params, bool fHelp)
             "    \"nHeight\": n,            (numeric) block height\n"
             "    \"winner\": [\n"
             "      {\n"
-            "        \"address\": \"xxxx\", (string)  NWO MN Address\n"
+            "        \"address\": \"xxxx\", (string)  VKC MN Address\n"
             "        \"level\": n,          (numeric) Masternode level\n"
             "        \"nVotes\": n,         (numeric) Number of votes for winner\n"
             "      }\n"

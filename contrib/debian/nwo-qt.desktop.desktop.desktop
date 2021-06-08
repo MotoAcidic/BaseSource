@@ -1,11 +1,11 @@
 [Desktop Entry]
 Encoding=UTF-8
-Name=NWO
-Comment=NWO P2P Cryptocurrency
-Exec=nwo-qt %u
+Name=VKC
+Comment=VKC P2P Cryptocurrency
+Exec=vkc-qt %u
 Terminal=false
 Type=Application
-Icon=nwo128
-MimeType=x-scheme-handler/nwo;
+Icon=vkc128
+MimeType=x-scheme-handler/vkc;
 Categories=Office;Finance;
-Name[ru]=nwo-qt.desktop.desktop
+Name[ru]=vkc-qt.desktop.desktop

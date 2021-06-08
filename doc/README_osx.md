@@ -48,7 +48,7 @@ Alternatively, you can use 7zip and SleuthKit to extract the files one by one.
 The script contrib/macdeploy/extract-osx-sdk.sh automates this. First ensure
 the dmg file is in the current directory, and then run the script. You may wish
 to delete the intermediate 5.hfs file and MacOSX10.11.sdk (the directory) when
-you've confirmed the extraction snwoeeded.
+you've confirmed the extraction svkceeded.
 
 ```bash
 apt-get install p7zip-full sleuthkit
@@ -92,6 +92,6 @@ build process to remain somewhat deterministic. Here's how it works:
   that have been previously (deterministically) built in order to create a
   final dmg.
 - **TODO** The Apple keyholder uses this unsigned app to create a detached signature,
-  using the script that is also included there. Detached signatures are available from this [repository](https://github.com/NWO-Core/NWO-detached-sigs).
+  using the script that is also included there. Detached signatures are available from this [repository](https://github.com/VKC-Core/VKC-detached-sigs).
 - Builders feed the unsigned app + detached signature back into Gitian. It
   uses the pre-built tools to recombine the pieces into a deterministic dmg.

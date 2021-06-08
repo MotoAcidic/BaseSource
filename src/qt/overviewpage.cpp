@@ -3,7 +3,7 @@
 // Copyright (c) 2015-2017 The PIVX developers
 // Copyright (c) 2017-2018 The XDNA Core developers
 // Copyright (c) 2018-2019 The ESBC Core developers
-// Copyright (c) 2018-2019 The NWO Core developers
+// Copyright (c) 2018-2019 The VKC Core developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -48,7 +48,7 @@ class TxViewDelegate : public QAbstractItemDelegate
 {
     Q_OBJECT
 public:
-    TxViewDelegate() : QAbstractItemDelegate(), unit(BitcoinUnits::NWO)
+    TxViewDelegate() : QAbstractItemDelegate(), unit(BitcoinUnits::VKC)
     {
     }
 
@@ -215,7 +215,7 @@ void OverviewPage::setBalance(const CAmount& balance, const CAmount& unconfirmed
     currentWatchUnconfBalance = watchUnconfBalance;
     currentWatchImmatureBalance = watchImmatureBalance;
 
-    // NWO labels
+    // VKC labels
 
     if(balance != 0)
         ui->labelBalance->setText(BitcoinUnits::floorHtmlWithoutUnit(nDisplayUnit, currentBalance, false, BitcoinUnits::separatorNever));
@@ -234,7 +234,7 @@ void OverviewPage::setBalance(const CAmount& balance, const CAmount& unconfirmed
     // for symmetry reasons also show immature label when the watch-only one is shown
     ui->labelImmature->setVisible(showImmature || showWatchOnlyImmature);
     ui->labelImmatureText->setVisible(showImmature || showWatchOnlyImmature);
-    //ui->label_NWO4->setVisible(showImmature || showWatchOnlyImmature);
+    //ui->label_VKC4->setVisible(showImmature || showWatchOnlyImmature);
 
    // ui->labelWatchImmature->setVisible(showWatchOnlyImmature); // show watch-only immature balance
 
@@ -301,12 +301,12 @@ void OverviewPage::setWalletModel(WalletModel* model)
         // connect(ui->obfuscationReset, SIGNAL(clicked()), this, SLOT(obfuscationReset()));
         // connect(ui->toggleObfuscation, SIGNAL(clicked()), this, SLOT(toggleObfuscation()));
         connect(model, SIGNAL(notifyWatchonlyChanged(bool)), this, SLOT(updateWatchOnlyLabels(bool)));
-        connect(ui->blabel_NWO, SIGNAL(clicked()), this, SLOT(openMyAddresses()));
+        connect(ui->blabel_VKC, SIGNAL(clicked()), this, SLOT(openMyAddresses()));
 
         emit model->makeBalance();
     }
 
-    // update the display unit, to not use the default ("NWO")
+    // update the display unit, to not use the default ("VKC")
     updateDisplayUnit();
 }
 
@@ -402,9 +402,9 @@ void OverviewPage::updateMasternodeInfo()
 
   // update collateral info
   if (CurrentBlock >= 0) {
-      ui->label_lcolat->setText("1000 NWO");
-      ui->label_mcolat->setText("3000 NWO");
-      ui->label_fcolat->setText("5000 NWO");
+      ui->label_lcolat->setText("1000 VKC");
+      ui->label_mcolat->setText("3000 VKC");
+      ui->label_fcolat->setText("5000 VKC");
   }
 
 }
@@ -416,7 +416,7 @@ void OverviewPage::updateBlockChainInfo()
         int CurrentBlock = clientModel->getNumBlocks();
         int64_t netHashRate = chainActive.GetNetworkHashPS(24, CurrentBlock);
         double BlockReward = GetBlockValue(CurrentBlock);
-        double BlockRewardnwo =  static_cast<double>(BlockReward/COIN);
+        double BlockRewardvkc =  static_cast<double>(BlockReward/COIN);
 		double CurrentDiff = GetDifficulty();
 		double DevFee = Params().GetDevFee();
         double FundFee = Params().GetFundFee();
@@ -426,9 +426,9 @@ void OverviewPage::updateBlockChainInfo()
         ui->label_Nethash->setText(tr("Difficulty:"));
         ui->label_Nethash_value->setText(QString::number(CurrentDiff,'f',4));
 
-        ui->label_CurrentBlockReward_value->setText(QString::number(BlockRewardnwo, 'f', 1).append(" | ") + QString::number(DevFee).append("% | ") + QString::number(FundFee).append("%"));
+        ui->label_CurrentBlockReward_value->setText(QString::number(BlockRewardvkc, 'f', 1).append(" | ") + QString::number(DevFee).append("% | ") + QString::number(FundFee).append("%"));
 
-        ui->label_Supply_value->setText(QString::number(chainActive.Tip()->nMoneySupply / COIN).append(" NWO"));
+        ui->label_Supply_value->setText(QString::number(chainActive.Tip()->nMoneySupply / COIN).append(" VKC"));
 
         ui->label_24hBlock_value->setText(QString::number(block24hCount));
         ui->label_24hPoS_value->setText(QString::number(static_cast<double>(posMin)/COIN,'f',1).append(" | ") + QString::number(static_cast<double>(posMax)/COIN,'f',1));

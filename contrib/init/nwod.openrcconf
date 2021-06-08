@@ -1,25 +1,25 @@
-# /etc/conf.d/nwod: config file for /etc/init.d/nwod
+# /etc/conf.d/vkcd: config file for /etc/init.d/vkcd
 
 # Config file location
-#BITCOIND_CONFIGFILE="/etc/nwo/nwo.conf"
+#BITCOIND_CONFIGFILE="/etc/vkc/vkc.conf"
 
 # What directory to write pidfile to?  (created and owned by $BITCOIND_USER)
-#BITCOIND_PIDDIR="/var/run/nwod"
+#BITCOIND_PIDDIR="/var/run/vkcd"
 
 # What filename to give the pidfile
-#BITCOIND_PIDFILE="${BITCOIND_PIDDIR}/nwod.pid"
+#BITCOIND_PIDFILE="${BITCOIND_PIDDIR}/vkcd.pid"
 
-# Where to write nwod data (be mindful that the blockchain is large)
-#BITCOIND_DATADIR="/var/lib/nwod"
+# Where to write vkcd data (be mindful that the blockchain is large)
+#BITCOIND_DATADIR="/var/lib/vkcd"
 
-# User and group to own nwod process
-#BITCOIND_USER="nwo"
-#BITCOIND_GROUP="nwo"
+# User and group to own vkcd process
+#BITCOIND_USER="vkc"
+#BITCOIND_GROUP="vkc"
 
-# Path to nwod executable
-#BITCOIND_BIN="/usr/bin/nwod"
+# Path to vkcd executable
+#BITCOIND_BIN="/usr/bin/vkcd"
 
-# Nice value to run nwod under
+# Nice value to run vkcd under
 #BITCOIND_NICE=0
 
 # Additional options (avoid -conf and -datadir, use flags above)

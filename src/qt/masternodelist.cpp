@@ -149,8 +149,8 @@ void MasternodeList::StartAlias(std::string strAlias)
             std::string strError;
             std::string strOverall;
             std::string strResult;
-            bool fSnwoess = RpcStartMasternode(strAlias,strOverall,strError,strResult);
-            if(fSnwoess){
+            bool fSvkcess = RpcStartMasternode(strAlias,strOverall,strError,strResult);
+            if(fSvkcess){
                 strStatusHtml += "<br>" +strOverall + "<br>";
             }
             else{
@@ -189,9 +189,9 @@ void MasternodeList::StartAll(std::string strCommand)
 
         if (strCommand == "start-missing" && pmn) continue;
 
-        bool fSnwoess = RpcStartMasternode(strAlias,strOverall,strError,strResult);
+        bool fSvkcess = RpcStartMasternode(strAlias,strOverall,strError,strResult);
 
-        if (fSnwoess) {
+        if (fSvkcess) {
             nCountSuccessful++;
         } else {
             nCountFailed++;

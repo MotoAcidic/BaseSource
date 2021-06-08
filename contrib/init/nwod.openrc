@@ -2,24 +2,24 @@
 
 # backward compatibility for existing gentoo layout
 #
-if [ -d "/var/lib/nwo/.nwo" ]; then
-	BITCOIND_DEFAULT_DATADIR="/var/lib/nwo/.nwo"
+if [ -d "/var/lib/vkc/.vkc" ]; then
+	BITCOIND_DEFAULT_DATADIR="/var/lib/vkc/.vkc"
 else
-	BITCOIND_DEFAULT_DATADIR="/var/lib/nwod"
+	BITCOIND_DEFAULT_DATADIR="/var/lib/vkcd"
 fi
 
-BITCOIND_CONFIGFILE=${BITCOIND_CONFIGFILE:-/etc/nwo/nwo.conf}
-BITCOIND_PIDDIR=${BITCOIND_PIDDIR:-/var/run/nwod}
-BITCOIND_PIDFILE=${BITCOIND_PIDFILE:-${BITCOIND_PIDDIR}/nwod.pid}
+BITCOIND_CONFIGFILE=${BITCOIND_CONFIGFILE:-/etc/vkc/vkc.conf}
+BITCOIND_PIDDIR=${BITCOIND_PIDDIR:-/var/run/vkcd}
+BITCOIND_PIDFILE=${BITCOIND_PIDFILE:-${BITCOIND_PIDDIR}/vkcd.pid}
 BITCOIND_DATADIR=${BITCOIND_DATADIR:-${BITCOIND_DEFAULT_DATADIR}}
-BITCOIND_USER=${BITCOIND_USER:-nwo}
-BITCOIND_GROUP=${BITCOIND_GROUP:-nwo}
-BITCOIND_BIN=${BITCOIND_BIN:-/usr/bin/nwod}
+BITCOIND_USER=${BITCOIND_USER:-vkc}
+BITCOIND_GROUP=${BITCOIND_GROUP:-vkc}
+BITCOIND_BIN=${BITCOIND_BIN:-/usr/bin/vkcd}
 
-name="NWO Daemon"
-description="NWO crypto-currency p2p network daemon"
+name="VKC Daemon"
+description="VKC crypto-currency p2p network daemon"
 
-command="/usr/bin/nwod"
+command="/usr/bin/vkcd"
 command_args="-pid=\"${BITCOIND_PIDFILE}\" \
 		-conf=\"${BITCOIND_CONFIGFILE}\" \
 		-datadir=\"${BITCOIND_DATADIR}\" \
@@ -65,7 +65,7 @@ checkconfig()
 {
 	if ! grep -qs '^rpcpassword=' "${BITCOIND_CONFIGFILE}" ; then
 		eerror ""
-		eerror "ERROR: You must set a secure rpcpassword to run nwod."
+		eerror "ERROR: You must set a secure rpcpassword to run vkcd."
 		eerror "The setting must appear in ${BITCOIND_CONFIGFILE}"
 		eerror ""
 		eerror "This password is security critical to securing wallets "
@@ -78,7 +78,7 @@ checkconfig()
 		eerror "It is also recommended that you also set alertnotify so you are "
 		eerror "notified of problems:"
 		eerror ""
-		eerror "ie: alertnotify=echo %%s | mail -s \"NWO Alert\"" \
+		eerror "ie: alertnotify=echo %%s | mail -s \"VKC Alert\"" \
 			"admin@foo.com"
 		eerror ""
 		return 1
