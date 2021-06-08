@@ -498,7 +498,7 @@ void MasternodeList::on_editConfigureMasternode_clicked()
     std::string strAlias = ui->tableWidgetMyMasternodes->item(nSelectedRow, 0)->text().toStdString();
 
 	int count = 0;
-    for (CMasternodeConfig::CMasternodeEntry mne : masternodeConfig.getEntries()) {
+    BOOST_FOREACH (CMasternodeConfig::CMasternodeEntry mne, masternodeConfig.getEntries()) {
 		count = count + 1;
 		if(strAlias == mne.getAlias()) {
 			MasternodeList::openEditConfigureMasternodePage(QString::fromStdString(mne.getAlias()), QString::fromStdString(mne.getIp()), QString::fromStdString(mne.getPrivKey()), QString::fromStdString(mne.getTxHash()), QString::fromStdString(mne.getOutputIndex()), count);

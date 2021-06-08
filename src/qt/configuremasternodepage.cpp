@@ -132,7 +132,7 @@ void ConfigureMasternodePage::accept()
 
 void ConfigureMasternodePage::updateAlias(std::string Alias, std::string IP, std::string PrivKey, std::string TxHash, std::string OutputIndex, std::string mnAlias)
 {
-	for (CMasternodeConfig::CMasternodeEntry mne : masternodeConfig.getEntries()) {
+    BOOST_FOREACH (CMasternodeConfig::CMasternodeEntry mne, masternodeConfig.getEntries()) {
 		if(mnAlias == mne.getAlias()) {
 			int count = 0;
 			count = getCounters();
@@ -169,10 +169,10 @@ void ConfigureMasternodePage::on_AutoFillOutputs_clicked()
     // Find possible candidates
     std::vector<COutput> possibleCoins = activeMasternode.SelectCoinsMasternode();
         int test = 0;
-    for (COutput& out : possibleCoins) {
+    BOOST_FOREACH (COutput& out, possibleCoins) {
         std::string TXHash = out.tx->GetHash().ToString();
         std::string OutputID = std::to_string(out.i);
-                for (CMasternodeConfig::CMasternodeEntry mne : masternodeConfig.getEntries()) {
+        BOOST_FOREACH (CMasternodeConfig::CMasternodeEntry mne, masternodeConfig.getEntries()) {
                         if(OutputID == mne.getOutputIndex() && TXHash == mne.getTxHash()) {
                                 test = 1;
 

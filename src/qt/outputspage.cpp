@@ -61,7 +61,7 @@ QString OutPutsPage::getmasternodeoutputs ()
     std::vector<COutput> possibleCoins = activeMasternode.SelectCoinsMasternode();
 
     UniValue result(UniValue::VARR);
-    for (COutput& out : possibleCoins) {
+    BOOST_FOREACH (COutput& out, possibleCoins) {
         UniValue obj(UniValue::VOBJ);
         obj.push_back(Pair("txhash", out.tx->GetHash().ToString()));
         obj.push_back(Pair("outputidx", out.i));
