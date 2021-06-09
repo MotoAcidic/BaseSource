@@ -351,6 +351,11 @@ bool ConfigureMasternodePageTier1::on_CreateTier1_clicked()
         ipAddress = "[" + ipAddress + "]";
     }
 
+    masternodeConfig.add(alias + " " + ipAddress + " " + mnKeyString + " " + txID + " " + indexOutStr);
+    masternodeConfig.writeToMasternodeConf();
+    break;
+
+    /*
     fs::path pathConfigFile = AbsPathForConfigVal(fs::path("masternode_temp.conf"));
     FILE* configFile = fopen(pathConfigFile.string().c_str(), "w");
     lineCopy += alias + " " + ipAddress + " " + mnKeyString + " " + txID + " " + indexOutStr + "\n";
@@ -367,11 +372,12 @@ bool ConfigureMasternodePageTier1::on_CreateTier1_clicked()
     rename(pathConfigFile, pathNewConfFile);
 
     mnEntry = masternodeConfig.add(alias, ipAddress + ":", mnKeyString, txID, indexOutStr);
+    */
 
     // Lock collateral output
     walletModel->lockCoin(collateralOut);
 
-    returnStr = tr("Master node created! Wait %1 confirmations before starting it.").arg(MASTERNODE_MIN_CONFIRMATIONS());
+    returnStr = tr("Master node created! Wait %1" + MASTERNODE_MIN_CONFIRMATIONS + "confirmations before starting it.");
     return true;
 }
 
