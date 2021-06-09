@@ -190,7 +190,7 @@ void ConfigureMasternodePage::on_AutoFillOutputs_clicked()
 }
 */
 
-bool ConfigureMasternodePageTier1::on_CreateTier1_clicked()
+bool ConfigureMasternodePage::on_CreateTier1_clicked()
 {
     if (!walletModel) {
         returnStr = tr("walletModel not set");

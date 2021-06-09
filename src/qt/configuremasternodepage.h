@@ -82,8 +82,9 @@ public:
 public slots:
     void accept();
     void on_AutoFillPrivKey_clicked();
-    //void on_AutoFillOutputs_clicked();
     bool on_CreateTier1_clicked();
+    //void on_AutoFillOutputs_clicked();
+    
 
 private:
     void saveCurrentRow();
@@ -92,6 +93,9 @@ private:
     Ui::ConfigureMasternodePage* ui;
     QDataWidgetMapper* mapper;
     Mode mode;
+
+    WalletModel* walletModel = nullptr;
+    
 
     QString address;
 };
