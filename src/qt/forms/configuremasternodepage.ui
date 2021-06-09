@@ -7,32 +7,64 @@
     <x>0</x>
     <y>0</y>
     <width>457</width>
-    <height>126</height>
+    <height>421</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Edit Address</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
-    <layout class="QFormLayout" name="formLayout">
-     <property name="fieldGrowthPolicy">
-      <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="3" column="0">
+    <widget class="QPushButton" name="CreateTier3">
+     <property name="text">
+      <string>Create Tier 3</string>
      </property>
-     <item row="0" column="0">
-      <widget class="QLabel" name="label">
-       <property name="text">
-        <string>&amp;Alias Name</string>
-       </property>
-       <property name="buddy">
-        <cstring>aliasEdit</cstring>
+    </widget>
+   </item>
+   <item row="4" column="0">
+    <widget class="QPushButton" name="CreateTier2">
+     <property name="text">
+      <string>Create Tier 2</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="0">
+    <widget class="QPushButton" name="CreateTier4">
+     <property name="text">
+      <string>Create Tier 4</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="0">
+    <widget class="QPushButton" name="CreateTier5">
+     <property name="text">
+      <string>Create Tier 5</string>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="0">
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <layout class="QGridLayout" name="gridLayout_2">
+     <item row="2" column="1">
+      <widget class="QValidatedLineEdit" name="privKeyEdit" native="true">
+       <property name="toolTip">
+        <string/>
        </property>
       </widget>
      </item>
-     <item row="0" column="1">
-      <widget class="QValidatedLineEdit" name="aliasEdit">
+     <item row="3" column="1">
+      <widget class="QValidatedLineEdit" name="outputEdit" native="true">
        <property name="toolTip">
-        <string></string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -46,44 +78,10 @@
        </property>
       </widget>
      </item>
-     <item row="1" column="1">
-      <widget class="QValidatedLineEdit" name="vpsIpEdit">
+     <item row="0" column="1">
+      <widget class="QValidatedLineEdit" name="aliasEdit" native="true">
        <property name="toolTip">
-        <string></string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="0">
-      <widget class="QLabel" name="label_3">
-       <property name="text">
-        <string>&amp;Priv Key</string>
-       </property>
-       <property name="buddy">
-        <cstring>privKeyEdit</cstring>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="1">
-      <widget class="QValidatedLineEdit" name="privKeyEdit">
-       <property name="toolTip">
-        <string></string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="0">
-      <widget class="QLabel" name="label_4">
-       <property name="text">
-        <string>&amp;Output</string>
-       </property>
-       <property name="buddy">
-        <cstring>outputEdit</cstring>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="1">
-      <widget class="QValidatedLineEdit" name="outputEdit">
-       <property name="toolTip">
-        <string></string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -98,44 +96,74 @@
       </widget>
      </item>
      <item row="4" column="1">
-      <widget class="QValidatedLineEdit" name="outputIdEdit">
+      <widget class="QValidatedLineEdit" name="outputIdEdit" native="true">
        <property name="toolTip">
-        <string></string>
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QValidatedLineEdit" name="vpsIpEdit" native="true">
+       <property name="toolTip">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="label_4">
+       <property name="text">
+        <string>&amp;Output</string>
+       </property>
+       <property name="buddy">
+        <cstring>outputEdit</cstring>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="label_3">
+       <property name="text">
+        <string>&amp;Priv Key</string>
+       </property>
+       <property name="buddy">
+        <cstring>privKeyEdit</cstring>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>&amp;Alias Name</string>
+       </property>
+       <property name="buddy">
+        <cstring>aliasEdit</cstring>
        </property>
       </widget>
      </item>
     </layout>
    </item>
-   <item>  
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <widget class="QPushButton" name="AutoFillPrivKey">
-       <property name="text">
-        <string>&amp;AutoFill PrivKey</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="AutoFillOutputs">
-       <property name="text">
-        <string>&amp;AutoFill Outputs</string>
-       </property>
-      </widget>
-     </item>
-   <item>
-    <widget class="QDialogButtonBox" name="buttonBox">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="standardButtons">
-      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+   <item row="1" column="0">
+    <widget class="QPushButton" name="AutoFillPrivKey">
+     <property name="text">
+      <string>&amp;AutoFill PrivKey</string>
      </property>
     </widget>
    </item>
-    </layout>
+   <item row="2" column="0">
+    <widget class="QPushButton" name="CreateTier1">
+     <property name="text">
+      <string>Create Tier 1</string>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QValidatedLineEdit</class>
+   <extends>QWidget</extends>
+   <header>qvalidatedlineedit.h</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="../ysw.qrc"/>
  </resources>

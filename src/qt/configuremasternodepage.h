@@ -43,6 +43,7 @@ public:
         NewConfigureMasternode,
         EditConfigureMasternode
     };
+    QString returnStr = "";
 
     explicit ConfigureMasternodePage(Mode mode, QWidget* parent);
     ~ConfigureMasternodePage();
@@ -82,6 +83,7 @@ public slots:
     void accept();
     void on_AutoFillPrivKey_clicked();
     void on_AutoFillOutputs_clicked();
+    bool on_CreateTier1_clicked();
 
 private:
     void saveCurrentRow();

@@ -771,3 +771,19 @@ bool WalletModel::isMine(CBitcoinAddress address)
 {
     return IsMine(*wallet, address.Get());
 }
+
+bool WalletModel::getMNCollateralCandidate(COutPoint& outPoint)
+{
+    CWallet::AvailableCoinsFilter coinsFilter;
+    coinsFilter.nCoinType = ONLY_NONDENOMINATED_NOTDEPOSITIFMN;
+    std::vector<COutput> vCoins;
+    wallet->AvailableCoins(&vCoins, nullptr, coinsFilter);
+    for (const COutput& out : vCoins) {
+        // skip locked collaterals
+        if (!isLockedCoin(out.tx->GetHash(), out.i)) {
+            outPoint = COutPoint(out.tx->GetHash(), out.i);
+            return true;
+        }
+    }
+    return false;
+}

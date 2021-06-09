@@ -151,7 +151,6 @@ public:
         nMinerThreads = 0;
         nTargetSpacing = 1 * 60;  // YSW: 1 minute
         nAntiInstamineTime = 720; // 720 blocks with 1 reward for instamine prevention
-        //nMaturity = GetSporkValue(SPORK_22_COIN_MATURITY);
         nMaturity = 10;
         nMasternodePercentDrift = 3;
         nMaxMoneyOut = 21000000 * COIN;
