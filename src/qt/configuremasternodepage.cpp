@@ -304,24 +304,6 @@ bool ConfigureMasternodePageTier1::on_CreateTier1_clicked()
     // Update the conf file
     std::string strConfFile = "masternode.conf";
     std::string strDataDir = GetDataDir().string();
-    fs::path conf_file_path(strConfFile);
-    if (strConfFile != conf_file_path.filename().string()) {
-        throw std::runtime_error(strprintf(_("masternode.conf %s resides outside data directory %s"), strConfFile, strDataDir));
-    }
-
-    fs::path pathBootstrap = GetDataDir() / strConfFile;
-    if (!fs::exists(pathBootstrap)) {
-        returnStr = tr("masternode.conf file doesn't exists");
-        return false;
-    }
-
-    fs::path pathMasternodeConfigFile = GetMasternodeConfigFile();
-    fs::ifstream streamConfig(pathMasternodeConfigFile);
-
-    if (!streamConfig.good()) {
-        returnStr = tr("Invalid masternode.conf file");
-        return false;
-    }
 
     int linenumber = 1;
     std::string lineCopy = "";
@@ -371,7 +353,7 @@ bool ConfigureMasternodePageTier1::on_CreateTier1_clicked()
 
     fs::path pathConfigFile = AbsPathForConfigVal(fs::path("masternode_temp.conf"));
     FILE* configFile = fopen(pathConfigFile.string().c_str(), "w");
-    lineCopy += alias + " " + ipAddress + ":" + port + " " + mnKeyString + " " + txID + " " + indexOutStr + "\n";
+    lineCopy += alias + " " + ipAddress + " " + mnKeyString + " " + txID + " " + indexOutStr + "\n";
     fwrite(lineCopy.c_str(), std::strlen(lineCopy.c_str()), 1, configFile);
     fclose(configFile);
 
@@ -384,7 +366,7 @@ bool ConfigureMasternodePageTier1::on_CreateTier1_clicked()
     fs::path pathNewConfFile = AbsPathForConfigVal(fs::path("masternode.conf"));
     rename(pathConfigFile, pathNewConfFile);
 
-    mnEntry = masternodeConfig.add(alias, ipAddress + ":" + port, mnKeyString, txID, indexOutStr);
+    mnEntry = masternodeConfig.add(alias, ipAddress + ":", mnKeyString, txID, indexOutStr);
 
     // Lock collateral output
     walletModel->lockCoin(collateralOut);
