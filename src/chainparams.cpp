@@ -55,12 +55,8 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 //    timestamp before)
 // + Contains no strange transactions
 static Checkpoints::MapCheckpoints mapCheckpoints =
-    boost::assign::map_list_of(0, uint256("0x000000c914b2c4a05d8e28f4ec8498b7f13798cd3513cf856c0da23690c00a89"))
-                            //  (50, uint256("0x00000095487e7b6c6e10eca3d1c16f42af2b7daa85c6ebc3880647361aa22ba4"))
-                            //  (60200, uint256("0x000000000b791c519d51f8547ccdb4ca6657e7ebc4bcd3a11a01ade338074066"))
-			//  (91268, uint256("0x00000000288b93b6501a6b877a029064b58963d6d892f275f23e04a5945ff64a"))
-                          //    (403872, uint256("0000000068708e8055130118c63c8ab0234530f65c6626d807b5be0630fddab8"))
-	;
+    boost::assign::map_list_of(0, uint256("0x001"))
+;
 
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
@@ -140,37 +136,18 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 4-byte int at any alignment.
          */
-        pchMessageStart[0] = 0x94;
-        pchMessageStart[1] = 0x41;
-        pchMessageStart[2] = 0x2a;
-        pchMessageStart[3] = 0x3f;
+        pchMessageStart[0] = 0x44;
+        pchMessageStart[1] = 0x11;
+        pchMessageStart[2] = 0x2f;
+        pchMessageStart[3] = 0x2e;
         vAlertPubKey = ParseHex("0470278d0645942e9816abfb0596ddb92c9e15f4efcb59d05f46579398de5f0cbc73c5dad1bf3078d26b7eff021c5628140933a8cfc430ab7c00276304d7353d9e");
         vVKCDevKey = ParseHex("0329b41789e8fd75dc7168d05dec322c25df364f6b010fb59c96b4637e5f4487cb"); // TEAMPubKey for fees
         vVKCFundKey = ParseHex("031f3b25791150d4243608c51f39c13a5b340cb73e4bf44c4d0258ad65506cd6c2"); // SWAPPubKey for fees
-        nDevFee = 3; // TEAMFee %
-        nFundFee = 7; // SWAPFee %
+        nDevFee = 1; // TEAMFee %
+        nFundFee = 3; // SWAPFee %
         nDefaultPort = 41110;
         bnProofOfWorkLimit = ~uint256(0) >> 20;
         bnStartWork = ~uint256(0) >> 24;
-
-        subsidySwitchPoints = {
-            {0         ,   4 * COIN},
-            {20   * 1e9,   5 * COIN},
-            {30   * 1e9,   7 * COIN},
-            {50   * 1e9,  10 * COIN},
-            {80   * 1e9,  14 * COIN},
-            {130  * 1e9,  19 * COIN},
-            {210  * 1e9,  25 * COIN},
-            {340  * 1e9,  32 * COIN},
-            {550  * 1e9,  40 * COIN},
-            {890  * 1e9,  49 * COIN},
-            {1440 * 1e9,  59 * COIN},
-            {2330 * 1e9,  70 * COIN},
-            {3770 * 1e9,  82 * COIN},
-            {6100 * 1e9,  95 * COIN},
-            {9870 * 1e9, 109 * COIN},
-        };
-        assert(subsidySwitchPoints.size());
 
         nMaxReorganizationDepth = 100;
         nEnforceBlockUpgradeMajority = 750;
@@ -179,22 +156,22 @@ public:
         nMinerThreads = 0;
         nTargetSpacing = 1 * 60;  // VKC: 1 minute
         nAntiInstamineTime = 720; // 720 blocks with 1 reward for instamine prevention
-        nMaturity = 60;
+        nMaturity = 20;
         nMasternodePercentDrift = 3;
-        nMaxMoneyOut = 45000000 * COIN;
+        nMaxMoneyOut = 20000000 * COIN; // 20m
 
         nStartMasternodePaymentsBlock = 1001;
 
         /** Height or Time Based Activations **/
-        nLastPOWBlock = 105;
+        nLastPOWBlock = 250;
         nModifierUpdateBlock = std::numeric_limits<decltype(nModifierUpdateBlock)>::max();
 
-        const char* pszTimestamp = "One World United! 2018-09-09";
+        const char* pszTimestamp = "Volcano-Powered Bitcoin Mining Goes From Twitter Idea to State Policy in El Salvador";
         CMutableTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
         txNew.vin[0].scriptSig = CScript() << 486604799 << CScriptNum(4) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
-        txNew.vout[0].nValue = 50 * COIN;
+        txNew.vout[0].nValue = 1 * COIN;
         txNew.vout[0].scriptPubKey = CScript() << ParseHex("047601fdaf49621e1c2ae88272c8cf8367d783d44584ef5b029161a741ece7476f15457a410080d0b454e3033f6db0487bd368d663d0333a57312da17855287863") << OP_CHECKSIG;
         genesis.vtx.push_back(txNew);
         genesis.hashPrevBlock = 0;
@@ -206,30 +183,30 @@ public:
 
         //MineGenesis(genesis);
 
-	    hashGenesisBlock = genesis.GetHash();
+	    //hashGenesisBlock = genesis.GetHash();
 
-        assert(hashGenesisBlock == uint256("000000c914b2c4a05d8e28f4ec8498b7f13798cd3513cf856c0da23690c00a89"));
-        assert(genesis.hashMerkleRoot == uint256("08b1bee241c6a39de8adb7de82bedeaa139976613b67d98d12c25de5bf8681c4"));
+        //assert(hashGenesisBlock == uint256("0x001"));
+        //assert(genesis.hashMerkleRoot == uint256("08b1bee241c6a39de8adb7de82bedeaa139976613b67d98d12c25de5bf8681c4"));
 
         //vSeeds.push_back(CDNSSeedData("vkcnetwork.org", "seednode1.vkcnetwork.org"));     // Primary DNS Seeder
-	//    vSeeds.push_back(CDNSSeedData("vkcnetwork.org", "seednode2.vkcnetwork.org"));
-       // vSeeds.push_back(CDNSSeedData("vkcnetwork.org", "seednode3.vkcnetwork.org"));
+	    //vSeeds.push_back(CDNSSeedData("vkcnetwork.org", "seednode2.vkcnetwork.org"));
+        //vSeeds.push_back(CDNSSeedData("vkcnetwork.org", "seednode3.vkcnetwork.org"));
         //vSeeds.push_back(CDNSSeedData("50.59.59.250", "50.59.59.250"));
-       // vSeeds.push_back(CDNSSeedData("108.61.148.90", "108.61.148.90"));
+        //vSeeds.push_back(CDNSSeedData("108.61.148.90", "108.61.148.90"));
         //vSeeds.push_back(CDNSSeedData("62.113.206.204", "62.113.206.204"));
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 68);
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 18);
-        base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 233);
-        base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x02)(0x3D)(0x35)(0x37).convert_to_container<std::vector<unsigned char> >();
-        base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x02)(0x31)(0x51)(0x2A).convert_to_container<std::vector<unsigned char> >();
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 70); // V
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 45); // K
+        base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 28);     // C
+        base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x01)(0x3A)(0x32)(0x34).convert_to_container<std::vector<unsigned char> >();
+        base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x09)(0x38)(0x28)(0x2C).convert_to_container<std::vector<unsigned char> >();
         // BIP44 coin type is from https://github.com/satoshilabs/slips/blob/master/slip-0044.md
-        base58Prefixes[EXT_COIN_TYPE] = boost::assign::list_of(0x80)(0x00)(0x07)(0x99).convert_to_container<std::vector<unsigned char> >();
+        base58Prefixes[EXT_COIN_TYPE] = boost::assign::list_of(0x84)(0x05)(0x25)(0x38).convert_to_container<std::vector<unsigned char> >();
 
         //convertSeed6(vFixedSeeds, pnSeed6_main, ARRAYLEN(pnSeed6_main));
 
-        fRequireRPCPassword = true;
-        fMiningRequiresPeers = true;
+        fRequireRPCPassword = false;
+        fMiningRequiresPeers = false;
         fDefaultConsistencyChecks = false;
         fRequireStandard = true;
         fMineBlocksOnDemand = false;
