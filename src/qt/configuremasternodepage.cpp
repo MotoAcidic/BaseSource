@@ -208,25 +208,13 @@ bool ConfigureMasternodePage::on_CreateTier1_clicked()
      */
 
     // validate IP address
-    QString addressLabel = ui->aliasEdit->text();
-    if (addressLabel.isEmpty()) {
-        returnStr = tr("address label cannot be empty");
-        return false;
-    }
-    std::string alias = addressLabel.toStdString();
+    //QString addressLabel = loadAlias;
+    std::string alias = loadAlias.toStdString();
 
-    QString addressStr = ui->vpsIpEdit->text();
-    if (addressStr.isEmpty() || vpsIpEdit.isEmpty()) {
-        returnStr = tr("IP and port cannot be empty");
-        return false;
-    }
-    if (!MNModel::validateMNIP(addressStr)) {
-        returnStr = tr("Invalid IP address");
-        return false;
-    }
+    //QString addressStr = loadIP;
 
     // ip + port
-    std::string ipAddress = addressStr.toStdString();
+    std::string ipAddress = loadIP.toStdString();
 
     // create the mn key
     CKey secret;
