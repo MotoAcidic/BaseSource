@@ -145,7 +145,7 @@ public:
         vVKCFundKey = ParseHex("031f3b25791150d4243608c51f39c13a5b340cb73e4bf44c4d0258ad65506cd6c2"); // SWAPPubKey for fees
         nDevFee = 1; // TEAMFee %
         nFundFee = 3; // SWAPFee %
-        nDefaultPort = 41110;
+        nDefaultPort = 8898;
         bnProofOfWorkLimit = ~uint256(0) >> 20;
         bnStartWork = ~uint256(0) >> 24;
 
@@ -160,7 +160,7 @@ public:
         nMasternodePercentDrift = 3;
         nMaxMoneyOut = 20000000 * COIN; // 20m
 
-        nStartMasternodePaymentsBlock = 1001;
+        nStartMasternodePaymentsBlock = 250;
 
         /** Height or Time Based Activations **/
         nLastPOWBlock = 250;
