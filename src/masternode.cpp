@@ -306,9 +306,9 @@ bool CMasternode::IsValidNetAddr()
 unsigned CMasternode::Level(CAmount vin_val)
 {
     switch(vin_val) {
-        case 1000  * COIN: return 1;
-        case 3000  * COIN: return 2;
-        case 5000 * COIN: return 3;
+        case 5000  * COIN: return 1;
+        case 7500  * COIN: return 2;
+        case 10000 * COIN: return 3;
     }
 
     return 0;
