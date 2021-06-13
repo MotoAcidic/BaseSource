@@ -97,7 +97,8 @@ public:
 
     void clear();
     bool read(std::string& strErr);
-    CMasternodeConfig::CMasternodeEntry* add(std::string alias, std::string ip, std::string privKey, std::string txHash, std::string outputIndex);
+    void add(std::string alias, std::string ip, std::string privKey, std::string txHash, std::string outputIndex);
+
     std::vector<CMasternodeEntry>& getEntries()
     {
         return entries;
