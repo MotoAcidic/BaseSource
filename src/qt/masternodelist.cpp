@@ -12,6 +12,7 @@
 #include "../wallet.h"
 #include "walletmodel.h"
 #include "../rpcserver.h"
+#include "../qt/masternodewizarddialog.h"
 
 #include <QMessageBox>
 #include <QTimer>
@@ -138,6 +139,32 @@ bool RpcStartMasternode(std::string &Alias,std::string &Overall, std::string &Er
         return false;
     }
     return true;
+}
+
+// TODO
+// Setup each button per tier collateral
+void MasternodeList::onCreateTier1Clicked()
+{
+    if (verifyWalletUnlocked()) {
+        if (walletModel->getBalance() <= (COIN * 10000)) {
+            inform(tr("No enough balance to create a master node, 10,000 PIV required."));
+            return;
+        }
+        showHideOp(true);
+        MasterNodeWizardDialog* dialog = new MasterNodeWizardDialog(walletModel, window);
+        if (openDialogWithOpaqueBackgroundY(dialog, window, 5, 7)) {
+            if (dialog->isOk) {
+                // Update list
+                mnModel->addMn(dialog->mnEntry);
+                updateListState();
+                // add mn
+                inform(dialog->returnStr);
+            } else {
+                warn(tr("Error creating master node"), dialog->returnStr);
+            }
+        }
+        dialog->deleteLater();
+    }
 }
 
 void MasternodeList::StartAlias(std::string strAlias)
@@ -358,7 +385,8 @@ void MasternodeList::updateNodeList()
         auto it = masternodeRewards.find(pubkey);
         if (it != masternodeRewards.end())
             masternodeCoins = (*it).second;
-
+        // TODO
+        // Go through and add all equal tiers for the list 
         switch (mn.Level())
         {
             case 1: mnLevelText = "Light"; if (roi1 > 1) tLuck = ((masternodeCoins/COIN) / roi1)*100; break;

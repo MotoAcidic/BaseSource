@@ -58,7 +58,9 @@ QT_FORMS_UI = \
   qt/forms/sendcoinsentry.ui \
   qt/forms/signverifymessagedialog.ui \
   qt/forms/transactiondescdialog.ui \
-  qt/forms/toolspage.ui
+  qt/forms/toolspage.ui \
+  qt/forms/masternodewizarddialog.ui \
+  qt/forms/mnrow.ui 
 
 QT_MOC_CPP = \
   qt/moc_addressbookpage.cpp \
@@ -111,7 +113,9 @@ QT_MOC_CPP = \
   qt/moc_walletmodel.cpp \
   qt/moc_walletview.cpp \
   qt/moc_toolspage.cpp \
-  qt/moc_qssloader.cpp
+  qt/moc_qssloader.cpp \
+  qt/moc_masternodewizarddialog.cpp \
+  qt/moc_mnrow.cpp 
   
 BITCOIN_MM = \
   qt/macdockiconhandler.mm \
@@ -191,7 +195,9 @@ BITCOIN_QT_H = \
   qt/walletview.h \
   qt/winshutdownmonitor.h \
   qt/toolspage.h \
-  qt/qssloader.h 
+  qt/qssloader.h \
+  qt/masternodewizarddialog.h \
+  qt/mnrow.h 
 
 RES_ICONS = \
   qt/res/icons/add.png \
@@ -410,7 +416,9 @@ BITCOIN_QT_CPP += \
   qt/walletmodeltransaction.cpp \
   qt/walletview.cpp \
   qt/toolspage.cpp \
-  qt/qssloader.cpp
+  qt/qssloader.cpp \
+  qt/masternodewizarddialog.cpp \
+  qt/mnrow.cpp 
 
 endif
 

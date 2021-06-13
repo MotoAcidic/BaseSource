@@ -37,6 +37,7 @@ public:
 
     void setClientModel(ClientModel* clientModel);
     void setWalletModel(WalletModel* walletModel);
+    void onCreateTier1Clicked();
     void StartAlias(std::string strAlias);
     void StartAll(std::string strCommand = "start-all");
 
