@@ -207,28 +207,27 @@ bool ConfigureMasternodePage::on_CreateTier1_clicked()
      */
 
     // Populate the Alias
-    QString alias = ui->aliasEdit->text;    
-    ui->aliasEdit->setText(alias);
-
-    if (aliasEdit.isEmpty()) {
+    QString setAliasStr = ui->aliasEdit->text();    
+    if (setAliasStr.isEmpty()) {
         LogPrintf("Can't leave alias field empty.");
         return false;
     }
+    std::string alias = setAliasStr.toStdString();
 
     // validate IP address
-    QString mnIP = ui->vpsIpEdit->text;
-    ui->vpsIpEdit->setText(mnIP);
-
-    if (vpsIpEdit.isEmpty()) {
+    QString mnIPStr = ui->vpsIpEdit->text;
+    if (mnIPStr.isEmpty()) {
         LogPrintf("Can't leave IP field empty.");
         return false;
     }
+    std::string ipAddress = addressStr.toStdString() +  ':' + Params().GetDefaultPort();
 
     // create the mn key
     CKey secret;
     secret.MakeNewKey(false);
     ui->privKeyEdit->setText(QString::fromStdString(CBitcoinSecret(secret).ToString()));
     
+    /*
 
     COutPoint collateralOut;
 
@@ -354,30 +353,13 @@ bool ConfigureMasternodePage::on_CreateTier1_clicked()
     masternodeConfig.writeToMasternodeConf();
     break;
 
-    /*
-    fs::path pathConfigFile = AbsPathForConfigVal(fs::path("masternode_temp.conf"));
-    FILE* configFile = fopen(pathConfigFile.string().c_str(), "w");
-    lineCopy += alias + " " + ipAddress + " " + mnKeyString + " " + txID + " " + indexOutStr + "\n";
-    fwrite(lineCopy.c_str(), std::strlen(lineCopy.c_str()), 1, configFile);
-    fclose(configFile);
-
-    fs::path pathOldConfFile = AbsPathForConfigVal(fs::path("old_masternode.conf"));
-    if (fs::exists(pathOldConfFile)) {
-        fs::remove(pathOldConfFile);
-    }
-    rename(pathMasternodeConfigFile, pathOldConfFile);
-
-    fs::path pathNewConfFile = AbsPathForConfigVal(fs::path("masternode.conf"));
-    rename(pathConfigFile, pathNewConfFile);
-
-    mnEntry = masternodeConfig.add(alias, ipAddress + ":", mnKeyString, txID, indexOutStr);
-    */
 
     // Lock collateral output
     walletModel->lockCoin(collateralOut);
 
     returnStr = tr("Master node created! Wait %1" + MASTERNODE_MIN_CONFIRMATIONS + "confirmations before starting it.");
     return true;
+    */
 }
 
 /*
