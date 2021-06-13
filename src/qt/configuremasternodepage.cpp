@@ -207,7 +207,7 @@ bool ConfigureMasternodePage::on_CreateTier1_clicked()
      */
 
     // Populate the Alias
-    QString alias = loadAlias;    
+    QString alias = loadAlias();    
     ui->aliasEdit->setText(alias);
 
     if (aliasEdit.isEmpty()) {
@@ -216,7 +216,7 @@ bool ConfigureMasternodePage::on_CreateTier1_clicked()
     }
 
     // validate IP address
-    QString mnIP = loadIP;
+    QString mnIP = loadIP();
     ui->vpsIpEdit->setText(mnIP);
 
     if (vpsIpEdit.isEmpty()) {
