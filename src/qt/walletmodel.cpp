@@ -228,6 +228,22 @@ void WalletModel::refreshClicked()
         transactionTableModel->updateConfirmations();
 }
 
+// returns a COutPoint of if found
+bool WalletModel::getMNCollateralCandidate(COutPoint& outPoint)
+{
+    coinsFilter.nCoinType = ONLY_NONDENOMINATED_NOTDEPOSITIFMN;
+    std::vector<COutput> vCoins;
+    wallet->AvailableCoins(&vCoins, nullptr, coinsFilter);
+    for (const COutput& out : vCoins) {
+        // skip locked collaterals
+        if (!isLockedCoin(out.tx->GetHash(), out.i)) {
+            outPoint = COutPoint(out.tx->GetHash(), out.i);
+            return true;
+        }
+    }
+    return false;
+}
+
 //void WalletModel::checkBalanceChanged()
 void WalletModel::checkBalanceChanged(const CAmount& balance, const CAmount& unconfirmedBalance, const CAmount& immatureBalance, const CAmount& anonymizedBalance, const CAmount& watchOnlyBalance, const CAmount& watchUnconfBalance, const CAmount& watchImmatureBalance)
 {
@@ -560,6 +576,7 @@ static void NotifyAddressBookChanged(WalletModel* walletmodel, CWallet* wallet, 
 // queue notifications to show a non freezing progress dialog e.g. for rescan
 static bool fQueueNotifications = false;
 static std::vector<std::pair<uint256, ChangeType> > vQueueNotifications;
+
 static void NotifyTransactionChanged(WalletModel* walletmodel, CWallet* wallet, const uint256& hash, ChangeType status)
 {
     if (fQueueNotifications) {
@@ -771,8 +788,6 @@ bool WalletModel::isMine(CBitcoinAddress address)
 {
     return IsMine(*wallet, address.Get());
 }
-
-bool WalletModel::getMNCollateralCandidate(COutPoint& outPoint)
 {
     CWallet::AvailableCoinsFilter coinsFilter;
     coinsFilter.nCoinType = ONLY_NONDENOMINATED_NOTDEPOSITIFMN;

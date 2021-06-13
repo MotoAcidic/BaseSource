@@ -192,6 +192,197 @@ void ConfigureMasternodePage::on_AutoFillOutputs_clicked()
 
 bool ConfigureMasternodePage::on_CreateTier1_clicked()
 {
+
+    /**
+     *
+     * Load MN Alias
+     * Load MN IP
+     * Generate mn key
+     * 
+
+    3) if there is a valid (unlocked) collateral utxo, use it
+    4) otherwise create a receiving address and send a tx with 10k to it.
+    5) get the collateral output.
+    6) use those values on the masternode.conf
+     */
+
+    // Populate the Alias
+    QString alias = loadAlias;    
+    ui->aliasEdit->setText(alias);
+
+    if (aliasEdit.isEmpty()) {
+        LogPrintf("Can't leave alias field empty.");
+        return false;
+    }
+
+    // validate IP address
+    QString mnIP = loadIP;
+    ui->vpsIpEdit->setText(mnIP);
+
+    if (vpsIpEdit.isEmpty()) {
+        LogPrintf("Can't leave IP field empty.");
+        return false;
+    }
+
+    // create the mn key
+    CKey secret;
+    secret.MakeNewKey(false);
+    ui->privKeyEdit->setText(QString::fromStdString(CBitcoinSecret(secret).ToString()));
+    
+
+    COutPoint collateralOut;
+
+    // If not found create a new collateral tx
+    if (!walletModel->getMNCollateralCandidate(collateralOut)) {
+
+        // New receive address
+        CPubKey newKey;
+        // New ID for address
+        CKeyID keyID = newKey.GetID();
+        //Destination dest;
+        setResult r = walletModel->getNewAddress(newKey, alias);
+
+        if (!r.result) {
+            // generate address fail
+            LogPrintf("Failed to generate address");
+            return false;
+        }
+
+        CAmount Tier1 = GetSporkValue(SPORK_10_TIER_1_COLLATERAL);
+        // const QString& addr, const QString& label, const CAmount& amount, const QString& message
+        SendCoinsRecipient sendCoinsRecipient(
+            QString::fromStdString(dest.ToString()),
+            QString::fromStdString(alias),
+            CAmount(Tier1) * COIN,
+            "");
+
+        // Send the 10 tx to one of your address
+        QList<SendCoinsRecipient> recipients;
+        recipients.append(sendCoinsRecipient);
+        WalletModelTransaction currentTransaction(recipients);
+        WalletModel::SendCoinsReturn prepareStatus;
+
+        // no coincontrol, no P2CS delegations
+        prepareStatus = walletModel->prepareTransaction(&currentTransaction, nullptr, false);
+
+        QString returnMsg = tr("Unknown error");
+        // process prepareStatus and on error generate message shown to user
+        CClientUIInterface::MessageBoxFlags informType;
+
+        if (prepareStatus.status != WalletModel::OK) {
+            returnStr = tr("Prepare master node failed.\n\n%1\n").arg(returnMsg);
+            return false;
+        }
+
+        WalletModel::SendCoinsReturn sendStatus = walletModel->sendCoins(currentTransaction);
+
+        if (sendStatus.status != WalletModel::OK) {
+            returnStr = tr("Cannot send collateral transaction.\n\n%1").arg(returnMsg);
+            return false;
+        }
+
+        // look for the tx index of the collateral
+        CWalletTx* walletTx = currentTransaction.getTransaction();
+        std::string txID = walletTx->GetHash().GetHex();
+        int indexOut = -1;
+        for (int i = 0; i < (int)walletTx->vout.size(); i++) {
+            CTxOut& out = walletTx->vout[i];
+            if (out.nValue == Tier1 * COIN) {
+                indexOut = i;
+                break;
+            }
+        }
+        if (indexOut == -1) {
+            returnStr = tr("Invalid collateral output index");
+            return false;
+        }
+        // save the collateral outpoint
+        collateralOut = COutPoint(walletTx->GetHash(), indexOut);
+    }
+
+    // Update the conf file
+    std::string strConfFile = "masternode.conf";
+    std::string strDataDir = GetDataDir().string();
+
+    int linenumber = 1;
+    std::string lineCopy = "";
+    for (std::string line; std::getline(streamConfig, line); linenumber++) {
+        if (line.empty()) continue;
+
+        std::istringstream iss(line);
+        std::string comment, alias, ip, privKey, txHash, outputIndex;
+
+        if (iss >> comment) {
+            if (comment.at(0) == '#') continue;
+            iss.str(line);
+            iss.clear();
+        }
+
+        if (!(iss >> alias >> ip >> privKey >> txHash >> outputIndex)) {
+            iss.str(line);
+            iss.clear();
+            if (!(iss >> alias >> ip >> privKey >> txHash >> outputIndex)) {
+                streamConfig.close();
+                returnStr = tr("Error parsing masternode.conf file");
+                return false;
+            }
+        }
+        lineCopy += line + "\n";
+    }
+
+    if (lineCopy.size() == 0) {
+        lineCopy = "# Masternode config file\n"
+                   "# Format: alias IP:port masternodeprivkey collateral_output_txid collateral_output_index\n"
+                   "# Example: mn1 127.0.0.2:51479 93HaYBVUCYjEMeeH1Y4sBGLALQZE1Yc1K64xiqgX37tGBDQL8Xg 2bcd3c84c84f87eaa86e4e56834c92927a07f9e18718810b92e0d0324456a67c 0"
+                   "#";
+    }
+    lineCopy += "\n";
+
+    streamConfig.close();
+
+    std::string txID = collateralOut.hash.ToString();
+    std::string indexOutStr = std::to_string(collateralOut.n);
+
+    // Check IP address type
+    QHostAddress hostAddress(addressStr);
+    QAbstractSocket::NetworkLayerProtocol layerProtocol = hostAddress.protocol();
+    if (layerProtocol == QAbstractSocket::IPv6Protocol) {
+        ipAddress = "[" + ipAddress + "]";
+    }
+
+    masternodeConfig.add(alias + " " + ipAddress + " " + mnKeyString + " " + txID + " " + indexOutStr);
+    masternodeConfig.writeToMasternodeConf();
+    break;
+
+    /*
+    fs::path pathConfigFile = AbsPathForConfigVal(fs::path("masternode_temp.conf"));
+    FILE* configFile = fopen(pathConfigFile.string().c_str(), "w");
+    lineCopy += alias + " " + ipAddress + " " + mnKeyString + " " + txID + " " + indexOutStr + "\n";
+    fwrite(lineCopy.c_str(), std::strlen(lineCopy.c_str()), 1, configFile);
+    fclose(configFile);
+
+    fs::path pathOldConfFile = AbsPathForConfigVal(fs::path("old_masternode.conf"));
+    if (fs::exists(pathOldConfFile)) {
+        fs::remove(pathOldConfFile);
+    }
+    rename(pathMasternodeConfigFile, pathOldConfFile);
+
+    fs::path pathNewConfFile = AbsPathForConfigVal(fs::path("masternode.conf"));
+    rename(pathConfigFile, pathNewConfFile);
+
+    mnEntry = masternodeConfig.add(alias, ipAddress + ":", mnKeyString, txID, indexOutStr);
+    */
+
+    // Lock collateral output
+    walletModel->lockCoin(collateralOut);
+
+    returnStr = tr("Master node created! Wait %1" + MASTERNODE_MIN_CONFIRMATIONS + "confirmations before starting it.");
+    return true;
+}
+
+/*
+bool ConfigureMasternodePage::on_CreateTier1_clicked()
+{
     if (!walletModel) {
         returnStr = tr("walletModel not set");
         return false;
@@ -205,7 +396,7 @@ bool ConfigureMasternodePage::on_CreateTier1_clicked()
     4) otherwise create a receiving address and send a tx with 10k to it.
     5) get the collateral output.
     6) use those values on the masternode.conf
-     */
+     *
 
     // validate IP address
     //QString addressLabel = loadAlias;
@@ -360,7 +551,7 @@ bool ConfigureMasternodePage::on_CreateTier1_clicked()
     rename(pathConfigFile, pathNewConfFile);
 
     mnEntry = masternodeConfig.add(alias, ipAddress + ":", mnKeyString, txID, indexOutStr);
-    */
+    *
 
     // Lock collateral output
     walletModel->lockCoin(collateralOut);
@@ -368,4 +559,5 @@ bool ConfigureMasternodePage::on_CreateTier1_clicked()
     returnStr = tr("Master node created! Wait %1" + MASTERNODE_MIN_CONFIRMATIONS + "confirmations before starting it.");
     return true;
 }
+*/
 
