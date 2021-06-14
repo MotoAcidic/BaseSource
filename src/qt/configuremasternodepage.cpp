@@ -217,13 +217,12 @@ bool ConfigureMasternodePage::on_CreateTier1_clicked()
 
     // validate IP address
     QString mnIPStr = ui->vpsIpEdit->text();
-    QString portStr = Params().GetDefaultPort();
     if (mnIPStr.isEmpty()) {
         LogPrintf("Can't leave IP field empty.");
         return false;
     }
     std::string mnIPAddress = mnIPStr.toStdString();
-    std::string port = portStr.toStdString();
+    std::string port = Params().GetDefaultPort();
     //ui->vpsIpEdit->setText(mnIPAddress);
 
     // create the mn key
