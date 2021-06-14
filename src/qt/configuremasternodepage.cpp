@@ -198,12 +198,9 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
     QString setAliasStr = ui->aliasEdit->text();    
     if (setAliasStr.isEmpty()) {
         //LogPrintf("Can't leave alias field empty.");
-        int msgboxAlias = MessageBox(
-            NULL,
-            L"Can't leave alias field empty.,
-            IDOK);
-
-        return msgboxAlias;
+        QMessageBox msgBox;
+        msgBox.setText("Can't leave alias field empty.");
+        msgBox.exec();
     }
     std::string alias = setAliasStr.toStdString();
 
