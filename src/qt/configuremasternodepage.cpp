@@ -200,7 +200,7 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
         QMessageBox msgBox;
         msgBox.setText("Can't leave alias field empty.");
         msgBox.exec();
-        return false;
+        break;
     }
     std::string alias = setAliasStr.toStdString();
 
@@ -212,7 +212,7 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
         QMessageBox msgBox;
         msgBox.setText("Can't leave IP field empty.");
         msgBox.exec();
-        return false;
+        break;
     }
     std::string mnIPAddress = mnIPStr.toStdString();
 
@@ -220,12 +220,6 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
     CKey secret;
     secret.MakeNewKey(false);
     ui->privKeyEdit->setText(QString::fromStdString(CBitcoinSecret(secret).ToString()));
-    if (privKeyEdit.isEmpty()) {
-        QMessageBox msgBox;
-        msgBox.setText("Private Key wasnt generated properly.");
-        msgBox.exec();
-        return false;
-    }
     
     /*
 
