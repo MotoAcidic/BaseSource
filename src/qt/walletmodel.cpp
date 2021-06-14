@@ -231,9 +231,9 @@ void WalletModel::refreshClicked()
 // returns a COutPoint of if found
 bool WalletModel::getMNCollateralCandidate(COutPoint& outPoint)
 {
-    coinsFilter.nCoinType = ONLY_NONDENOMINATED_NOTDEPOSITIFMN;
+    //coinsFilter.nCoinType = ONLY_NONDENOMINATED_NOTDEPOSITIFMN;
     std::vector<COutput> vCoins;
-    wallet->AvailableCoins(&vCoins, nullptr, coinsFilter);
+    wallet->AvailableCoins(&vCoins, nullptr);
     for (const COutput& out : vCoins) {
         // skip locked collaterals
         if (!isLockedCoin(out.tx->GetHash(), out.i)) {
