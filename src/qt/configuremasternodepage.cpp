@@ -197,9 +197,21 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
     
     QString setAliasStr = ui->aliasEdit->text();    
     if (setAliasStr.isEmpty()) {
-        LogPrintf("Can't leave alias field empty.");
+        //LogPrintf("Can't leave alias field empty.");
+        int msgboxAlias = MessageBox(
+            NULL,
+            L"Can't leave alias field empty.,
+            IDOK);
+
+        if (msgboxAlias == IDOK) {
+            break;
+        }
+
+        return msgboxID;
     }
     std::string alias = setAliasStr.toStdString();
+
+ 
 
     // validate IP address
     QString mnIPStr = ui->vpsIpEdit->text();
