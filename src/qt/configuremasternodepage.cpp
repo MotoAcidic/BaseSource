@@ -198,7 +198,6 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
     QString setAliasStr = ui->aliasEdit->text();    
     if (setAliasStr.isEmpty()) {
         LogPrintf("Can't leave alias field empty.");
-        return false;
     }
     std::string alias = setAliasStr.toStdString();
 
@@ -206,7 +205,6 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
     QString mnIPStr = ui->vpsIpEdit->text();
     if (mnIPStr.isEmpty()) {
         LogPrintf("Can't leave IP field empty.");
-        return false;
     }
     std::string mnIPAddress = mnIPStr.toStdString();
 
