@@ -213,6 +213,7 @@ bool ConfigureMasternodePage::on_CreateTier1_clicked()
         return false;
     }
     std::string alias = setAliasStr.toStdString();
+    ui->aliasEdit->setText(setAliasStr);
     //ui->aliasEdit->setText(alias);
 
     // validate IP address
@@ -223,6 +224,7 @@ bool ConfigureMasternodePage::on_CreateTier1_clicked()
     }
     std::string mnIPAddress = mnIPStr.toStdString();
     //std::string port = Params().GetDefaultPort();
+    ui->vpsIpEdit->setText(mnIPStr);
     //ui->vpsIpEdit->setText(mnIPAddress);
 
     // create the mn key
