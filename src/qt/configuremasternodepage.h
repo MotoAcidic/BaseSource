@@ -82,7 +82,7 @@ public:
 public slots:
     void accept();
     void on_AutoFillPrivKey_clicked();
-    bool on_CreateTier1_clicked();
+    void on_CreateTier1_clicked();
     //void on_AutoFillOutputs_clicked();
     
 

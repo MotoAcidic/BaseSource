@@ -190,31 +190,17 @@ void ConfigureMasternodePage::on_AutoFillOutputs_clicked()
 }
 */
 
-bool ConfigureMasternodePage::on_CreateTier1_clicked()
+void ConfigureMasternodePage::on_CreateTier1_clicked()
 {
 
-    /**
-     *
-     * Load MN Alias
-     * Load MN IP
-     * Generate mn key
-     * 
-
-    3) if there is a valid (unlocked) collateral utxo, use it
-    4) otherwise create a receiving address and send a tx with 10k to it.
-    5) get the collateral output.
-    6) use those values on the masternode.conf
-     */
-
     // Populate the Alias
+    /*
     QString setAliasStr = ui->aliasEdit->text();    
     if (setAliasStr.isEmpty()) {
         LogPrintf("Can't leave alias field empty.");
         return false;
     }
     std::string alias = setAliasStr.toStdString();
-    ui->aliasEdit->setText(QString::fromStdString(setAliasStr);
-    //ui->aliasEdit->setText(alias);
 
     // validate IP address
     QString mnIPStr = ui->vpsIpEdit->text();
@@ -223,6 +209,7 @@ bool ConfigureMasternodePage::on_CreateTier1_clicked()
         return false;
     }
     std::string mnIPAddress = mnIPStr.toStdString();
+    */
     //std::string port = Params().GetDefaultPort();
 
     // create the mn key
