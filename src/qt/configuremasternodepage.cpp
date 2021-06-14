@@ -194,7 +194,7 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
 {
 
     // Populate the Alias
-    /*
+    
     QString setAliasStr = ui->aliasEdit->text();    
     if (setAliasStr.isEmpty()) {
         LogPrintf("Can't leave alias field empty.");
@@ -209,8 +209,6 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
         return false;
     }
     std::string mnIPAddress = mnIPStr.toStdString();
-    */
-    //std::string port = Params().GetDefaultPort();
 
     // create the mn key
     CKey secret;
