@@ -15,12 +15,12 @@
 #include "csvmodelwriter.h"
 #include "editaddressdialog.h"
 #include "guiutil.h"
-//#include "masternode-budget.h"
 #include "masternode-payments.h"
 #include "masternodeconfig.h"
 #include "masternodeman.h"
 #include "masternodelist.h"
 #include "../wallet.h"
+#include "../rpcclient.h"
 
 #include <univalue.h>
 #include <QIcon>
@@ -229,14 +229,8 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
     CKeyID keyID = newKey.GetID();
 
     std::string pubkey = "";
-    pubkey = walletModel->getNewAddress(newKey, alias);
-
-    // generate address fail
-    if (!pubkey.result) {        
-        QMessageBox msgBox;
-        msgBox.setText("Failed to generate address.");
-        msgBox.exec();
-    }
+    //pubkey = ->getNewAddress(newKey, alias);
+    pubkey = rpcwallet->getnewaddress(alias);
 
     /*
     // If not found create a new collateral tx
