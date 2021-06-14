@@ -213,16 +213,18 @@ bool ConfigureMasternodePage::on_CreateTier1_clicked()
         return false;
     }
     std::string alias = setAliasStr.toStdString();
-    ui->aliasEdit->setText(alias);
+    //ui->aliasEdit->setText(alias);
 
     // validate IP address
     QString mnIPStr = ui->vpsIpEdit->text();
+    QString portStr = Params().GetDefaultPort();
     if (mnIPStr.isEmpty()) {
         LogPrintf("Can't leave IP field empty.");
         return false;
     }
-    std::string mnIPAddress = mnIPStr.toStdString() + ':' + Params().GetDefaultPort();
-    ui->vpsIpEdit->setText(mnIPAddress);
+    std::string mnIPAddress = mnIPStr.toStdString();
+    std::string port = portStr.toStdString();
+    //ui->vpsIpEdit->setText(mnIPAddress);
 
     // create the mn key
     CKey secret;
