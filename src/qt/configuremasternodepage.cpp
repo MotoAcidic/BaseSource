@@ -193,18 +193,17 @@ void ConfigureMasternodePage::on_AutoFillOutputs_clicked()
 void ConfigureMasternodePage::on_CreateTier1_clicked()
 {
 
-    // Populate the Alias
-    
+    //pubkey = CBitcoinAddress(pmn->pubKeyCollateralAddress.GetID()).ToString();
+
+
+    // Populate the Alias    
     QString setAliasStr = ui->aliasEdit->text();    
     if (setAliasStr.isEmpty()) {
         QMessageBox msgBox;
         msgBox.setText("Can't leave alias field empty.");
         msgBox.exec();
-        break;
     }
-    std::string alias = setAliasStr.toStdString();
-
- 
+    std::string alias = setAliasStr.toStdString(); 
 
     // validate IP address
     QString mnIPStr = ui->vpsIpEdit->text();
@@ -212,7 +211,6 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
         QMessageBox msgBox;
         msgBox.setText("Can't leave IP field empty.");
         msgBox.exec();
-        break;
     }
     std::string mnIPAddress = mnIPStr.toStdString();
 
@@ -221,10 +219,26 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
     secret.MakeNewKey(false);
     ui->privKeyEdit->setText(QString::fromStdString(CBitcoinSecret(secret).ToString()));
     
-    /*
-
+    // Create a new output
     COutPoint collateralOut;
 
+    // New receive address
+    CPubKey newKey;
+
+    // New ID for address
+    CKeyID keyID = newKey.GetID();
+
+    std::string pubkey = "";
+    pubkey = walletModel->getNewAddress(newKey, alias);
+
+    // generate address fail
+    if (!pubkey.result) {        
+        QMessageBox msgBox;
+        msgBox.setText("Failed to generate address.");
+        msgBox.exec();
+    }
+
+    /*
     // If not found create a new collateral tx
     if (!walletModel->getMNCollateralCandidate(collateralOut)) {
 
