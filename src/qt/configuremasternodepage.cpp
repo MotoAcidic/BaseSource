@@ -203,11 +203,7 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
             L"Can't leave alias field empty.,
             IDOK);
 
-        if (msgboxAlias == IDOK) {
-            break;
-        }
-
-        return msgboxID;
+        return msgboxAlias;
     }
     std::string alias = setAliasStr.toStdString();
 
