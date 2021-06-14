@@ -229,6 +229,7 @@ void WalletModel::refreshClicked()
 }
 
 // returns a COutPoint of if found
+/*
 bool WalletModel::getMNCollateralCandidate(COutPoint& outPoint)
 {
     //coinsFilter.nCoinType = ONLY_NONDENOMINATED_NOTDEPOSITIFMN;
@@ -243,6 +244,7 @@ bool WalletModel::getMNCollateralCandidate(COutPoint& outPoint)
     }
     return false;
 }
+*/
 
 //void WalletModel::checkBalanceChanged()
 void WalletModel::checkBalanceChanged(const CAmount& balance, const CAmount& unconfirmedBalance, const CAmount& immatureBalance, const CAmount& anonymizedBalance, const CAmount& watchOnlyBalance, const CAmount& watchUnconfBalance, const CAmount& watchImmatureBalance)
