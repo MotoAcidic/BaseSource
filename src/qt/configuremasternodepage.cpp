@@ -230,7 +230,7 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
 
     std::string pubkey = "";
     //pubkey = ->getNewAddress(newKey, alias);
-    pubkey = rpcwallet->getnewaddress(alias);
+    pubkey = CWallet->getnewaddress(alias);
 
     /*
     // If not found create a new collateral tx
