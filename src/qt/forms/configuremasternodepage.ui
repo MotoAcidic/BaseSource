@@ -14,41 +14,17 @@
    <string>Edit Address</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="3" column="0">
-    <widget class="QPushButton" name="CreateTier3">
+   <item row="2" column="0">
+    <widget class="QPushButton" name="CreateTier1">
      <property name="text">
-      <string>Create Tier 3</string>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="0">
-    <widget class="QPushButton" name="CreateTier2">
-     <property name="text">
-      <string>Create Tier 2</string>
-     </property>
-    </widget>
-   </item>
-   <item row="5" column="0">
-    <widget class="QPushButton" name="CreateTier4">
-     <property name="text">
-      <string>Create Tier 4</string>
-     </property>
-    </widget>
-   </item>
-   <item row="6" column="0">
-    <widget class="QPushButton" name="CreateTier5">
-     <property name="text">
-      <string>Create Tier 5</string>
+      <string>Create Tier 1</string>
      </property>
     </widget>
    </item>
    <item row="7" column="0">
-    <widget class="QDialogButtonBox" name="buttonBox">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="standardButtons">
-      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+    <widget class="QPushButton" name="CreateTier5">
+     <property name="text">
+      <string>Create Tier 5</string>
      </property>
     </widget>
    </item>
@@ -141,6 +117,16 @@
      </item>
     </layout>
    </item>
+   <item row="8" column="0">
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
    <item row="1" column="0">
     <widget class="QPushButton" name="AutoFillPrivKey">
      <property name="text">
@@ -148,10 +134,24 @@
      </property>
     </widget>
    </item>
-   <item row="2" column="0">
-    <widget class="QPushButton" name="CreateTier1">
+   <item row="4" column="0">
+    <widget class="QPushButton" name="CreateTier3">
      <property name="text">
-      <string>Create Tier 1</string>
+      <string>Create Tier 3</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="0">
+    <widget class="QPushButton" name="CreateTier4">
+     <property name="text">
+      <string>Create Tier 4</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QPushButton" name="CreateTier2">
+     <property name="text">
+      <string>Create Tier 2</string>
      </property>
     </widget>
    </item>
