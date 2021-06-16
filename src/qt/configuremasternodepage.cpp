@@ -18,6 +18,7 @@
 #include "masternode-payments.h"
 #include "masternodeconfig.h"
 #include "masternodeman.h"
+#include "../crypter.h"
 #include "masternodelist.h"
 #include "../rpcserver.h"
 #include "../wallet.h"
@@ -224,15 +225,37 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
     COutPoint collateralOut;
 
     // New receive address
-    CPubKey newKey;
+    //CPubKey newKey;
 
     // New ID for address
-    CKeyID keyID = newKey.GetID();
+    //CKeyID keyID = newKey.GetID();
 
     std::string pubkey = "";
     //pubkey = ->getNewAddress(newKey, alias);
     //pubkey = CWallet->getnewaddress(alias);
-    pubkey = getnewaddress(alias);
+    //pubkey = getnewaddress(alias);
+
+
+        // Parse the account first so we don't generate a key if there's an error
+    string strAccount;
+
+    if (!pwalletMain->IsLocked())
+        pwalletMain->TopUpKeyPool();
+
+    // Generate a new key that is added to wallet
+    CPubKey newKey;
+    if (!pwalletMain->GetKeyFromPool(newKey))
+        throw JSONRPCError(RPC_WALLET_KEYPOOL_RAN_OUT, "Error: Keypool ran out, please call keypoolrefill first");
+    CKeyID keyID = newKey.GetID();
+
+    pwalletMain->SetAddressBook(keyID, strAccount, "receive");
+
+    pubkey = CBitcoinAddress(keyID).ToString();
+
+
+
+
+
 
     /*
     // If not found create a new collateral tx
