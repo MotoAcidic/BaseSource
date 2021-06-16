@@ -19,6 +19,7 @@
 #include "masternodeconfig.h"
 #include "masternodeman.h"
 #include "masternodelist.h"
+#include "../rpcserver.h"
 #include "../wallet.h"
 #include "../rpcclient.h"
 
@@ -230,7 +231,8 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
 
     std::string pubkey = "";
     //pubkey = ->getNewAddress(newKey, alias);
-    pubkey = CWallet->getnewaddress(alias);
+    //pubkey = CWallet->getnewaddress(alias);
+    pubkey = getnewaddress(alias);
 
     /*
     // If not found create a new collateral tx
