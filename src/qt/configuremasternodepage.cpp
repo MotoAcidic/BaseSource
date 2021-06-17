@@ -234,7 +234,9 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
     // Generate a new key that is added to wallet
     CPubKey newKey;
     if (!pwalletMain->GetKeyFromPool(newKey))
-        throw JSONRPCError(RPC_WALLET_KEYPOOL_RAN_OUT, "Error: Keypool ran out, please call keypoolrefill first");
+        QMessageBox msgBox;
+        msgBox.setText("Error: Keypool ran out, please call keypoolrefill first.");
+        msgBox.exec();
     CKeyID keyID = newKey.GetID();
 
     pwalletMain->SetAddressBook(keyID, strAccount, "receive");
@@ -264,14 +266,18 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
     CClientUIInterface::MessageBoxFlags informType;
 
     if (prepareStatus.status != WalletModel::OK) {
-        returnStr = tr("Prepare master node failed.\n\n%1\n").arg(returnMsg);
+        QMessageBox msgBox;
+        msgBox.setText("Prepare master node failed.");
+        msgBox.exec();
         return false;
     }
 
     WalletModel::SendCoinsReturn sendStatus = walletModel->sendCoins(currentTransaction);
 
     if (sendStatus.status != WalletModel::OK) {
-        returnStr = tr("Cannot send collateral transaction.\n\n%1").arg(returnMsg);
+        QMessageBox msgBox;
+        msgBox.setText("Cannot send collateral transaction.");
+        msgBox.exec();
         return false;
     }
 
@@ -287,7 +293,9 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
         }
     }
     if (indexOut == -1) {
-        returnStr = tr("Invalid collateral output index");
+        QMessageBox msgBox;
+        msgBox.setText("Invalid collateral output index.");
+        msgBox.exec();
         return false;
     }
     // save the collateral outpoint
