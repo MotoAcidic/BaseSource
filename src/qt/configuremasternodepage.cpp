@@ -223,9 +223,7 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
     
     // Create a new output
     COutPoint collateralOut;
-
     std::string pubkey = "";
-
     string strAccount;
 
     if (!pwalletMain->IsLocked())
@@ -233,10 +231,12 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
 
     // Generate a new key that is added to wallet
     CPubKey newKey;
-    if (!pwalletMain->GetKeyFromPool(newKey))
+    if (!pwalletMain->GetKeyFromPool(newKey)) {
         QMessageBox msgBox;
         msgBox.setText("Error: Keypool ran out, please call keypoolrefill first.");
         msgBox.exec();
+    }
+
     CKeyID keyID = newKey.GetID();
 
     pwalletMain->SetAddressBook(keyID, strAccount, "receive");
@@ -247,7 +247,7 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
     CAmount Tier1 = GetSporkValue(SPORK_10_TIER_1_COLLATERAL);
     // const QString& addr, const QString& label, const CAmount& amount, const QString& message
     SendCoinsRecipient sendCoinsRecipient(
-        QString::fromStdString(dest.ToString()),
+        QString::fromStdString(pubkey.ToString()),
         QString::fromStdString(alias),
         CAmount(Tier1) * COIN,
         "");
@@ -256,21 +256,21 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
     QList<SendCoinsRecipient> recipients;
     recipients.append(sendCoinsRecipient);
     WalletModelTransaction currentTransaction(recipients);
-    WalletModel::SendCoinsReturn prepareStatus;
+    //WalletModel::SendCoinsReturn prepareStatus;
 
     // no coincontrol, no P2CS delegations
-    prepareStatus = walletModel->prepareTransaction(&currentTransaction, nullptr, false);
+    //prepareStatus = walletModel->prepareTransaction(&currentTransaction, nullptr, false);
 
     QString returnMsg = tr("Unknown error");
     // process prepareStatus and on error generate message shown to user
     CClientUIInterface::MessageBoxFlags informType;
 
-    if (prepareStatus.status != WalletModel::OK) {
-        QMessageBox msgBox;
-        msgBox.setText("Prepare master node failed.");
-        msgBox.exec();
-        return false;
-    }
+    //if (prepareStatus.status != WalletModel::OK) {
+    //    QMessageBox msgBox;
+    //    msgBox.setText("Prepare master node failed.");
+    //    msgBox.exec();
+    //    return false;
+    //}
 
     WalletModel::SendCoinsReturn sendStatus = walletModel->sendCoins(currentTransaction);
 
