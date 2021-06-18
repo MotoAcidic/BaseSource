@@ -429,10 +429,10 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
 
     returnStr = tr("Master node created! Wait %1" + MASTERNODE_MIN_CONFIRMATIONS + "confirmations before starting it.");
     return true;
-    */
+    
 }
-
-/*
+* /
+    /*
 bool ConfigureMasternodePage::on_CreateTier1_clicked()
 {
     if (!walletModel) {
