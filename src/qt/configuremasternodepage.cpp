@@ -247,7 +247,7 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
     CAmount Tier1 = GetSporkValue(SPORK_10_TIER_1_COLLATERAL);
     // const QString& addr, const QString& label, const CAmount& amount, const QString& message
     SendCoinsRecipient sendCoinsRecipient(
-        QString::fromStdString(pubkey.ToString()),
+        QString::fromStdString(pubkey),
         QString::fromStdString(alias),
         CAmount(Tier1) * COIN,
         "");
@@ -278,7 +278,6 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
         QMessageBox msgBox;
         msgBox.setText("Cannot send collateral transaction.");
         msgBox.exec();
-        return false;
     }
 
     // look for the tx index of the collateral
@@ -296,7 +295,6 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
         QMessageBox msgBox;
         msgBox.setText("Invalid collateral output index.");
         msgBox.exec();
-        return false;
     }
     // save the collateral outpoint
     collateralOut = COutPoint(walletTx->GetHash(), indexOut);
