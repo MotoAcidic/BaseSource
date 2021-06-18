@@ -56,7 +56,7 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 //    timestamp before)
 // + Contains no strange transactions
 static Checkpoints::MapCheckpoints mapCheckpoints =
-    boost::assign::map_list_of(0, uint256("0x001"))
+    boost::assign::map_list_of(0, uint256("00000964f228a764ae3ec7d95c424725a3b96f7cad5944886a183fae1f2b4c73"))
 	;
 
 static const Checkpoints::CCheckpointData data = {
@@ -168,14 +168,14 @@ public:
         genesis.nVersion = 1;
         genesis.nTime = 1624039490;
         genesis.nBits = 0x1e0ffff0;
-        genesis.nNonce = 2423888;
+        genesis.nNonce = 6708152;
 
-        MineGenesis(genesis);
+        //MineGenesis(genesis);
 
-	    //hashGenesisBlock = genesis.GetHash();
+	    hashGenesisBlock = genesis.GetHash();
 
-        //assert(hashGenesisBlock == uint256("00000c3de8228b98ee3203ab5fb9ca57029928b8995d2c117722ad7691b013d8"));
-        //assert(genesis.hashMerkleRoot == uint256("ba531bb5ddc495cc26b166db5c48ea549b4af1374f50b87ca4a2c375428d491f"));
+        assert(hashGenesisBlock == uint256("00000964f228a764ae3ec7d95c424725a3b96f7cad5944886a183fae1f2b4c73"));
+        assert(genesis.hashMerkleRoot == uint256("ba531bb5ddc495cc26b166db5c48ea549b4af1374f50b87ca4a2c375428d491f"));
 
         //vSeeds.push_back(CDNSSeedData("yswnetwork.org", "seednode1.yswnetwork.org"));     // Primary DNS Seeder
 	    //vSeeds.push_back(CDNSSeedData("yswnetwork.org", "seednode2.yswnetwork.org"));
