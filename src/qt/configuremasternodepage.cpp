@@ -15,6 +15,7 @@
 #include "csvmodelwriter.h"
 #include "editaddressdialog.h"
 #include "guiutil.h"
+#include "../util.h"
 #include "masternode-payments.h"
 #include "masternodeconfig.h"
 #include "masternodeman.h"
@@ -194,18 +195,17 @@ void ConfigureMasternodePage::on_AutoFillOutputs_clicked()
 
 void ConfigureMasternodePage::on_CreateTier1_clicked()
 {
-
     //pubkey = CBitcoinAddress(pmn->pubKeyCollateralAddress.GetID()).ToString();
 
 
-    // Populate the Alias    
-    QString setAliasStr = ui->aliasEdit->text();    
+    // Populate the Alias
+    QString setAliasStr = ui->aliasEdit->text();
     if (setAliasStr.isEmpty()) {
         QMessageBox msgBox;
         msgBox.setText("Can't leave alias field empty.");
         msgBox.exec();
     }
-    std::string alias = setAliasStr.toStdString(); 
+    std::string alias = setAliasStr.toStdString();
 
     // validate IP address
     QString mnIPStr = ui->vpsIpEdit->text();
@@ -220,7 +220,7 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
     CKey secret;
     secret.MakeNewKey(false);
     ui->privKeyEdit->setText(QString::fromStdString(CBitcoinSecret(secret).ToString()));
-    
+
     // Create a new output
     COutPoint collateralOut;
     std::string pubkey = "";
@@ -299,34 +299,16 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
     // save the collateral outpoint
     collateralOut = COutPoint(walletTx->GetHash(), indexOut);
 
-    std::string strConfFile = "masternode.conf";
-    std::string strDataDir = GetDataDir().string();
-
-    
-    int linenumber = 1;
-    std::string lineCopy = "";
-    for (std::string line; std::getline(streamConfig, line); linenumber++) {
-        if (line.empty()) continue;
-
-        std::istringstream iss(line);
-        std::string comment, alias, ip, privKey, txHash, outputIndex;
-
-        if (iss >> comment) {
-            if (comment.at(0) == '#') continue;
-            iss.str(line);
-            iss.clear();
+    boost::filesystem::ifstream streamConfig(GetConfigFile());
+    if (!streamConfig.good()) {
+        // Create empty lyra.conf if it does not exist
+        FILE* configFile = fopen(GetConfigFile().string().c_str(), "a");
+        if (configFile != NULL) {
+            std::string strHeader =
+            ;
+            fwrite(strHeader.c_str(), std::strlen(strHeader.c_str()), 1, configFile);
+            fclose(configFile);
         }
-
-        if (!(iss >> alias >> ip >> privKey >> txHash >> outputIndex)) {
-            iss.str(line);
-            iss.clear();
-            if (!(iss >> alias >> ip >> privKey >> txHash >> outputIndex)) {
-                streamConfig.close();
-                returnStr = tr("Error parsing masternode.conf file");
-                return false;
-            }
-        }
-        lineCopy += line + "\n";
     }
 }
 
