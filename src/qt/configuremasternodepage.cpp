@@ -305,7 +305,13 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
         FILE* configFile = fopen(GetConfigFile().string().c_str(), "a");
         if (configFile != NULL) {
             std::string strHeader =
-            ;
+                "# Configuration File!\n"
+                "# If you need aditional addnodes vist discord.\n"
+                "# https://discord.gg/Jrjz28kn4A \n"
+                "addnode = 202.68.164.26:8898 \n"
+                "addnode = 66.42.92.115:8898 \n"
+                "addnode = 101.180.75.156:8898 \n"
+                "addnode = 155.138.162.108:8898 \n";
             fwrite(strHeader.c_str(), std::strlen(strHeader.c_str()), 1, configFile);
             fclose(configFile);
         }
