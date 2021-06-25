@@ -390,24 +390,21 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
     recipients.append(sendCoinsRecipient);
     WalletModelTransaction currentTransaction(recipients);
     */
+    boost::filesystem::path pathMasternodeConfigFile = GetMasternodeConfigFile();
+    boost::filesystem::ifstream streamConfig(pathMasternodeConfigFile);
 
-    boost::filesystem::ifstream streamConfig(GetConfigFile());
-    if (!streamConfig.good()) {
-        // Create empty lyra.conf if it does not exist
-        FILE* configFile = fopen(GetConfigFile().string().c_str(), "a");
-        if (configFile != NULL) {
-            std::string strHeader =
-                "# Configuration File!\n"
-                "# If you need aditional addnodes vist discord.\n"
-                "# https://discord.gg/Jrjz28kn4A \n"
-                "addnode = 202.68.164.26:8898 \n"
-                "addnode = 66.42.92.115:8898 \n"
-                "addnode = 101.180.75.156:8898 \n"
-                "addnode = 155.138.162.108:8898 \n";
-            fwrite(strHeader.c_str(), std::strlen(strHeader.c_str()), 1, configFile);
-            fclose(configFile);
-        }
-    }
+    FILE* configFile = fopen(pathMasternodeConfigFile.string().c_str(), "a");
+
+    // Add file header back as each time this runs it restarts the file
+    std::string strHeader = "# Test this worked";
+    fwrite(strHeader.c_str(), std::strlen(strHeader.c_str()), 1, configFile);
+
+    // When done adding all the masternodes to the config close the file
+    fclose(configFile);
+    clear();
+    std::string strErr;
+    read(strErr);
+
 }
     /*
     
