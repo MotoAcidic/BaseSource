@@ -192,6 +192,138 @@ void ConfigureMasternodePage::on_AutoFillOutputs_clicked()
     }
 }
 */
+/*
+void ConfigureMasternodePage::on_CreateTier1_clicked()
+{
+    //pubkey = CBitcoinAddress(pmn->pubKeyCollateralAddress.GetID()).ToString();
+
+
+    // Populate the Alias
+    QString setAliasStr = ui->aliasEdit->text();
+    if (setAliasStr.isEmpty()) {
+        QMessageBox msgBox;
+        msgBox.setText("Can't leave alias field empty.");
+        msgBox.exec();
+    }
+    std::string alias = setAliasStr.toStdString();
+
+    // validate IP address
+    QString mnIPStr = ui->vpsIpEdit->text();
+    if (mnIPStr.isEmpty()) {
+        QMessageBox msgBox;
+        msgBox.setText("Can't leave IP field empty.");
+        msgBox.exec();
+    }
+    std::string mnIPAddress = mnIPStr.toStdString();
+
+    // create the mn key
+    CKey secret;
+    secret.MakeNewKey(false);
+    ui->privKeyEdit->setText(QString::fromStdString(CBitcoinSecret(secret).ToString()));
+
+    // Create a new output
+    COutPoint collateralOut;
+    std::string pubkey = "";
+    string strAccount;
+
+    if (!pwalletMain->IsLocked())
+        pwalletMain->TopUpKeyPool();
+
+    // Generate a new key that is added to wallet
+    CPubKey newKey;
+    if (!pwalletMain->GetKeyFromPool(newKey)) {
+        QMessageBox msgBox;
+        LogPrintf "Error: Keypool ran out, please call keypoolrefill first";
+        msgBox.setText("Error: Keypool ran out, please call keypoolrefill first.");
+        msgBox.exec();
+    }
+
+    CKeyID keyID = newKey.GetID();
+
+    pwalletMain->SetAddressBook(keyID, strAccount, "receive");
+
+    pubkey = CBitcoinAddress(keyID).ToString();
+
+
+    CAmount Tier1 = GetSporkValue(SPORK_10_TIER_1_COLLATERAL);
+    // const QString& addr, const QString& label, const CAmount& amount, const QString& message
+    SendCoinsRecipient sendCoinsRecipient(
+        QString::fromStdString(pubkey),
+        QString::fromStdString(alias),
+        CAmount(Tier1) * COIN,
+        "");
+    LogPrintf "Made it to the SendCoinsRecipient";
+
+    // Send the 10 tx to one of your address
+    QList<SendCoinsRecipient> recipients;
+    recipients.append(sendCoinsRecipient);
+    WalletModelTransaction currentTransaction(recipients);
+    //WalletModel::SendCoinsReturn prepareStatus;
+
+    // no coincontrol, no P2CS delegations
+    //prepareStatus = walletModel->prepareTransaction(&currentTransaction, nullptr, false);
+
+    QString returnMsg = tr("Unknown error");
+    // process prepareStatus and on error generate message shown to user
+    CClientUIInterface::MessageBoxFlags informType;
+
+    //if (prepareStatus.status != WalletModel::OK) {
+    //    QMessageBox msgBox;
+    //    msgBox.setText("Prepare master node failed.");
+    //    msgBox.exec();
+    //    return false;
+    //}
+
+    WalletModel::SendCoinsReturn sendStatus = walletModel->sendCoins(currentTransaction);
+
+    if (sendStatus.status != WalletModel::OK) {
+        QMessageBox msgBox;
+        LogPrintf "Cannot send collateral transaction.";
+        msgBox.setText("Cannot send collateral transaction.");
+        msgBox.exec();
+    }
+
+    // look for the tx index of the collateral
+    CWalletTx* walletTx = currentTransaction.getTransaction();
+    std::string txID = walletTx->GetHash().GetHex();
+    LogPrintf "Made it to the looking for tx index";
+    int indexOut = -1;
+    for (int i = 0; i < (int)walletTx->vout.size(); i++) {
+        CTxOut& out = walletTx->vout[i];
+        if (out.nValue == Tier1 * COIN) {
+            indexOut = i;
+            break;
+        }
+    }
+    if (indexOut == -1) {
+        QMessageBox msgBox;
+        LogPrintf "Invalid collateral output index.";
+        msgBox.setText("Invalid collateral output index.");
+        msgBox.exec();
+    }
+    // save the collateral outpoint
+    collateralOut = COutPoint(walletTx->GetHash(), indexOut);
+    LogPrintf "Made it to the save collateral outpoint";
+
+    boost::filesystem::ifstream streamConfig(GetConfigFile());
+    if (!streamConfig.good()) {
+        // Create empty lyra.conf if it does not exist
+        FILE* configFile = fopen(GetConfigFile().string().c_str(), "a");
+        if (configFile != NULL) {
+            std::string strHeader =
+                "# Configuration File!\n"
+                "# If you need aditional addnodes vist discord.\n"
+                "# https://discord.gg/Jrjz28kn4A \n"
+                "addnode = 202.68.164.26:8898 \n"
+                "addnode = 66.42.92.115:8898 \n"
+                "addnode = 101.180.75.156:8898 \n"
+                "addnode = 155.138.162.108:8898 \n";
+            fwrite(strHeader.c_str(), std::strlen(strHeader.c_str()), 1, configFile);
+            fclose(configFile);
+        }
+    }
+}
+*/
 
 void ConfigureMasternodePage::on_CreateTier1_clicked()
 {
@@ -233,6 +365,7 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
     CPubKey newKey;
     if (!pwalletMain->GetKeyFromPool(newKey)) {
         QMessageBox msgBox;
+        LogPrintf "Error: Keypool ran out, please call keypoolrefill first";
         msgBox.setText("Error: Keypool ran out, please call keypoolrefill first.");
         msgBox.exec();
     }
@@ -243,7 +376,7 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
 
     pubkey = CBitcoinAddress(keyID).ToString();
 
-
+    /*
     CAmount Tier1 = GetSporkValue(SPORK_10_TIER_1_COLLATERAL);
     // const QString& addr, const QString& label, const CAmount& amount, const QString& message
     SendCoinsRecipient sendCoinsRecipient(
@@ -251,53 +384,13 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
         QString::fromStdString(alias),
         CAmount(Tier1) * COIN,
         "");
+    LogPrintf "Made it to the SendCoinsRecipient";
 
     // Send the 10 tx to one of your address
     QList<SendCoinsRecipient> recipients;
     recipients.append(sendCoinsRecipient);
     WalletModelTransaction currentTransaction(recipients);
-    //WalletModel::SendCoinsReturn prepareStatus;
-
-    // no coincontrol, no P2CS delegations
-    //prepareStatus = walletModel->prepareTransaction(&currentTransaction, nullptr, false);
-
-    QString returnMsg = tr("Unknown error");
-    // process prepareStatus and on error generate message shown to user
-    CClientUIInterface::MessageBoxFlags informType;
-
-    //if (prepareStatus.status != WalletModel::OK) {
-    //    QMessageBox msgBox;
-    //    msgBox.setText("Prepare master node failed.");
-    //    msgBox.exec();
-    //    return false;
-    //}
-
-    WalletModel::SendCoinsReturn sendStatus = walletModel->sendCoins(currentTransaction);
-
-    if (sendStatus.status != WalletModel::OK) {
-        QMessageBox msgBox;
-        msgBox.setText("Cannot send collateral transaction.");
-        msgBox.exec();
-    }
-
-    // look for the tx index of the collateral
-    CWalletTx* walletTx = currentTransaction.getTransaction();
-    std::string txID = walletTx->GetHash().GetHex();
-    int indexOut = -1;
-    for (int i = 0; i < (int)walletTx->vout.size(); i++) {
-        CTxOut& out = walletTx->vout[i];
-        if (out.nValue == Tier1 * COIN) {
-            indexOut = i;
-            break;
-        }
-    }
-    if (indexOut == -1) {
-        QMessageBox msgBox;
-        msgBox.setText("Invalid collateral output index.");
-        msgBox.exec();
-    }
-    // save the collateral outpoint
-    collateralOut = COutPoint(walletTx->GetHash(), indexOut);
+    */
 
     boost::filesystem::ifstream streamConfig(GetConfigFile());
     if (!streamConfig.good()) {
@@ -317,7 +410,6 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
         }
     }
 }
-
     /*
     
 
