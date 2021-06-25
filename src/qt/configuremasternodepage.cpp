@@ -365,7 +365,6 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
     CPubKey newKey;
     if (!pwalletMain->GetKeyFromPool(newKey)) {
         QMessageBox msgBox;
-        LogPrintf "Error: Keypool ran out, please call keypoolrefill first";
         msgBox.setText("Error: Keypool ran out, please call keypoolrefill first.");
         msgBox.exec();
     }
