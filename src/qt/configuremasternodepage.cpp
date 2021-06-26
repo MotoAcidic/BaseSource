@@ -396,7 +396,7 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
     FILE* configFile = fopen(pathMasternodeConfigFile.string().c_str(), "a");
 
     // Add file header back as each time this runs it restarts the file
-    std::string strHeader = alias," ", mnIPAddress;
+    std::string strHeader = "", alias," ", mnIPAddress;
     fwrite(strHeader.c_str(), std::strlen(strHeader.c_str()), 1, configFile);
 
     // When done adding all the masternodes to the config close the file
