@@ -375,7 +375,7 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
 
     pubkey = CBitcoinAddress(keyID).ToString();
 
-    /*
+    
     CAmount Tier1 = GetSporkValue(SPORK_10_TIER_1_COLLATERAL);
     // const QString& addr, const QString& label, const CAmount& amount, const QString& message
     SendCoinsRecipient sendCoinsRecipient(
@@ -383,8 +383,8 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
         QString::fromStdString(alias),
         CAmount(Tier1) * COIN,
         "");
-    LogPrintf "Made it to the SendCoinsRecipient";
 
+    /*
     // Send the 10 tx to one of your address
     QList<SendCoinsRecipient> recipients;
     recipients.append(sendCoinsRecipient);
