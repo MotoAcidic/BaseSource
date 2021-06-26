@@ -352,7 +352,6 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
     CKey secret;
     secret.MakeNewKey(false);
     ui->privKeyEdit->setText(QString::fromStdString(CBitcoinSecret(secret).ToString()));
-    std::string privKey = ui->privKeyEdit->setText(QString::fromStdString(CBitcoinSecret(secret).ToString()));
 
     // Create a new output
     COutPoint collateralOut;
@@ -404,7 +403,7 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
     // When done adding all the masternodes to the config close the file
     fclose(configFile);
     */
-    masternodeConfig.add(alias, mnIPAddress, privKey, ui->outputEdit->text().toStdString(), ui->outputIdEdit->text().toStdString());
+    masternodeConfig.add(alias, mnIPAddress, ui->privKeyEdit->setText(QString::fromStdString(CBitcoinSecret(secret).ToString())), ui->outputEdit->text().toStdString(), ui->outputIdEdit->text().toStdString());
     masternodeConfig.writeToMasternodeConf();
 
 }
