@@ -352,7 +352,7 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
     CKey secret;
     secret.MakeNewKey(false);
     ui->privKeyEdit->setText(QString::fromStdString(CBitcoinSecret(secret).ToString()));
-    std::string privKey = secret.toStdString();
+    std::string privKey = ui->privKeyEdit->setText(QString::fromStdString(CBitcoinSecret(secret).ToString()));
 
     // Create a new output
     COutPoint collateralOut;
