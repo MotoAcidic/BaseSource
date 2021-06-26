@@ -390,6 +390,7 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
     recipients.append(sendCoinsRecipient);
     WalletModelTransaction currentTransaction(recipients);
     */
+    /*
     boost::filesystem::path pathMasternodeConfigFile = GetMasternodeConfigFile();
     boost::filesystem::ifstream streamConfig(pathMasternodeConfigFile);
 
@@ -401,6 +402,9 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
 
     // When done adding all the masternodes to the config close the file
     fclose(configFile);
+    */
+    masternodeConfig.add(setAliasStr, mnIPStr, keyID);
+    masternodeConfig.writeToMasternodeConf();
 
 }
     /*
