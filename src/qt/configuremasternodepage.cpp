@@ -384,12 +384,35 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
         CAmount(Tier1) * COIN,
         "");
 
-    /*
+    // Look for a valid collateral utxo
+    COutPoint collateralOut;
+    
     // Send the 10 tx to one of your address
     QList<SendCoinsRecipient> recipients;
     recipients.append(sendCoinsRecipient);
     WalletModelTransaction currentTransaction(recipients);
-    */
+
+    std::string txID = collateralOut.hash.ToString();
+    std::string indexOutStr = std::to_string(collateralOut.n);
+
+            // look for the tx index of the collateral
+    CWalletTx* walletTx = currentTransaction.getTransaction();
+    std::string txID = walletTx->GetHash().GetHex();
+    int indexOut = -1;
+    for (int i = 0; i < (int)walletTx->vout.size(); i++) {
+        CTxOut& out = walletTx->vout[i];
+        if (out.nValue == Tier1 * COIN) {
+            indexOut = i;
+            break;
+        }
+    }
+    if (indexOut == -1) {
+        returnStr = tr("Invalid collateral output index");
+        return false;
+    }
+    // save the collateral outpoint
+    collateralOut = COutPoint(walletTx->GetHash(), indexOut);
+    
     /*
     boost::filesystem::path pathMasternodeConfigFile = GetMasternodeConfigFile();
     boost::filesystem::ifstream streamConfig(pathMasternodeConfigFile);
