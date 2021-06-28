@@ -353,8 +353,6 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
     secret.MakeNewKey(false);
     ui->privKeyEdit->setText(QString::fromStdString(CBitcoinSecret(secret).ToString()));
 
-    // Create a new output
-    COutPoint collateralOut;
     std::string pubkey = "";
     string strAccount;
 
@@ -368,6 +366,9 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
         msgBox.setText("Error: Keypool ran out, please call keypoolrefill first.");
         msgBox.exec();
     }
+
+        // Look for a valid collateral utxo
+    COutPoint collateralOut;
 
     CKeyID keyID = newKey.GetID();
 
@@ -384,18 +385,14 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
         CAmount(Tier1) * COIN,
         "");
 
-    // Look for a valid collateral utxo
-    COutPoint collateralOut;
+
     
     // Send the 10 tx to one of your address
     QList<SendCoinsRecipient> recipients;
     recipients.append(sendCoinsRecipient);
     WalletModelTransaction currentTransaction(recipients);
 
-    std::string txID = collateralOut.hash.ToString();
-    std::string indexOutStr = std::to_string(collateralOut.n);
-
-            // look for the tx index of the collateral
+    // look for the tx index of the collateral
     CWalletTx* walletTx = currentTransaction.getTransaction();
     std::string txID = walletTx->GetHash().GetHex();
     int indexOut = -1;
@@ -406,10 +403,8 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
             break;
         }
     }
-    if (indexOut == -1) {
-        returnStr = tr("Invalid collateral output index");
-        return false;
-    }
+
+
     // save the collateral outpoint
     collateralOut = COutPoint(walletTx->GetHash(), indexOut);
     
