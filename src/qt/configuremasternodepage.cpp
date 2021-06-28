@@ -410,7 +410,8 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
     }
     // save the collateral outpoint
     collateralOut = COutPoint(walletTx->GetHash(), indexOut);
-    LogPrint "Made it to the save collateral outpoint";
+    ui->outputEdit->setText(walletTx);
+    ui->outputIdEdit->setText(txID);
     
     /*
     boost::filesystem::path pathMasternodeConfigFile = GetMasternodeConfigFile();
