@@ -406,11 +406,12 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
 
     if (indexOut == -1) {
         QMessageBox msgBox;
-        LogPrint "Invalid collateral output index.";
+        msgBox.setText("Invalid collateral output index.");
+        msgBox.exec();
     }
     // save the collateral outpoint
     collateralOut = COutPoint(walletTx->GetHash(), indexOut);
-    ui->outputEdit->setText(walletTx);
+    ui->outputEdit->setText(collateralOut);
     ui->outputIdEdit->setText(txID);
     
     /*
