@@ -404,9 +404,13 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
         }
     }
 
-
+    if (indexOut == -1) {
+        QMessageBox msgBox;
+        LogPrint "Invalid collateral output index.";
+    }
     // save the collateral outpoint
     collateralOut = COutPoint(walletTx->GetHash(), indexOut);
+    LogPrint "Made it to the save collateral outpoint";
     
     /*
     boost::filesystem::path pathMasternodeConfigFile = GetMasternodeConfigFile();
