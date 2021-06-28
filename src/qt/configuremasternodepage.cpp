@@ -382,7 +382,7 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
     SendCoinsRecipient sendCoinsRecipient(
         QString::fromStdString(pubkey),
         QString::fromStdString(alias),
-        CAmount(Tier1) * COIN,
+        Tier1 * COIN,
         "");
 
 
