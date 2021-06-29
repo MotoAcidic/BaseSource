@@ -411,7 +411,7 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
     }
     // save the collateral outpoint
     collateralOut = COutPoint(walletTx->GetHash(), indexOut);
-    ui->outputEdit->setText(QString::fromStdString(collateralOut));
+    ui->outputEdit->setText(COutPoint(walletTx->GetHash(), indexOut));
     ui->outputIdEdit->setText(QString::fromStdString(txID));
     
     /*
