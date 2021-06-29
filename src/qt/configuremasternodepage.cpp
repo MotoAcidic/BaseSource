@@ -337,7 +337,7 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
         msgBox.setText("Can't leave alias field empty.");
         msgBox.exec();
     }
-    std::string alias = setAliasStr.toStdString();
+    std::string mnAlias = setAliasStr.toStdString();
 
     // validate IP address
     QString mnIPStr = ui->vpsIpEdit->text();
@@ -377,12 +377,12 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
     pubkey = CBitcoinAddress(keyID).ToString();
 
     
-    CAmount Tier1 = GetSporkValue(SPORK_10_TIER_1_COLLATERAL);
+    CAmount Tier1 = GetSporkValue(SPORK_10_TIER_1_COLLATERAL) * COIN;
     // const QString& addr, const QString& label, const CAmount& amount, const QString& message
     SendCoinsRecipient sendCoinsRecipient(
         QString::fromStdString(pubkey),
-        QString::fromStdString(alias),
-        Tier1 * COIN,
+        QString::fromStdString(mnAlias),
+        Tier1,
         "");
 
 
@@ -411,8 +411,8 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
     }
     // save the collateral outpoint
     collateralOut = COutPoint(walletTx->GetHash(), indexOut);
-    ui->outputEdit->setText(collateralOut);
-    ui->outputIdEdit->setText(txID);
+    ui->outputEdit->setText(QString::fromStdString(collateralOut));
+    ui->outputIdEdit->setText(QString::fromStdString(txID));
     
     /*
     boost::filesystem::path pathMasternodeConfigFile = GetMasternodeConfigFile();
@@ -427,7 +427,7 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
     // When done adding all the masternodes to the config close the file
     fclose(configFile);
     */
-    masternodeConfig.add(alias, mnIPAddress, ui->privKeyEdit->text().toStdString(), ui->outputEdit->text().toStdString(), ui->outputIdEdit->text().toStdString());
+    masternodeConfig.add(mnAlias, mnIPAddress, ui->privKeyEdit->text().toStdString(), ui->outputEdit->text().toStdString(), ui->outputIdEdit->text().toStdString());
     masternodeConfig.writeToMasternodeConf();
 
 }
