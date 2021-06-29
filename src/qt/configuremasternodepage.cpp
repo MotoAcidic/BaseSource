@@ -380,7 +380,7 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
     CAmount Tier1 = GetSporkValue(SPORK_10_TIER_1_COLLATERAL) * COIN;
     // const QString& addr, const QString& label, const CAmount& amount, const QString& message
     SendCoinsRecipient sendCoinsRecipient(
-        QString::fromStdString(pubkey),
+        QString::fromStdString(CBitcoinAddress(keyID).ToString()),
         QString::fromStdString(mnAlias),
         Tier1,
         "");
