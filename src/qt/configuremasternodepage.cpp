@@ -377,20 +377,22 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
     pubkey = CBitcoinAddress(keyID).ToString();
 
     
-    CAmount Tier1 = GetSporkValue(SPORK_10_TIER_1_COLLATERAL) * COIN;
+    CAmount Tier1 = GetSporkValue(SPORK_10_TIER_1_COLLATERAL);
     // const QString& addr, const QString& label, const CAmount& amount, const QString& message
     SendCoinsRecipient sendCoinsRecipient(
-        QString::fromStdString(CBitcoinAddress(keyID).ToString()),
-        QString::fromStdString(mnAlias),
-        Tier1,
+        QString::fromStdString(pubkey),
+        QString::fromStdString(alias),
+        CAmount(Tier1) * COIN,
         "");
 
-
-    
     // Send the 10 tx to one of your address
     QList<SendCoinsRecipient> recipients;
     recipients.append(sendCoinsRecipient);
     WalletModelTransaction currentTransaction(recipients);
+    WalletModel::SendCoinsReturn prepareStatus;
+
+    // no coincontrol, no P2CS delegations
+    prepareStatus = walletModel->prepareTransaction(&currentTransaction, nullptr, false);
 
     // look for the tx index of the collateral
     CWalletTx* walletTx = currentTransaction.getTransaction();
@@ -411,8 +413,8 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
     }
     // save the collateral outpoint
     collateralOut = COutPoint(walletTx->GetHash(), indexOut);
-    ui->outputEdit->setText(COutPoint(walletTx->GetHash(), indexOut));
-    ui->outputIdEdit->setText(QString::fromStdString(txID));
+    //ui->outputEdit->setText(COutPoint(walletTx->GetHash(), indexOut));
+    //ui->outputIdEdit->setText(QString::fromStdString(txID));
     
     /*
     boost::filesystem::path pathMasternodeConfigFile = GetMasternodeConfigFile();
