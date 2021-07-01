@@ -381,7 +381,7 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
     // const QString& addr, const QString& label, const CAmount& amount, const QString& message
     SendCoinsRecipient sendCoinsRecipient(
         QString::fromStdString(pubkey),
-        QString::fromStdString(alias),
+        QString::fromStdString(mnAlias),
         CAmount(Tier1) * COIN,
         "");
 
