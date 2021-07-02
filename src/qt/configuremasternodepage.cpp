@@ -392,8 +392,8 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
     WalletModel::SendCoinsReturn prepareStatus;
 
     // no coincontrol, no P2CS delegations
-    prepareStatus = walletModel->prepareTransaction(&currentTransaction, nullptr, false);
-
+    //prepareStatus = walletModel->prepareTransaction(&currentTransaction, nullptr, false);
+    prepareStatus = model->prepareTransaction(currentTransaction);
     // look for the tx index of the collateral
     CWalletTx* walletTx = currentTransaction.getTransaction();
     std::string txID = walletTx->GetHash().GetHex();
