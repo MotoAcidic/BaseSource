@@ -376,7 +376,7 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
 
     pubkey = CBitcoinAddress(keyID).ToString();
 
-    
+    /*
     CAmount Tier1 = GetSporkValue(SPORK_10_TIER_1_COLLATERAL);
     // const QString& addr, const QString& label, const CAmount& amount, const QString& message
     SendCoinsRecipient sendCoinsRecipient(
@@ -415,6 +415,24 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
     }
     // save the collateral outpoint
     collateralOut = COutPoint(walletTx->GetHash(), indexOut);
+    */
+
+    // const QString& addr, const QString& label, const CAmount& amount, const QString& message
+    CAmount Tier1 = GetSporkValue(SPORK_10_TIER_1_COLLATERAL);
+    SendCoinsRecipient sendCoinsRecipient(
+        QString::fromStdString(pubkey),
+        QString::fromStdString(mnAlias),
+        Tier1,
+        "");
+
+    // Send the 10 tx to one of your address
+    QList<SendCoinsRecipient> recipients;
+    recipients.append(sendCoinsRecipient);
+    WalletModelTransaction currentTransaction(recipients);
+    WalletModel::SendCoinsReturn prepareStatus;
+
+    // no coincontrol, no P2CS delegations
+    prepareStatus = walletModel->prepareTransaction(&currentTransaction, nullptr, false);
 
     masternodeConfig.add(mnAlias, mnIPAddress, ui->privKeyEdit->text().toStdString(), ui->outputEdit->text().toStdString(), ui->outputIdEdit->text().toStdString());
     masternodeConfig.writeToMasternodeConf();
