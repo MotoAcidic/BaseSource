@@ -394,6 +394,8 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
     // no coincontrol, no P2CS delegations
     //prepareStatus = walletModel->prepareTransaction(&currentTransaction, nullptr, false);
     prepareStatus = walletModel->prepareTransaction(currentTransaction);
+
+    WalletModel::SendCoinsReturn sendStatus = walletModel->sendCoins(currentTransaction);
     // look for the tx index of the collateral
     CWalletTx* walletTx = currentTransaction.getTransaction();
     std::string txID = walletTx->GetHash().GetHex();
@@ -413,22 +415,7 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
     }
     // save the collateral outpoint
     collateralOut = COutPoint(walletTx->GetHash(), indexOut);
-    //ui->outputEdit->setText(COutPoint(walletTx->GetHash(), indexOut));
-    //ui->outputIdEdit->setText(QString::fromStdString(txID));
-    
-    /*
-    boost::filesystem::path pathMasternodeConfigFile = GetMasternodeConfigFile();
-    boost::filesystem::ifstream streamConfig(pathMasternodeConfigFile);
 
-    FILE* configFile = fopen(pathMasternodeConfigFile.string().c_str(), "a");
-
-    // Add file header back as each time this runs it restarts the file
-    std::string strHeader = setAliasStr.toStdString();
-    fwrite(strHeader.c_str(), std::strlen(strHeader.c_str()), 1, configFile);
-
-    // When done adding all the masternodes to the config close the file
-    fclose(configFile);
-    */
     masternodeConfig.add(mnAlias, mnIPAddress, ui->privKeyEdit->text().toStdString(), ui->outputEdit->text().toStdString(), ui->outputIdEdit->text().toStdString());
     masternodeConfig.writeToMasternodeConf();
 
