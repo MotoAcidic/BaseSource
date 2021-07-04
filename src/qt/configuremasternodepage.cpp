@@ -218,7 +218,7 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
     CKey secret;
     secret.MakeNewKey(false);
     ui->privKeyEdit->setText(QString::fromStdString(CBitcoinSecret(secret).ToString()));
-    mnKey = CBitcoinAddress(secret).ToString();
+    std::string mnKey = CBitcoinAddress(secret).ToString();
 
     std::string pubkey = "";
     string strAccount;
