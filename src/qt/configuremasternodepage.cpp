@@ -222,6 +222,9 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
     
 
     std::string pubkey = "";
+    CKeyID keyID = newKey.GetID();
+    pwalletMain->SetAddressBook(keyID, strAccount, "receive");
+
     pubkey = CBitcoinAddress(keyID).ToString();
     string strAccount;
 
