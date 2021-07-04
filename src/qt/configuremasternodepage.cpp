@@ -221,12 +221,22 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
     ui->privKeyEdit->setText(QString::fromStdString(CBitcoinSecret(secret).ToString()));
     
 
-    std::string pubkey = "";
+    // Parse the account first so we don't generate a key if there's an error
+    string strAccount;
+
+    if (!pwalletMain->IsLocked())
+        pwalletMain->TopUpKeyPool();
+
+    // Generate a new key that is added to wallet
+    CPubKey newKey;
+    if (!pwalletMain->GetKeyFromPool(newKey))
+        throw JSONRPCError(RPC_WALLET_KEYPOOL_RAN_OUT, "Error: Keypool ran out, please call keypoolrefill first");
     CKeyID keyID = newKey.GetID();
+
     pwalletMain->SetAddressBook(keyID, strAccount, "receive");
 
-    pubkey = CBitcoinAddress(keyID).ToString();
-    string strAccount;
+    //return CBitcoinAddress(keyID).ToString();   
+    
 
     // Look for a valid collateral utxo
     COutPoint collateralOut;
