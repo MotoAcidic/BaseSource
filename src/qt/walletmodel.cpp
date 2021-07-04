@@ -228,24 +228,6 @@ void WalletModel::refreshClicked()
         transactionTableModel->updateConfirmations();
 }
 
-// returns a COutPoint of if found
-/*
-bool WalletModel::getMNCollateralCandidate(COutPoint& outPoint)
-{
-    //coinsFilter.nCoinType = ONLY_NONDENOMINATED_NOTDEPOSITIFMN;
-    std::vector<COutput> vCoins;
-    wallet->AvailableCoins(&vCoins, nullptr);
-    for (const COutput& out : vCoins) {
-        // skip locked collaterals
-        if (!isLockedCoin(out.tx->GetHash(), out.i)) {
-            outPoint = COutPoint(out.tx->GetHash(), out.i);
-            return true;
-        }
-    }
-    return false;
-}
-*/
-
 //void WalletModel::checkBalanceChanged()
 void WalletModel::checkBalanceChanged(const CAmount& balance, const CAmount& unconfirmedBalance, const CAmount& immatureBalance, const CAmount& anonymizedBalance, const CAmount& watchOnlyBalance, const CAmount& watchUnconfBalance, const CAmount& watchImmatureBalance)
 {
