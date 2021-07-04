@@ -218,7 +218,7 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
     CKey secret;
     secret.MakeNewKey(false);
     ui->privKeyEdit->setText(QString::fromStdString(CBitcoinSecret(secret).ToString()));
-    std::string mnKey = CBitcoinAddress(secret).ToString();
+    
 
     std::string pubkey = "";
     string strAccount;
@@ -268,7 +268,7 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
     }
     
 
-    masternodeConfig.add(mnAlias, mnIPAddress, secret, ui->outputEdit->text().toStdString(), ui->outputIdEdit->text().toStdString());
+    masternodeConfig.add(mnAlias, mnIPAddress, ui->privKeyEdit->text().toStdString(), ui->outputEdit->text().toStdString(), ui->outputIdEdit->text().toStdString());
     masternodeConfig.writeToMasternodeConf();
 
 }
