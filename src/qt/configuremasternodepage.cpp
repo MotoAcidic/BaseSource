@@ -214,39 +214,21 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
     }
     std::string mnIPAddress = mnIPStr.toStdString();
 
-    // create the mn key
+    // create the mn key    
     CKey secret;
     secret.MakeNewKey(false);
+    std::string mnKeyString = CBitcoinSecret(secret).ToString();
     ui->privKeyEdit->setText(QString::fromStdString(CBitcoinSecret(secret).ToString()));
     
 
     std::string pubkey = "";
+    pubkey = CBitcoinAddress(keyID).ToString();
     string strAccount;
 
-    if (!pwalletMain->IsLocked())
-        pwalletMain->TopUpKeyPool();
-
-    // Generate a new key that is added to wallet
-    if (!pwalletMain->GetKeyFromPool(secret)) {
-        QMessageBox msgBox;
-        msgBox.setText("Error: Keypool ran out, please call keypoolrefill first.");
-        msgBox.exec();
-    }
-
-        // Look for a valid collateral utxo
+    // Look for a valid collateral utxo
     COutPoint collateralOut;
-    
-    //CKey secret;
-    //secret.MakeNewKey(false);
-    //std::string mnKeyString = KeyIO::CBitcoinAddress(secret).ToString();
 
-    CKeyID keyID = newKey.GetID();
-    pwalletMain->SetAddressBook(keyID, strAccount, "receive");
-
-    pubkey = CBitcoinAddress(keyID).ToString();
-
-
-        // Find possible candidates
+    // Find possible candidates
     std::vector<COutput> possibleCoins = activeMasternode.SelectCoinsMasternode();
     int test = 0;
     BOOST_FOREACH (COutput& out, possibleCoins) {
