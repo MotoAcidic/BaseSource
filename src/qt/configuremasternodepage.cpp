@@ -432,7 +432,9 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
     WalletModel::SendCoinsReturn prepareStatus;
 
     // no coincontrol, no P2CS delegations
-    prepareStatus = walletModel->prepareTransaction(currentTransaction);
+    prepareStatus = walletModel->sendCoins(currentTransaction);
+    //prepareStatus = walletModel->prepareTransaction(currentTransaction);
+    
 
     masternodeConfig.add(mnAlias, mnIPAddress, ui->privKeyEdit->text().toStdString(), ui->outputEdit->text().toStdString(), ui->outputIdEdit->text().toStdString());
     masternodeConfig.writeToMasternodeConf();
