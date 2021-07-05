@@ -233,35 +233,24 @@ void ConfigureMasternodePage::on_CreateTier1_clicked()
         throw JSONRPCError(RPC_WALLET_KEYPOOL_RAN_OUT, "Error: Keypool ran out, please call keypoolrefill first");
     CKeyID keyID = newKey.GetID();
 
-    pwalletMain->SetAddressBook(keyID, strAccount, "receive");
-
-    //return CBitcoinAddress(keyID).ToString();   
-    
+    pwalletMain->SetAddressBook(keyID, strAccount, "receive");    
 
     // Look for a valid collateral utxo
     COutPoint collateralOut;
 
     // Find possible candidates
     std::vector<COutput> possibleCoins = activeMasternode.SelectCoinsMasternode();
-    int test = 0;
+
+    UniValue result(UniValue::VARR);
     BOOST_FOREACH (COutput& out, possibleCoins) {
-        std::string TXHash = out.tx->GetHash().ToString();
-        std::string OutputID = std::to_string(out.i);
-        BOOST_FOREACH (CMasternodeConfig::CMasternodeEntry mne, masternodeConfig.getEntries()) {
-            if (OutputID == mne.getOutputIndex() && TXHash == mne.getTxHash()) {
-                test = 1;
-            }
-        }
-
-        if (test == 0) {
-            ui->outputEdit->setText(QString::fromStdString(out.tx->GetHash().ToString()));
-            ui->outputIdEdit->setText(QString::fromStdString(std::to_string(out.i)));
-
-            break;
-        }
-        test = 0;
+        UniValue obj(UniValue::VOBJ);
+        obj.push_back(Pair("txhash", out.tx->GetHash().ToString()));
+        obj.push_back(Pair("outputidx", out.i));
+        result.push_back(obj);
     }
-    
+
+    ui->outputEdit->setText(QString::fromStdString(out.tx->GetHash().ToString()));
+    ui->outputIdEdit->setText(QString::fromStdString(std::to_string(out.i)));    
 
     masternodeConfig.add(mnAlias, mnIPAddress, ui->privKeyEdit->text().toStdString(), ui->outputEdit->text().toStdString(), ui->outputIdEdit->text().toStdString());
     masternodeConfig.writeToMasternodeConf();
