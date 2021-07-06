@@ -306,17 +306,23 @@ bool CMasternode::IsValidNetAddr()
 
 unsigned CMasternode::Level(CAmount vin_val)
 {
+    CAmount Tier1 = GetSporkValue(SPORK_10_TIER_1_COLLATERAL);
+    CAmount Tier2 = GetSporkValue(SPORK_11_TIER_2_COLLATERAL);
+    CAmount Tier3 = GetSporkValue(SPORK_12_TIER_3_COLLATERAL);
+    CAmount Tier4 = GetSporkValue(SPORK_13_TIER_4_COLLATERAL);
+    CAmount Tier5 = GetSporkValue(SPORK_14_TIER_5_COLLATERAL);
+
     switch (vin_val) {
     case 1:
-        return GetSporkValue(SPORK_10_TIER_1_COLLATERAL) * COIN;
+        return Tier1 * COIN;
     case 2:
-        return GetSporkValue(SPORK_11_TIER_2_COLLATERAL) * COIN;
+        return Tier2 * COIN;
     case 3:
-        return GetSporkValue(SPORK_12_TIER_3_COLLATERAL) * COIN;
+        return Tier3 * COIN;
     case 4:
-        return GetSporkValue(SPORK_13_TIER_4_COLLATERAL) * COIN;
+        return Tier4 * COIN;
     case 5:
-        return GetSporkValue(SPORK_14_TIER_5_COLLATERAL) * COIN;
+        return Tier5 * COIN;
     }
 
     return 0;
