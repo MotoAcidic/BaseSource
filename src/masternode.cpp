@@ -315,15 +315,15 @@ unsigned CMasternode::Level(CAmount vin_val)
 
     switch (vin_val) {
     case 1:
-        return Tier1 * COIN;
+        return 50 * COIN;
     case 2:
-        return Tier2 * COIN;
+        return 200 * COIN;
     case 3:
-        return Tier3 * COIN;
+        return 500 * COIN;
     case 4:
-        return Tier4 * COIN;
+        return 1000 * COIN;
     case 5:
-        return Tier5 * COIN;
+        return 5000 * COIN;
     }
 
     return 0;
